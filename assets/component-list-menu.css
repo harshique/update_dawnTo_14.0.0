@@ -4,9 +4,9 @@
 
 .list-menu--disclosure {
   position: absolute;
-  min-width: 100%;
-  width: 20rem;
-  border: 1px solid rgba(var(--color-foreground), 0.2);
+  min-width: 95%;
+  width: 11rem;
+  border: 2px solid #000000a3 !important;
 }
 
 .list-menu--disclosure:focus {

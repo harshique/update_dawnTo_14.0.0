@@ -1,0 +1,137 @@
+{{ 'product_couture.css' | asset_url | stylesheet_tag }}
+{{ 'product_couture_responsive.css' | asset_url | stylesheet_tag }}
+
+<div class="prd_ctr_sec4_wrapper_everything">
+  <div class="prd_ctr_sec4_container">
+    <div class="prd_ctr_sec4_text1">
+      HOW DID THIS<br class="visible_in_mobile">
+      HAPPEN?
+    </div>
+    <div class="prd_ctr_sec4_text2">
+      <div class="prd_ctr_inside_upper">
+        <span class="span_text">FASHION</span>
+        <span class="span_text">EVOLVED</span>
+        <span class="span_text">JUST</span><br>
+        <span class="span_text">LIKE</span>
+        <span class="span_text">ART</span>
+      </div>
+      <div class="prd_ctr_inside_upper_mobile">
+        FASHION EVOLVEd<br>
+        JUST LIKe ART
+      </div>
+    </div>
+    <div class="prd_ctr_sec4_text3">
+      Look at how art has<br class="visible_in_mobile">
+      evolved from the works<br class="visible_in_mobile">
+      of old masters to<br class="visible_in_desktop">
+      <br class="visible_in_mobile">
+      increasingly abstract<br class="visible_in_mobile">
+      contemporary pieces.
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "product_couture_section-4",
+"settings": [
+{
+"type": "html",
+"id": "bigText1",
+"label": "Text-1"
+},
+  {
+"type": "html",
+"id": "smallText2",
+"label": "Text-2"
+},
+{
+"type": "image_picker",
+"id": "bg_img",
+"label": "Background Image"
+},
+
+
+{
+"type": "html",
+"id": "lets_start_text1",
+"label": "Text-1"
+},
+  {
+"type": "html",
+"id": "lets_start_text2",
+"label": "Text-2"
+},
+  {
+"type": "html",
+"id": "lets_start_text3",
+"label": "Text-3"
+},
+{
+"type": "image_picker",
+"id": "bg_img_2",
+"label": "Background Image"
+},
+
+
+
+
+
+{
+"type": "text",
+"id": "video-url",
+"label": "Video Url"
+},
+{
+"type": "image_picker",
+"id": "banner_image",
+"label": "Desktop Banner Image"
+},
+{
+"type": "image_picker",
+"id": "logo_image",
+"label": "Logo Image"
+},
+{
+"type": "image_picker",
+"id": "cart_logo_image",
+"label": "Cart Logo Image"
+},
+{
+"type": "image_picker",
+"id": "cart_nav_log",
+"label": "Nav Logo Image"
+},
+{
+"type": "image_picker",
+"id": "banner_image_mobile",
+"label": "Mobile Banner Image"
+},
+{
+           "type": "text",
+           "id": "video",
+           "label": "Background Video"
+},
+{
+           "type": "text",
+           "id": "video_mobile",
+           "label": "Background Video Mobile"
+},
+{
+"type": "html",
+"id": "title",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "sub_title",
+"label": "Subheading"
+}
+],
+"presets": [
+{
+"name": "product_couture_section-4"
+}
+]
+}
+{% endschema %}

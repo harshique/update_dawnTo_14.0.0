@@ -1,0 +1,214 @@
+{{ 'video-section.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+    <div class="main-video">
+      <div class="product-vds-cover">
+        <button
+          id="Deferred-Poster-Modal-{{ section.settings.video_url.id }}"
+          class="video-section__poster media deferred-media__poster media--landscape"
+          type="button"
+        >
+          {% if section.settings.video != blank %}
+            <video
+              class="{% if section.settings.video_mobile != blank %}  desktop-video  {%- endif -%}"
+              autoplay="autoplay"
+              loop="loop"
+              muted="muted"
+              playsinline
+              poster="{{ section.settings.cover_image | img_url: 'master' }}"
+            >
+              <source src="{{ section.settings.video }}" type="video/webm">
+              <source src=" {{ section.settings.video }}" type="video/mp4">
+            </video>
+            {% if section.settings.video_mobile != blank %}
+              <video
+                class="mobile-video"
+                autoplay="autoplay"
+                loop="loop"
+                muted="muted"
+                playsinline
+                poster="{{ section.settings.cover_image | img_url: 'master' }}"
+              >
+                <source src="{{ section.settings.video_mobile }}" type="video/webm">
+                <source src=" {{ section.settings.video_mobile }}" type="video/mp4">
+              </video>
+            {%- endif -%}
+          {%- else -%}
+            {%- if section.settings.cover_image != blank -%}
+              <img
+                srcset="
+                  {%- if section.settings.cover_image.width >= 375 -%}{{ section.settings.cover_image | image_url: width: 375 }} 375w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 750 -%}{{ section.settings.cover_image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 1100 -%}{{ section.settings.cover_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 1500 -%}{{ section.settings.cover_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 1780 -%}{{ section.settings.cover_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 2000 -%}{{ section.settings.cover_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 3000 -%}{{ section.settings.cover_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                  {%- if section.settings.cover_image.width >= 3840 -%}{{ section.settings.cover_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+                  {{ section.settings.cover_image | image_url }} {{ section.settings.cover_image.width }}w
+                "
+                src="{{ section.settings.cover_image | image_url: width: 1920 }}"
+                sizes="{% if section.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+                alt="{{ 'sections.video.load_video' | t: description: section.settings.description | escape }}"
+                loading="lazy"
+                width="{{ section.settings.cover_image.width }}"
+                height="{{ section.settings.cover_image.height }}"
+                class="dektop-image-ban"
+              >
+              <img
+                srcset="
+                  {%- if section.settings.m_cover_image.width >= 375 -%}{{ section.settings.m_cover_image | image_url: width: 375 }} 375w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 750 -%}{{ section.settings.m_cover_image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 1100 -%}{{ section.settings.m_cover_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 1500 -%}{{ section.settings.m_cover_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 1780 -%}{{ section.settings.m_cover_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 2000 -%}{{ section.settings.m_cover_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 3000 -%}{{ section.settings.m_cover_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                  {%- if section.settings.m_cover_image.width >= 3840 -%}{{ section.settings.m_cover_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+                  {{ section.settings.m_cover_image | image_url }} {{ section.settings.m_cover_image.width }}w
+                "
+                src="{{ section.settings.m_cover_image | image_url: width: 1920 }}"
+                sizes="{% if section.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+                alt="{{ 'sections.video.load_video' | t: description: section.settings.description | escape }}"
+                loading="lazy"
+                width="{{ section.settings.m_cover_image.width }}"
+                height="{{ section.settings.m_cover_image.height }}"
+                class="mobile-image-ban"
+              >
+            {%- endif -%}
+          {%- endif -%}
+        </button>
+        <div class="overla-conent-on-text">
+          <span class="deferred-media__poster-button0y motion-reduce-d">
+            <div class="rtt">
+              {% if section.settings.heading != blank %}
+                <h2 class="{{ section.settings.heading_size }} only-on-desktop" {{ section.shopify_attributes }}>
+                  <span class="a-text">{{ section.settings.heading }}</span>
+                </h2>
+              {%- endif -%}
+              {% if section.settings['heading-mobile'] != blank %}
+                <h2 class="{{ section.settings.heading_size }} only_mobile_device" {{ section.shopify_attributes }}>
+                  <span class="a-text">{{ section.settings['heading-mobile'] }}</span>
+                </h2>
+              {%- endif -%}
+              <div class="rich-text__text rte only-on-desktop" {{ section.shopify_attributes }}>
+                {{ section.settings.text }}
+              </div>
+              <div class="rich-text__text rte only_mobile_device" {{ section.shopify_attributes }}>
+                {{ section.settings.text_mobile }}
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .section-{{ section.id }}-padding .main-video .product-vds-cover {
+      height: 100vh;
+  }
+  .section-{{ section.id }}-padding .product-vds-cover button {
+      pointer-events: none;
+      cursor: not-allowed;
+  }
+    @media(max-width:767px){
+      .section-{{ section.id }}-padding .main-video .product-vds-cover {
+          height: 100vh;
+  }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Homepage Video ",
+  "tag": "section",
+  "class": "section video-with-textt one-page-video video-css-one updated-home-video charchol-desk-c001",
+  "settings": [
+     {
+                  "type": "text",
+                  "id": "video",
+                  "label": "Background Video"
+    },
+    {
+                  "type": "text",
+                  "id": "video_mobile",
+                  "label": "Background Video Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "m_cover_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "t:sections.video.settings.video_url.label",
+      "placeholder": "t:sections.video.settings.video_url.placeholder",
+      "info": "t:sections.video.settings.video_url.info"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Info"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width",
+      "default": false
+    },
+      {
+          "type": "html",
+          "id": "heading",
+          "label": "Heading"
+        },
+     {
+          "type": "html",
+          "id": "heading-mobile",
+          "label": "Heading Mobile"
+        },
+
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+      "label": "Desktop Info"
+    },
+    {
+      "type": "textarea",
+      "id": "text_mobile",
+      "label": "Mobile Info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Video"
+    }
+  ]
+}
+{% endschema %}

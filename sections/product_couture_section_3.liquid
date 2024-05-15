@@ -1,0 +1,287 @@
+{{ 'product_couture.css' | asset_url | stylesheet_tag }}
+{{ 'product_couture_responsive.css' | asset_url | stylesheet_tag }}
+<style>
+  .sec-3-container {
+      background: #F2EDE8;
+      margin: 10px;
+      padding:200px 200px 100px 100px;
+
+  }
+
+  .contain-1 {
+      display: grid;
+      grid-template-columns: 3fr 1.5fr 1fr;
+      gap: 10px;
+
+  }
+
+  .img-1 {
+      margin-top:40px;
+      width: 220%;
+      height: 220%;
+      object-fit: contain;
+      transform: translate(-30%, -32%);
+  }
+
+
+
+  .paragraph-div-1-p-1 {
+      font-size: 24px;
+      font-weight: 1000;
+      line-height: 40px;
+      letter-spacing: 0.60em;
+      text-align: justified;
+      width:fit-content;
+
+  }
+  .paragraph-div-1-img-2{
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+     top:0; left:0;
+     position: absolute;
+     transform: translate(-25%, -20%);
+
+  }
+  .paragraph-div-1-img-3{
+      padding-top:20%;
+      width: 40%;
+      height: auto;
+      margin:50%;
+      top: 50%;
+      left: 50%;
+      /* rotate: 180deg; */
+  }
+
+  .contain-2 {
+      display: flex;
+      padding:0px 200px 100px 100px
+  }
+
+  .contain-2 p {
+      margin:0px 30px 30px 30px;
+      font-size: 13px;
+      font-weight: 350;
+      line-height: 21px;
+      letter-spacing: 0.18em;
+      text-align: left;
+
+  }
+</style>
+
+<div class="product_couture_sec-3-container">
+  <div class="sec3_changes" STYLE="color:black,text-align:center;margin:0;">BUT</div>
+  <div class="product_couture_sec3_contain-1">
+    <img class="prd_ctr_sec3_img-1" src="{{ section.settings.new_image_fix | img_url: 'master' }}">
+    <div class="product_ctr_sec3_image_text_wrapper">
+      <div class="paragraph-div-1">
+        fashion products<br>
+        are&nbsp;&nbsp; also&nbsp;&nbsp;&nbsp;&nbsp;some<br>
+        of&nbsp;&nbsp; the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;most<br>
+        poorly<br>
+        designed,&nbsp;&nbsp;&nbsp;&nbsp;least<br>
+        innovative<br>
+        objects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out<br>
+        there.
+      </div>
+      <div class="paragraph-div-1-p-2">
+        In fact, <br>
+        they’re <br>
+        primitive.
+      </div>
+      <img
+        class="prd_ctr_absolute_image1"
+        src="{{ section.settings.absolute_image_1 | img_url: 'master' }}"
+      >
+      <img
+        class="prd_ctr_absolute_image2"
+        src="{{ section.settings.absolute_image_2 | img_url: 'master'  }}"
+      >
+    </div>
+  </div>
+
+  <div class="product_couture_sec3_contain-2">
+    <p class="sec3-para-1">
+      An article of clothing or<br>
+      an accessory is made using<br>
+      the same materials and<br>
+      methods that have been<br>
+      around for ages.
+      <strong
+        >A t-shirt<br>
+        remains just a surface on<br>
+        our skin and a bag is just a<br>
+        surface to carry objects.</strong
+      >
+    </p>
+    <div class="sec3_para_wrapper">
+      <p class="sec3-para-1">
+        Since products are all<br>
+        fundamentally primitive,<br>
+        brands do strange things<br>
+        to stand out, they try<br>
+        everything from<br>
+        <strong
+          >outlandish marketing<br>
+          campaigns to skinning<br>
+          exotic animals.</strong
+        >
+      </p>
+      <p class="sec3-para-1">
+        <strong
+          >The worst part is that it<br>
+          has worked. Fashion<br>
+          products lack deep tangible<br>
+          value, so brands have made<br>
+          sure we’re happy with a<br>
+          superficial world of frills<br>
+          and gimmicks.</strong
+        >
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="product-couture_sec_3_mobile_container" style="display:none">
+  <div class="prd_ctr_sec_3_mobile_div1">
+    <div class="but_in_mobile">BUT</div>
+    <div class="bigger_text_sec3">
+      fashion products<br>
+      are also some of <br>
+      the most poorly<br>
+      designed, least<br>
+      innovative<br>
+      objects out there.
+    </div>
+    <div class="smaller_text_sec3">In fact, they’re primitive.</div>
+  </div>
+  <div class="prd_ctr_sec_3_mobile_div2">
+    <img
+      class="prd_ctr__mobile_image1"
+      src="{{ section.settings.mobile_image_1 | img_url: 'master' }}"
+    >
+    <div class="text_with_image1">
+      An article of clothing or<br>
+      an accessory is made using<br>
+      the same materials and<br>
+      methods that have been<br>
+      around for ages.
+      <strong
+        >A t-shirt<br>
+        remains just a surface on<br>
+        our skin and a bag is just a<br>
+        surface to carry objects.</strong
+      >
+    </div>
+  </div>
+  <div class="prd_ctr_sec_3_mobile_div3">
+    <img
+      class="prd_ctr__mobile_image2"
+      src="{{ section.settings.mobile_image_2 | img_url: 'master' }}"
+    >
+    <div class="text_with_image2">
+      Since products are all<br>
+      fundamentally primitive,<br>
+      brands do strange things<br>
+      to stand out, they try<br>
+      everything from<br>
+      <strong
+        >outlandish marketing<br>
+        campaigns to skinning<br>
+        exotic animals.</strong
+      >
+    </div>
+  </div>
+  <div class="prd_ctr_sec_3_mobile_div4">
+    <img
+      class="prd_ctr__mobile_image3"
+      src="{{ section.settings.mobile_image_3 | img_url: 'master' }}"
+    >
+    <div class="text_with_image3">
+      <strong
+        >The worst part is that it<br>
+        has worked. Fashion<br>
+        products lack deep tangible<br>
+        value, so brands have made<br>
+        sure we’re happy with a<br>
+        superficial world of frills<br>
+        and gimmicks.</strong
+      >
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "product_couture_section_3",
+  "tag": "section",
+  "settings": [
+        {
+"type": "image_picker",
+"id": "new_image_fix",
+"label": "New image fix"
+},
+
+{
+"type": "html",
+"id": "bigText1",
+"label": "Text-1"
+},
+  {
+"type": "html",
+"id": "smallText2",
+"label": "Text-2"
+},
+{
+"type": "image_picker",
+"id": "absolute_image_1",
+"label": "Absolute Image 1"
+},
+
+
+{
+"type": "html",
+"id": "lets_start_text1",
+"label": "Text-1"
+},
+  {
+"type": "html",
+"id": "lets_start_text2",
+"label": "Text-2"
+},
+  {
+"type": "html",
+"id": "lets_start_text3",
+"label": "Text-3"
+},
+{
+"type": "image_picker",
+"id": "absolute_image_2",
+"label": "Absolute Image 2"
+},
+{
+"type": "image_picker",
+"id": "mobile_image_1",
+"label": "mobile Image 1"
+},
+{
+"type": "image_picker",
+"id": "mobile_image_2",
+"label": "mobile Image 2"
+},
+{
+"type": "image_picker",
+"id": "mobile_image_3",
+"label": "mobile Image 3"
+}
+
+
+  ],
+  "presets": [
+    {
+      "name": "product_couture_section_3"
+
+    }
+  ]
+}
+{% endschema %}

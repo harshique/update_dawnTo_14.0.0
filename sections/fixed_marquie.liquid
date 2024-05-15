@@ -1,0 +1,142 @@
+<style>
+    .marquee_wrapper {
+        overflow: hidden;
+        text-wrap: nowrap;
+        position: relative;
+        background: white;
+        min-height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .marquee_fixed_one {
+        display: flex;
+        gap: 15rem;
+        justify-content: center;
+        min-width: 100%;
+        align-items: center;
+        position: absolute;
+        left: 100%;
+        animation:marquee_one 20s linear infinite;
+        /* animation-delay:1s; */
+    }
+    .marquee_fixed_one_time {
+        display: flex;
+        gap: 15rem;
+        justify-content: flex-start;
+        align-items: center;
+        position: absolute;
+        left:0;
+      opacity:1;
+        animation:marquee_one_time 20s linear forwards;
+    }
+      @keyframes marquee_one{
+       to{
+          left:-100%;
+       }
+     }
+      @keyframes marquee_one_time{
+       to{
+          left:-200%;
+          opacity:0;
+       }
+     }
+    span.marquee_elements-fixed {
+        color: #000;
+        text-align: center;
+        font-size: 14.504px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 24.468px;
+        letter-spacing: 6.373px;
+    }
+    .marquee_fixed_second {
+        display: flex;
+        justify-content: center;
+        min-width: 100%;
+        gap: 15rem;
+        position: absolute;
+        left:100%;
+      animation:marquee_second 20s linear infinite;
+      animation-delay:10s;
+    }
+      @keyframes marquee_second{
+       to{
+          left:-100%;
+       }
+     }
+    @media (max-width:767px){
+  .marquee_fixed_one_time {
+     display:none;
+     }
+     .marquee_fixed_one {
+        display: flex;
+        gap: 5rem;
+        position: absolute;
+       transform:translateX(50%);
+       left:0%;
+        animation: marquee_one 20s linear infinite;
+    }
+       .marquee_fixed_second {
+        display: flex;
+        gap: 5rem;
+        position: absolute;
+         transform:translateX(50%);
+         left:0%;
+        animation: marquee_second 20s linear infinite;
+        animation-delay: 10s;
+    }
+      span.marquee_elements-fixed {
+        color: #000;
+        text-align: center;
+        font-size: 14.504px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 24.468px;
+        letter-spacing: 4.373px;
+        white-space:nowrap;
+    }
+      @keyframes marquee_one{
+       to{
+         transform:translateX(-170%)
+          /* left:-100%; */
+       }
+     }
+      @keyframes marquee_second{
+       to{
+         transform:translateX(-170%)
+          /* left:-100%; */
+       }
+     }
+    }
+</style>
+<div class="marquee_wrapper">
+  <div class="marquee_fixed_one_time">
+    <span class="marquee_elements-fixed"> REDACTED // DO NOT MISS THE BIG REVEAL</span>
+    <span class="marquee_elements-fixed"> REDACTED // DO NOT MISS THE BIG REVEAL</span>
+  </div>
+  <div class="marquee_fixed_one">
+    <span class="marquee_elements-fixed"> REDACTED // DO NOT MISS THE BIG REVEAL</span>
+    <span class="marquee_elements-fixed"> REDACTED // DO NOT MISS THE BIG REVEAL</span>
+  </div>
+  <div class="marquee_fixed_second">
+    <span class="marquee_elements-fixed"> REDACTED // DO NOT MISS THE BIG REVEAL</span>
+    <span class="marquee_elements-fixed"> REDACTED // DO NOT MISS THE BIG REVEAL</span>
+  </div>
+</div>
+<script></script>
+
+{% schema %}
+{
+  "name": "fixed_marquie",
+  "settings": [],
+"presets": [
+  {
+    "name": "fixed_marquie"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

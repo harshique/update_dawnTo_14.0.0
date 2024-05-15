@@ -1,0 +1,230 @@
+{{ 'product_couture.css' | asset_url | stylesheet_tag }}
+{{ 'product_couture_responsive.css' | asset_url | stylesheet_tag }}
+<style>
+  @media only screen and (max-width: 767px) {
+    .sec-2-text-div{
+      padding-right:0px;
+    }
+    .sec-2-img-div {
+      overflow: hidden;
+      width: 100%;
+      min-height: 508px;
+      display: flex;
+      align-items: center;
+  }
+    .sec-2-text-p-1{
+      display:none;
+    }
+  }
+
+    @media (min-width:1920px){
+  .sec-2-img-div {
+      display: flex;
+      justify-content: flex-end;
+  }
+      .sec-2-text-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+  }
+
+  .sec-2-img {
+      width: 75%;
+      object-fit: contain;
+      height: 100%;
+      transform: translate(10px, 10px);
+  }
+  }
+</style>
+
+<div class="sec-2-container">
+  <p class="sec-2-contain-text-p-M_mobile" style="display:none;">
+    IT’S ALL <br>
+    ABOUT <br>
+    YOU
+  </p>
+
+  <div class="sec-2-img-div">
+    <img
+      class="sec-2-img"
+      src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/allaboutyou.png?v=1712820435"
+      alt="Image"
+    >
+  </div>
+
+  <div class="sec-2-text-div">
+    <p class="sec-2-contain-text-p-M">
+      IT’S<br>
+      ALL <br>
+      ABOUT <br>
+      YOU
+    </p>
+    <p class="sec-2-text-p-2">
+      Imagine objects of fashion designed<br>
+      specifically for you, built around your<br>
+      interactions with the product, rather than<br>
+      simply chasing the latest trends or seeking<br>
+      novelty. Imagine fashion products that are<br>
+      designed with the same thoughtful approach<br>
+      that’s evident in your favorite gadgets or<br>
+      amazing appliances.
+    </p>
+    <p class="sec-2-text-p-2_mobile" style="display:none">
+      Imagine objects of fashion designed<br>
+      specifically for you, built around your<br>
+      interactions with the product, rather<br>
+      than simply chasing the latest trends<br>
+      or seeking novelty.<br>
+      <br>
+      Imagine fashion products that are<br>
+      designed with the same thoughtful<br>
+      approach that’s evident in your<br>
+      favorite gadgets or amazing<br>
+      appliances.
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "product_Couture_all_about",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Blog posts",
+      "label": "avtar ki heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured-blog.settings.blog.label"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.post_limit.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_image.label",
+      "info": "t:sections.featured-blog.settings.show_image.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.featured-blog.settings.show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_view_all.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "product_Couture_all_about",
+      "settings": {
+      }
+    }
+  ]
+}
+{% endschema %}

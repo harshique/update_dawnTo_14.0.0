@@ -1,0 +1,1205 @@
+{{ 'about_us_animation.css' | asset_url | stylesheet_tag }}
+
+<style>
+       .new_about_us_page_new-2 .grid-container{
+           height: 102vh!important;
+       }
+   img.mobile_image_second_render{
+       display: none;
+   }
+       img.first_image_mob{
+           display: none;
+       }
+   .new_about_us_page {
+       background-color: #E9E9E9;
+       height: 80vh;
+       width: 100vw;
+       overflow-y: hidden;
+   }
+   .background-setup-div {
+       width: 100vw;
+       height: 100vh;
+       display: block!important;
+       background: #E9E9E9;
+       position: absolute;
+       top: 0;
+   }
+   .first_fix {
+       left: 1.5rem;
+       display: flex;
+       flex-direction: column;
+       position: absolute;
+       top: 15rem;
+       z-index: 9;
+   }
+   .lines_making {
+       display: block!important;
+       position: absolute;
+       top: 0;
+       width: 1px;
+       height: 140vh;
+       background: #B3B3B3;
+       left: 2rem;
+       z-index: 1;
+   }
+   .lines_making.line_2 {
+       left: 32rem;
+   }
+   .lines_making.line_3 {
+       left: 62rem;
+   }
+   .lines_making.line_4 {
+       left: 96rem;
+   }
+   span.inner_span {
+       font-size: 9px;
+       line-height: 15px;
+       letter-spacing: 2.4px;
+       color:#B3B3B3 ;
+   }
+   .second_fix {
+       position: absolute;
+       bottom: 17rem;
+       transform: rotate(-90deg);
+       color: #434343;
+       font-size: 8px;
+       font-style: normal;
+       font-weight: 400;
+       line-height: 69%;
+       letter-spacing: 3.32px;
+       text-transform: uppercase;
+       left: -125px;
+       z-index: 9;
+   }
+   .third_fix {
+       position: absolute;
+       bottom: 25rem;
+       display: flex;
+       align-items: center;
+       gap: 2rem;
+       transform: rotate(90deg);
+       right: -18rem;
+       z-index: 9;
+   }
+
+   .horizontal_line {
+       display: block!important;
+       width: 75px;
+       height: 1px;
+       background: #B3B3B3;
+   }
+   .text_one {
+       font-size: 8px;
+       color: #434343;
+       font-weight: 400;
+       line-height: 69%;
+       letter-spacing: 3.32px;
+       transform: rotate(180deg);
+   }
+   .round_circles {
+       display: flex;
+       gap: 10px;
+   }
+   span.small_circles {
+       height: 5px;
+       width: 5px;
+       border-radius: 50%;
+       border: 1px solid black;
+       display: block;
+   }
+   .round_circles span:nth-child(1){
+       background-color: black;
+   }
+   .lines_making.line_5 {
+       left: 122rem;
+   }
+   .first_rendered_content {
+       position: relative;
+       width: 40%;
+       top: 20%;
+       left: 34%;
+       padding: 10rem;
+       z-index: 1;
+   }
+   .first_upper_text {
+       position: absolute;
+       left: 13rem;
+       top: 0rem;
+       font-weight: 200;
+       letter-spacing: 0.45rem;
+       animation-duration: 1s;
+       font-size: 21px;
+       line-height: 30px;
+       opacity:0;
+   }
+
+   .first_lower_text {
+       position: relative;
+       display: flex;
+   }
+   .just_text_only {
+       position: absolute;
+       top: 7rem;
+       left: -6rem;
+       opacity: 0;
+       /* display: none; */
+       animation: fadeIn linear both;
+       font-weight: 200;
+     letter-spacing: 0.45rem;
+     font-size: 21px;
+       animation-duration: 3s;
+       animation-delay: 1.5s;
+       transition: 0.5s ease-in-out;
+   }
+   img.first_image {
+       width: 116%;
+       opacity: 0;
+       /* display: none; */
+       animation: fadeIn linear both;
+       /* animation-timeline: scroll(y); */
+       animation-duration: 1s;
+       animation-delay: 2s;
+   }
+
+   @keyframes fadeIn {
+       0% {
+           /* opacity: 0; */
+           display: none;
+       }
+       100%{
+           /* opacity: 1; */
+           display:block;
+       }
+   }
+   .grid-container {
+       display: grid;
+       grid-template-columns: repeat(5, 1fr);
+       width: 98vw;
+       margin: auto;
+       height: 100vh;
+   }
+
+   .grid-item {
+       display: block!important;
+       border-right: 0.5px solid #ccc;
+       text-align: center;
+   }
+   .grid-item.first_grid{
+       border-left: 0.5px solid #ccc;
+   }
+   .grid-item.last_grid{
+       border-right: none;
+   }
+   .section-header{
+       position: relative!important;
+   }
+   .hiden_element{
+       /* display: none!important; */
+       opacity: 0;
+   }
+   .second_rendered_content {
+       width: 50%;
+       position: relative;
+       display: flex;
+       flex-direction: column;
+       margin: auto;
+       /* z-index: 3;
+       animation: second-render linear both;
+       animation-duration: 1s;
+       animation-delay: 1s;
+       transition: 0.5s; */
+   }
+   /* @keyframes second-render {
+
+       0%{
+       transform: translateY(0);
+       }
+       100%{
+       transform: translateY(-225px);
+      }
+   } */
+
+
+   .second_upper_div {
+       display: flex;
+       align-items: flex-end;
+       width: 100%;
+   }
+   .text_second {
+       width: 36%;
+       float: right;
+       display: flex;
+       justify-content: flex-end;
+       margin-left: 0rem;
+       /* opacity: 0; */
+   }
+   .text_second.first {
+       width: 50%;
+       animation: text-animation linear both;
+       animation-duration: 1s;
+       animation-delay: 4s;
+       transition: ease 0.5s;
+       display: flex;
+       padding: 3rem;
+      opacity:0;
+     font-weight: 200;
+     letter-spacing: 0.45rem;
+     font-size: 21px;
+   }
+   /* @keyframes text-animation {
+
+   0%{
+       transform: translateX(150px);
+       opacity: 0;
+   }
+   100%{
+       transform: translateX(0px);
+       opacity: 1;
+   }
+
+   } */
+
+
+
+   .image_second {
+       width: 50%;
+       display: flex;
+       justify-content: flex-end;
+       opacity:0;
+   }
+   .second_upper_div .image_second img{
+       width: 300px;
+       height: 300px;
+       object-fit: cover;
+
+   }
+   .second_lower_div .image_second img {
+       object-fit: cover;
+       /* display: block; */
+       width: 300px;
+       height: 300px;
+   }
+   .second_lower_div {
+       width: 100%;
+       display: flex;
+       flex-direction: row-reverse;
+       align-items: flex-start;
+   }
+   .second_lower_div .text_second {
+       width: 50%;
+       float: right;
+       display: flex;
+       justify-content: flex-start;
+       margin-left: 0rem;
+       animation: opacity linear both;
+       animation-duration: 1s;
+       animation-delay: 4s;
+       padding: 3rem;
+      opacity:0;
+     font-weight: 200;
+     letter-spacing: 0.45rem;
+     font-size: 21px;
+   }
+   /* @keyframes opacity {
+       0%{
+           scale: 0.7;
+           opacity: 0;
+       }
+       100%{
+           scale: 1;
+          opacity: 1;
+       }
+   } */
+   .second_upper_div .image_second img {
+       width: 300px;
+       height: 300px;
+   }
+   .image_second.first{
+       /* transform: translateY(116px); */
+       /* animation: harsh linear both; */
+       transition: ease-in-out 1s;
+       /* animation-timeline: scroll(y); */
+       animation-duration: 1s;
+       animation-delay: 2s;
+       justify-content: flex-start;
+   }
+   /* @keyframes harsh {
+
+       0%{
+           transform: translateY(116px);
+       }
+       100%{
+           transform: translateY(0px);
+       }
+   } */
+
+   .first_fix span:nth-child(1){
+       text-decoration: underline;
+       text-decoration-style: dashed;
+       color: black!important;
+   }
+
+
+
+   .new_about_us_page_new-2{
+       background-color: #E9E9E9;
+       width: 100vw;
+       overflow-y: hidden;
+     height:100vh!important;
+     display:flex;
+     justify-content:center;
+     align-items:center;
+   }
+
+
+
+   .background-setup-div_new {
+       width: 100vw;
+       height: 100vh;
+       display: block!important;
+       background: #E9E9E9;
+       position: absolute;
+       top: 100vh;
+   }
+   .horizontal_line_spread{
+       color: black;
+       position: relative;
+       z-index: 9;
+       margin: 0;
+     opacity:0;
+   }
+   .new_about_us_page_new-2 .first_fix span:nth-child(2){
+       text-decoration: underline;
+       text-decoration-style: dashed;
+       color: black!important;
+   }
+   .new_about_us_page_new-2 .first_fix span:nth-child(1){
+       text-decoration: none;
+       text-decoration-style: none;
+       color: #B3B3B3!important;
+   }
+   .new_about_us_page_new-2 .round_circles span:nth-child(1) {
+       background-color: transparent;
+   }
+   .new_about_us_page_new-2 .round_circles span:nth-child(2) {
+       background-color: black;
+   }
+   .new_about_us_page_new-3 .round_circles span:nth-child(2) {
+       background-color: black;
+   }
+   .new_about_us_page_new-3 .round_circles span:nth-child(1) {
+       background-color: transparent;
+   }
+   .new_about_us_page_new-4 .round_circles span:nth-child(3) {
+       background-color: black;
+   }
+   .new_about_us_page_new-4 .round_circles span:nth-child(1) {
+       background-color: transparent;
+   }
+   .new_about_us_page_new-5 .round_circles span:nth-child(4) {
+       background-color: black;
+   }
+   .new_about_us_page_new-5 .round_circles span:nth-child(1) {
+       background-color: transparent;
+   }
+   .background-setup-div_new-3 {
+       width: 100vw;
+       height: 100vh;
+       display: block!important;
+       background: #D9D9D9;
+       position: absolute;
+   }
+   .new_about_us_page_new-3 {
+       background-color: #E9E9E9;
+       width: 100vw;
+       overflow-y: hidden;
+       height: 100vh!important;
+   }
+   .new_about_us_page_new-3 .first_fix span:nth-child(3){
+       text-decoration: underline;
+       text-decoration-style: dashed;
+       color: black!important;
+   }
+   .new_about_us_page_new-3 .first_fix span:nth-child(2){
+       text-decoration: none;
+       text-decoration-style: none;
+       color: #B3B3B3!important;
+   }
+   .new_about_us_page_new-3 .first_fix span:nth-child(1){
+       text-decoration: none;
+       text-decoration-style: none;
+       color: #B3B3B3!important;
+   }
+   .new_about_us_page_new-4 .first_fix span:nth-child(1){
+       text-decoration: none;
+       text-decoration-style: none;
+       color: #B3B3B3!important;
+   }
+   .new_about_us_page_new-4 .first_fix span:nth-child(4){
+       text-decoration: underline;
+       text-decoration-style: dashed;
+       color: black!important;
+   }
+   .new_about_us_page_new-5 .first_fix span:nth-child(5){
+       text-decoration: underline;
+       text-decoration-style: dashed;
+       color: black!important;
+   }
+   .new_about_us_page_new-5 .first_fix span:nth-child(1){
+       text-decoration: none;
+       text-decoration-style: none;
+       color: #B3B3B3!important;
+   }
+   .third_rendered_content {
+       width: 80%;
+       position: relative;
+       margin: auto;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 7rem;
+       height: 100vh;
+   }
+   img.city_image_left {
+       width: 400px;
+       object-fit: cover;
+       height: 400px;
+   }
+   .text_between_third {
+       color: #000;
+       font-size: 21px;
+       font-style: normal;
+       font-weight: 200;
+       line-height: 111.341%;
+       letter-spacing: 0.45rem;
+       text-transform: lowercase;
+       opacity:0;
+   }
+   .new_about_us_page_new-4 {
+       background-color: #E9E9E9;
+       width: 100vw;
+       overflow-y: hidden;
+       height: 100vh!important;
+   }
+   .background-setup-div_new-4 {
+       width: 100vw;
+     height: 100vh;
+     display: block!important;
+     /* background-image: url(https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Ellipse_5_1.png?v=1706017985); */
+     background-position: center;
+     position: absolute;
+     background-size: contain;
+     background-color: black;
+     background-repeat: no-repeat;
+   }
+   .fourth_rendered_content {
+       height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+   }
+   .text_fourth_render {
+       color: #000;
+       font-size: 21px;
+       font-style: normal;
+       font-weight: 200;
+       line-height: 137%;
+       letter-spacing: 0.45rem;
+       position: relative;
+   }
+   .new_about_us_page_new-5 {
+       width: 100vw;
+       height: 100vh;
+       display: block!important;
+       /* background: #D9D9D9; */
+       /* position: absolute; */
+   }
+   .background-setup-div_new-5 {
+       width: 100vw;
+       height: 100vh;
+       display: block!important;
+       background: #E9E9E9;
+       position: absolute;
+   }
+   p.common_text {
+       color: #000;
+       font-size: 20px;
+       font-style: normal;
+       font-weight: 350;
+       line-height: 137%;
+       letter-spacing: 4.08px;
+       margin: 0;
+   }
+   p.second_one_text {
+       color: #000;
+       font-size: 100px;
+       font-style: normal;
+       font-weight: 800;
+       line-height: 144%;
+       letter-spacing: 22px;
+   }
+   .text_fifth_render {
+       position: relative;
+       width: 40vw;
+       height: 100vh;
+       left: 30rem;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+   }
+
+   /* media query here */
+   /* media query here */
+   /* media query here */
+   /* media query here */
+
+   @media (max-width: 767px) {
+       img.first_image{
+           display: none;
+       }
+       .grid-container {
+           width: 90vw;
+       }
+       .second_fix {
+       bottom: 17rem;
+       left: -115px;
+   }
+   .horizontal_line{
+       width: 140px;
+   }
+   .third_fix {
+       right: -23rem;
+       bottom: 28rem;
+   }
+   .first_fix {
+       left: 2rem;
+   }
+   img.first_image_mob{
+   animation: fadeIn linear both;
+     opacity:0;
+       /* animation-timeline: scroll(y); */
+       animation-duration: 1s;
+       animation-delay: 2s;
+       display: block;
+   }
+   @keyframes fadeIn {
+       0% {
+           /* opacity: 0; */
+           display: none;
+       }
+       100%{
+           /* opacity: 1; */
+           display: block !important;
+       }
+   }
+
+   .first_rendered_content {
+       position: relative;
+       width: 100%;
+       top: 20%;
+       left: 0;
+       padding: 10rem;
+       z-index: 1;
+       margin: auto;
+   }
+   .first_upper_text {
+       position: absolute;
+       left: 10rem;
+       top: 0rem;
+       font-size: 21px;
+   }
+   .just_text_only {
+       top: -3rem!important;
+       left: 0rem!important;
+   }
+   img.first_image{
+       opacity: none!important;
+   }
+
+   /* from here the new figma media query started */
+   .text_second.first {
+       color: #000;
+       /* font-size: 11px; */
+       font-style: normal;
+       /* font-weight: 400; */
+       line-height: 131.341%;
+       /* letter-spacing: 2.09px; */
+   }
+   .second_lower_div .text_second {
+       color: #000;
+       /* font-size: 11px; */
+       font-style: normal;
+       /* font-weight: 400; */
+       line-height: 143.341%;
+       /* letter-spacing: 1.5px; */
+   }
+   .new_about_us_page_new-2 .first_fix{
+       top:3rem;
+   }
+   .new_about_us_page_new-3 .first_fix{
+       top:3rem;
+   }
+   .new_about_us_page_new-4 .first_fix{
+       top:3rem;
+   }
+   .new_about_us_page_new-5 .first_fix{
+       top:3rem;
+   }
+   .image_second img:nth-child(1){
+       display: none;
+   }
+   img.mobile_image_second_render {
+       display: block;
+   }
+   .second_rendered_content {
+       width: 100%;
+       padding: 7rem 0 0 0;
+   }
+   .city_image_left_mobile{
+       display: block!important;
+   }
+   img.city_image_left{
+       display: none;
+   }
+   .text_between_third {
+       min-width: 40%;
+     padding-left: 1rem;
+   }
+   .third_rendered_content {
+       gap: 1rem;
+   }
+   .new_about_us_page_new-3{
+       overflow: hidden;
+   }
+   .text_between_third {
+       font-size: 21px;
+   }
+   .text_fourth_render {
+       color: #000;
+       /* font-size: 12px; */
+       font-style: normal;
+       font-weight: 200;
+       line-height: 111.341%;
+       letter-spacing: 0.45rem;
+   }
+   .text_fifth_render {
+       position: relative;
+       width: 50vw;
+       height: 100vh;
+       left: 9rem;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       gap: 2rem;
+   }
+   p.common_text {
+       color: #020202;
+       font-size: 11px;
+       font-style: normal;
+       font-weight: 350;
+       line-height: 111.341%;
+       letter-spacing: 2.09px;
+   }
+   p.second_one_text {
+       font-size: 38px;
+       font-style: normal;
+       font-weight: 700;
+       line-height: 111.341%;
+       letter-spacing: 3.8px;
+   }
+   p.common_text.fourth_one_text {
+       margin-top: -1.5rem;
+   }
+
+   }
+   @media (max-width:374px){
+     .text_between_third {
+       font-size: 16px;
+   }
+  }
+
+   /* media query ends here  */
+   /* media query ends here  */
+   /* media query ends here  */
+
+   .stop_scroll{
+       overflow-y: hidden;
+   }
+   .play_scroll{
+       overflow: auto!important;
+   }
+   body{
+       overflow-x: hidden;
+   }
+     p.first_one_text,p.third_one_text,p.fourth_one_text{
+      position:static!important;
+       margin:0;
+   }
+     span.word_text_seperate {
+       font-size: 22px;
+       line-height: 30px;
+       font-weight: 400;
+       color: #000000bf;
+       letter-spacing: 0.4rem;
+   }
+</style>
+<div class="container_about_us_page">
+  <div class="new_about_us_page">
+    <div class="background-setup-div">
+      <div class="grid-container">
+        <div class="grid-item first_grid"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item last_grid"></div>
+      </div>
+      <div class="first_fix">
+        <span class="inner_span first_span_charcoal active_span">1</span>
+        <span class="inner_span second_span_charcoal active_span">2</span>
+        <span class="inner_span third_span_charcoal active_span">3</span>
+        <span class="inner_span fourth_span_charcoal active_span">4</span>
+        <span class="inner_span fifth_span_charcoal active_span">5</span>
+      </div>
+      <div class="second_fix">
+        <span>FROM THE SPIRIT OF CHARCOAL TO YOU</span>
+      </div>
+      <div class="third_fix">
+        <div class="text_one">TO YOU FROM THE SPIRIT OF CHARCOAL</div>
+        <div class="horizontal_line"></div>
+        <div class="round_circles">
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="first_rendered_content">
+      <div class="first_upper_text">
+        from the spirit of <br>
+        charcoal,
+      </div>
+      <div class="first_lower_text">
+        <div class="just_text_only">to</div>
+        <img class="first_image" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/youbig.png?v=1703920761">
+        <img
+          class="first_image_mob"
+          src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/you_small_fc39d4b4-4011-4eaf-b6e8-645d2b93fbac.png?v=1704185252"
+        >
+      </div>
+    </div>
+  </div>
+
+  <hr class="horizontal_line_spread">
+
+  <div class="new_about_us_page_new-2">
+    <div class="background-setup-div_new">
+      <div class="grid-container">
+        <div class="grid-item first_grid"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item last_grid"></div>
+      </div>
+      <div class="first_fix">
+        <span class="inner_span first_span_charcoal active_span">1</span>
+        <span class="inner_span second_span_charcoal active_span">2</span>
+        <span class="inner_span third_span_charcoal active_span">3</span>
+        <span class="inner_span fourth_span_charcoal active_span">4</span>
+        <span class="inner_span fifth_span_charcoal active_span">5</span>
+      </div>
+      <div class="second_fix">
+        <span>FROM THE SPIRIT OF CHARCOAL TO YOU</span>
+      </div>
+      <div class="third_fix">
+        <div class="text_one">TO YOU FROM THE SPIRIT OF CHARCOAL</div>
+        <div class="horizontal_line"></div>
+        <div class="round_circles">
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="second_rendered_content">
+      <div class="second_upper_div">
+        <div class="text_second first">
+          You<br>
+          create<br>
+          the things<br>
+          I use,
+        </div>
+        <div class="image_second first">
+          <img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/l1_2.png?v=1705223422">
+          <img
+            class="mobile_image_second_render"
+            src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/i46tj0yh_4.png?v=1704527828"
+          >
+        </div>
+      </div>
+      <div class="second_lower_div">
+        <div class="text_second second">
+          & the<br>
+          shows<br>
+          I love,
+        </div>
+        <div class="image_second second">
+          <img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/l2.png?v=1704522632">
+          <img
+            class="mobile_image_second_render"
+            src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/down.png?v=1704527828"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="horizontal_line_spread">
+
+  <div class="new_about_us_page_new-3">
+    <div class="background-setup-div_new-3">
+      <div class="grid-container">
+        <div class="grid-item first_grid"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item last_grid"></div>
+      </div>
+      <div class="first_fix">
+        <span class="inner_span first_span_charcoal active_span">1</span>
+        <span class="inner_span second_span_charcoal active_span">2</span>
+        <span class="inner_span third_span_charcoal active_span">3</span>
+        <span class="inner_span fourth_span_charcoal active_span">4</span>
+        <span class="inner_span fifth_span_charcoal active_span">5</span>
+      </div>
+      <div class="second_fix">
+        <span>FROM THE SPIRIT OF CHARCOAL TO YOU</span>
+      </div>
+      <div class="third_fix">
+        <div class="text_one">TO YOU FROM THE SPIRIT OF CHARCOAL</div>
+        <div class="horizontal_line"></div>
+        <div class="round_circles">
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="third_rendered_content">
+      <div class="left_image_third">
+        <img class="city_image_left" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/l2_1.png?v=1704535110">
+        <img
+          style="display: none;"
+          class="city_image_left_mobile"
+          src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Property_1_Variant2.png?v=1704536743 "
+        >
+      </div>
+      <div class="text_between_third">
+        and the city<br>
+        I <b>live</b> in
+      </div>
+      <div class="right_image_third">
+        <img class="city_image_left" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/l1_1.png?v=1704535109">
+        <img
+          style="display: none;"
+          class="city_image_left_mobile"
+          src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/pexels-roberto-vivancos-2190293_19.png?v=1704536743"
+        >
+      </div>
+    </div>
+  </div>
+
+  <hr class="horizontal_line_spread">
+
+  <div class="new_about_us_page_new-4">
+    <div class="background-setup-div_new-4">
+      <div class="grid-container">
+        <div class="grid-item first_grid"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item last_grid"></div>
+      </div>
+      <div class="first_fix">
+        <span class="inner_span first_span_charcoal active_span">1</span>
+        <span class="inner_span second_span_charcoal active_span">2</span>
+        <span class="inner_span third_span_charcoal active_span">3</span>
+        <span class="inner_span fourth_span_charcoal active_span">4</span>
+        <span class="inner_span fifth_span_charcoal active_span">5</span>
+      </div>
+      <div class="second_fix">
+        <span>FROM THE SPIRIT OF CHARCOAL TO YOU</span>
+      </div>
+      <div class="third_fix">
+        <div class="text_one">TO YOU FROM THE SPIRIT OF CHARCOAL</div>
+        <div class="horizontal_line"></div>
+        <div class="round_circles">
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fourth_rendered_content">
+      <img
+        class="scalable_image"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Ellipse_5_1.png?v=1706017985"
+      >
+      <div class="text_fourth_render">
+        What you do <br>
+        shapes the <span class="word_text_seperate">world.</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="horizontal_line_spread">
+
+  <div class="new_about_us_page_new-5">
+    <div class="background-setup-div_new-5">
+      <div class="grid-container">
+        <div class="grid-item first_grid"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item last_grid"></div>
+      </div>
+      <div class="first_fix">
+        <span class="inner_span first_span_charcoal active_span">1</span>
+        <span class="inner_span second_span_charcoal active_span">2</span>
+        <span class="inner_span third_span_charcoal active_span">3</span>
+        <span class="inner_span fourth_span_charcoal active_span">4</span>
+        <span class="inner_span fifth_span_charcoal active_span">5</span>
+      </div>
+      <div class="second_fix">
+        <span>FROM THE SPIRIT OF CHARCOAL TO YOU</span>
+      </div>
+      <div class="third_fix">
+        <div class="text_one">TO YOU FROM THE SPIRIT OF CHARCOAL</div>
+        <div class="horizontal_line"></div>
+        <div class="round_circles">
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+          <span class="small_circles"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fifth_rendered_content">
+      <div class="text_fifth_render">
+        <p class="first_upper_text first_one_text">
+          I’m going to create<br>
+          things to honor you<br>
+          and make your life
+        </p>
+        <p class="common_text second_one_text">better.</p>
+        <p class="first_upper_text third_one_text">Faithfully,</p>
+        <p class="first_upper_text fourth_one_text">from us at charcoal.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+
+        // from here the script is for section 1 *
+
+         var sec1targetElement = document.querySelector('.new_about_us_page');
+
+    // Intersection Observer options
+    var options1 = {
+      threshold: 0.5 // Trigger when 40% of the element is in the viewport
+    };
+
+    // Callback function to handle the intersection changes
+    var sec1handleIntersection = function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add classes to specific elements when in viewport
+          document.querySelector('.first_upper_text').classList.add('fade_in_animation_left_1');
+          document.querySelector('.just_text_only').classList.add('fade_in_animation_left_2');
+          document.querySelector('.first_image').classList.add('fade_in_animation_left_3');
+          document.querySelector('.first_image_mob').classList.add('fade_in_animation_left_3');
+
+        } else {
+          // Remove classes when not in the viewport
+          document.querySelector('.first_upper_text').classList.remove('fade_in_animation_left_1');
+          document.querySelector('.just_text_only').classList.remove('fade_in_animation_left_2');
+          document.querySelector('.first_image').classList.remove('fade_in_animation_left_3');
+          document.querySelector('.first_image_mob').classList.remove('fade_in_animation_left_3');
+        }
+      });
+    };
+
+    // Create an Intersection Observer instance
+    var sec1observer = new IntersectionObserver(sec1handleIntersection, options1);
+
+    // Start observing the target element
+    sec1observer.observe(sec1targetElement);
+
+
+    // Select the element with class 'new_about_us_page_new-2'
+    var targetElement = document.querySelector('.new_about_us_page_new-2');
+
+    // Intersection Observer options
+    var options = {
+      threshold: 0.5 // Trigger when 70% of the element is in the viewport
+    };
+
+    // Callback function to handle the intersection changes
+    var handleIntersection = function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add classes to specific elements when in viewport
+          document.querySelector('.image_second.first').classList.add('section_2_image_animate');
+          document.querySelector('.text_second.first').classList.add('section_2_text_animate');
+          document.querySelector('.image_second.second').classList.add('section_2_image_bottom_animate');
+          document.querySelector('.text_second.second').classList.add('section_2_text_bottom_animate');
+        } else {
+          // Remove classes when not in the viewport
+          document.querySelector('.image_second.first').classList.remove('section_2_image_animate');
+          document.querySelector('.text_second.first').classList.remove('section_2_text_animate');
+          document.querySelector('.image_second.second').classList.remove('section_2_image_bottom_animate');
+          document.querySelector('.text_second.second').classList.remove('section_2_text_bottom_animate');
+        }
+      });
+    };
+
+    // Create an Intersection Observer instance
+    var observer = new IntersectionObserver(handleIntersection, options);
+
+    // Start observing the target element
+    observer.observe(targetElement);
+
+    // from here script for section 3     ***
+
+     var sec3targetElement = document.querySelector('.new_about_us_page_new-3');
+
+    // Intersection Observer options
+    var options = {
+      threshold: 0.5 // Trigger when 70% of the element is in the viewport
+    };
+
+    // Callback function to handle the intersection changes
+    var sec3handleIntersection = function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add classes to specific elements when in viewport
+          document.querySelector('.left_image_third').classList.add('section_3_image_animate');
+          document.querySelector('.right_image_third').classList.add('section_3_text_animate');
+          document.querySelector('.background-setup-div_new-3').classList.add('section_3_bg_animate');
+          document.querySelector('.text_between_third').classList.add('section_3_text_between_animate');
+        } else {
+          // Remove classes when not in the viewport
+          document.querySelector('.left_image_third').classList.remove('section_3_image_animate');
+          document.querySelector('.right_image_third').classList.remove('section_3_text_animate');
+          document.querySelector('.background-setup-div_new-3').classList.remove('section_3_bg_animate');
+          document.querySelector('.text_between_third').classList.remove('section_3_text_between_animate');
+        }
+      });
+    };
+
+    // Create an Intersection Observer instance
+    var sec3observer = new IntersectionObserver(sec3handleIntersection, options);
+
+    // Start observing the target element
+    sec3observer.observe(sec3targetElement);
+
+    // from here the script is for section 4 ****
+
+         var sec4targetElement = document.querySelector('.new_about_us_page_new-4');
+
+    // Intersection Observer options
+    var options4 = {
+      threshold: 0.6 // Trigger when 70% of the element is in the viewport
+    };
+
+    // Callback function to handle the intersection changes
+    var sec4handleIntersection = function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add classes to specific elements when in viewport
+          document.querySelector('.scalable_image').classList.add('section_4_bg_animate');
+          document.querySelector('.grid-container').classList.add('section_4_upper_animate');
+
+        } else {
+          // Remove classes when not in the viewport
+          document.querySelector('.scalable_image').classList.remove('section_4_bg_animate');
+          document.querySelector('.grid-container').classList.remove('section_4_upper_animate');
+        }
+      });
+    };
+
+    // Create an Intersection Observer instance
+    var sec4observer = new IntersectionObserver(sec4handleIntersection, options);
+
+    // Start observing the target element
+    sec4observer.observe(sec4targetElement);
+
+
+
+
+        // from here the script is for section 5 *****
+
+         var sec5targetElement = document.querySelector('.new_about_us_page_new-5');
+
+    // Intersection Observer options
+    var options5 = {
+      threshold: 0.4 // Trigger when 40% of the element is in the viewport
+    };
+
+    // Callback function to handle the intersection changes
+    var sec5handleIntersection = function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          // Add classes to specific elements when in viewport
+          document.querySelector('.first_one_text').classList.add('same_class_animate');
+          document.querySelector('.second_one_text').classList.add('same_class_animate');
+          document.querySelector('.third_one_text').classList.add('same_2_class_animate');
+          document.querySelector('.fourth_one_text').classList.add('same_2_class_animate');
+
+        } else {
+          // Remove classes when not in the viewport
+          document.querySelector('.first_one_text').classList.remove('same_class_animate');
+          document.querySelector('.second_one_text').classList.remove('same_class_animate');
+          document.querySelector('.third_one_text').classList.remove('same_2_class_animate');
+          document.querySelector('.fourth_one_text').classList.remove('same_2_class_animate');
+        }
+      });
+    };
+
+    // Create an Intersection Observer instance
+    var sec5observer = new IntersectionObserver(sec5handleIntersection, options5);
+
+    // Start observing the target element
+    sec5observer.observe(sec5targetElement);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "about_us_animation",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "content"
+      }
+  ],
+  "presets": [
+    {
+      "name": "about_us_animation"
+    }
+  ]
+}
+{% endschema %}

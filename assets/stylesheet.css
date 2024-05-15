@@ -1,0 +1,300 @@
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro.woff?v=1680004231")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Bold.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Bold.woff?v=1680004231")
+      format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Black.woff?v=1680004231")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Black.woff2?v=1680004230")
+      format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-BoldItalic.woff2?v=1680004231")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-BoldItalic.woff?v=1680004231")
+      format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-ExtraLight.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-ExtraLight.woff?v=1680004231")
+      format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro-Book";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Book.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Book.woff?v=1680004231")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Heavy.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Heavy.woff?v=1680004231")
+      format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Light.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Light.woff?v=1680004231")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Medium.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Medium.woff?v=1680004231")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MarkPro";
+  src: url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Thin.woff2?v=1680004230")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/0583/8756/2634/files/MarkPro-Thin.woff?v=1680004231")
+      format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+.h0,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-family: "MarkPro";
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+.happy-customer h2.gallery-title-up {
+  letter-spacing: inherit !important;
+}
+body .announcement-bar ul li {
+  font-family: "MarkPro";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body,
+body p,
+body li {
+  font-family: "MarkPro";
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body .video-css-one.updated-home-video .rtt h2,
+body .video-css-one.updated-home-video .rtt h2 span,
+.bottom-forget h3,
+.great-relative .title-info,
+.happy-customer h2.gallery-title-up,
+.shop-faq h2.title.h1,
+.product-sec-2.smooth-sec-2 .two-block-cs .flex-column-row .title-info {
+  font-family: "MarkPro";
+  font-style: normal;
+  font-display: swap;
+}
+body .great-relative .title-info,
+body .great-relative .title-info * {
+  letter-spacing: ;
+  font-weight: ;
+}
+body .product-sec-2.smooth-sec-2 .two-block-cs .flex-column-row .title-info,
+body .product-sec-2.smooth-sec-2 .two-block-cs .flex-column-row .title-info * {
+  letter-spacing: 6px;
+  font-weight: 900;
+}
+body .shipping-outter .all-icons-row .icons-row__item p {
+  letter-spacing: 2px;
+  font-weight: 300 !important;
+}
+body .happy-customer h2.gallery-title-up {
+  font-weight: 700 !important;
+}
+body .great-relative span.overlay-line-2 {
+  font-weight: 200 !important;
+}
+.video-css-one .rich-text__text.rte,
+.video-css-one .rich-text__text.rte p,
+.watch_brand_film .video-section__poster.button.button--primary,
+.charchl-title-top-desktop .star-with-text a,
+.price__regular .price-item--regular,
+p.pro.rich-text__text.rte,
+body .product__info-wrapper .faqpage.powerfaq ul li,
+.great-relative span.overlay-line-2,
+.shipping-outter .all-icons-row .icons-row__item p,
+.content-tabs-3 h3.bg-whti,
+body .produt-page-custom-tabs.tech-tabs ul.tabs li a,
+body .produt-page-custom-tabs.tech-tabs ul.tabs li a *,
+body .produt-page-custom-tabs .tab-content p,
+body .one-column-reiveiews .one-review-info,
+.one-page-faq .faqpage div.content p {
+  font-family: "MarkPro";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  letter-spacing: 2.8px;
+}
+body .content-tabs-3 h3.bg-whti {
+  font-weight: 300 !important;
+  letter-spacing: 2.8px;
+}
+.product__info-container h2.product__title.h1,
+.product__info-wrapper .faqpage.powerfaq .faq-box h5,
+.review-moth-grid .review-month-row h2,
+.review-moth-grid .review-month-row h2 *,
+.the-desk-know-wrapper .grid-item-block .icons-row__item h3.product--title,
+.the-desk-know-wrapper .grid-item-block .icons-row__item h3.product--title *,
+body .main-video span.watch-v,
+h2.gallery-title-up,
+.design-with-you h2.gallery-title-up b,
+.shop-faq .faqpage.powerfaq .faq h5,
+.complex-menufa-004 .app-flex-row-box .block-title {
+  font-family: "MarkPro";
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+.home-single-product .product__info-wrapper legend.form__label,
+body .take-break-fr .faqpage.powerfaq h5 {
+  font-family: "MarkPro";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+body .product-form__input input[type="radio"] + label,
+body .product__info-wrapper p.size-c a,
+.take-100-day-trial a.shop-button-header.button,
+.icon-with-text-column .col-1 span.t-ext,
+.box-device span.device-text,
+body .footer-block__details-content .list-menu__item--link,
+body .footer-block__details-content p,
+p.footer-new-info,
+.menu-drawer__menu-item,
+.charcol-diffrence-001 .rte,
+.complex-menufa-004 .app-flex-row-box .b-info-b {
+  font-family: "MarkPro";
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  letter-spacing: 2px;
+}
+div#add-to-cart-in,
+.product-form__buttons .button--full-width,
+.great-relative .title-info,
+.great-relative .title-info *,
+.product-sec-2.smooth-sec-2 .two-block-cs .flex-column-row .title-info,
+body .produt-page-custom-tabs h2,
+.one-column-reiveiews h2.one-c-name-iyu,
+body .menu-drawer-1 .menu-drawer__menu-item,
+.charcol-diffrence-001 .title-wrapper-with-link h2.h1,
+.this-is-section-002 .thiwhy-heading h2.h1,
+.charchol-desk-diffrence-3 h2.h1,
+.charcol-diffrence-001 .b-info-d h3.b-info-diff {
+  font-family: "MarkPro";
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+.product-sec-2.smooth-sec-2 .two-block-cs .flex-column-row .title-info i {
+  font-style: italic;
+  font-family: "MarkPro";
+  font-weight: 900;
+}
+body .two-block-cs .rich-text__text.rte p,
+body .review-moth-grid .ultimate-content-out h4 {
+  font-family: "MarkPro";
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+body .bottom-forget h3 {
+  font-weight: 900 !important;
+  letter-spacing: 4px;
+}
+body .produt-page-custom-tabs.tech-tabs ul.tabs li a,
+body .produt-page-custom-tabs.tech-tabs ul.tabs li a * {
+  letter-spacing: 2.6px !important;
+  font-weight: 300 !important;
+}
+body .shop-faq h2.title.h1 {
+  letter-spacing: 3px !important;
+  font-weight: 900 !important;
+}
+body .produt-page-custom-tabs .tab-content p {
+  letter-spacing: 2.1px;
+  font-weight: 200;
+}
+.one-column-reiveiews h2.one-c-name-iyu {
+  font-weight: 700 !important;
+}
+body span.watch-v {
+  letter-spacing: 2.8px;
+  font-weight: 900 !important;
+}
+.shop-faq .faqpage.powerfaq .faq h5 {
+  letter-spacing: 1.2px;
+  font-weight: 900 !important;
+}
+body .video-css-one .rich-text__text.rte p {
+  letter-spacing: 3px;
+}

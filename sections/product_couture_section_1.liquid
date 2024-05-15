@@ -1,0 +1,132 @@
+{{ 'product_couture.css' | asset_url | stylesheet_tag }}
+{{ 'product_couture_responsive.css' | asset_url | stylesheet_tag }}
+<style>
+  {% if page.handle == 'product-couture' %}
+  .section-header {
+  position: relative!important;
+  }
+  {% endif %}
+
+  #shopify-section-{{section.id}} {
+      overflow: hidden;
+    background-color: #db6b00;
+  }
+      .product_couture_section-1_container{
+      width:100vw;
+      height:100vh;
+      background-image:url({{ section.settings.bg_img | image_url }});
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-position: center;
+      background-color: #db6b00;
+        flex-direction:column;
+        gap:20rem;
+  }
+</style>
+<div class="product_couture_scroll_path">
+  <div class="track_dynamic_expands"></div>
+</div>
+<div class="product_couture_section-1_container">
+  <div class="prd_ctr_sec1_insideWrapper">
+    <div class="prd_ctr_sec1_small1">{{ section.settings.smallText1 }}</div>
+    <div class="prd_ctr_sec1_small2">{{ section.settings.smallText2 }}</div>
+  </div>
+  <h1 class="sec_1_changes">ABSOLUTELY.</h1>
+</div>
+<script>
+   document.addEventListener("DOMContentLoaded", (event) => {
+     window.addEventListener('scroll', function() {
+       const track = document.querySelector(".track_dynamic_expands");
+       console.log("Scroll event occurred.");
+       var scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+     // Round the scroll percentage to two decimal places
+     scrollPercent = Math.round(scrollPercent * 100) / 100;
+        console.log('Scroll percentage:', scrollPercent + '%');
+  track.style.height = scrollPercent + '%';
+     });
+   });
+</script>
+
+{% schema %}
+{
+"name": "product_couture_section-1",
+"settings": [
+{
+"type": "html",
+"id": "smallText1",
+"label": "Text-1"
+},
+  {
+"type": "html",
+"id": "smallText2",
+"label": "Text-2"
+},
+{
+"type": "image_picker",
+"id": "bg_img",
+"label": "Background Image"
+},
+
+
+
+
+
+{
+"type": "text",
+"id": "video-url",
+"label": "Video Url"
+},
+{
+"type": "image_picker",
+"id": "banner_image",
+"label": "Desktop Banner Image"
+},
+{
+"type": "image_picker",
+"id": "logo_image",
+"label": "Logo Image"
+},
+{
+"type": "image_picker",
+"id": "cart_logo_image",
+"label": "Cart Logo Image"
+},
+{
+"type": "image_picker",
+"id": "cart_nav_log",
+"label": "Nav Logo Image"
+},
+{
+"type": "image_picker",
+"id": "banner_image_mobile",
+"label": "Mobile Banner Image"
+},
+{
+           "type": "text",
+           "id": "video",
+           "label": "Background Video"
+},
+{
+           "type": "text",
+           "id": "video_mobile",
+           "label": "Background Video Mobile"
+},
+{
+"type": "html",
+"id": "title",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "sub_title",
+"label": "Subheading"
+}
+],
+"presets": [
+{
+"name": "product_couture_section-1"
+}
+]
+}
+{% endschema %}

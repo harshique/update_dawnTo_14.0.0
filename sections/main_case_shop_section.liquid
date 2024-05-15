@@ -1,0 +1,197 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<style>
+  .swiper-button-prev {
+    display: flex !important;
+  }
+
+  .swiper-button-next {
+    display: flex !important;
+  }
+
+  .swiper-slide>img,
+  .swiper-slide>video {
+    object-fit: contain;
+  }
+
+  .swiper-slide>video {
+    height: 500px;
+    width: 500px;
+    object-fit: contain;
+  }
+
+  .swiper-slide.product-single__media {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-prev {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 5rem;
+    gap: 1rem;
+  }
+
+  img.next_prev_logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  span.back_text {
+    font-size: 10px;
+    font-weight: 800;
+    color: black;
+    padding-left: 1rem;
+  }
+
+  .swiper-button-next {
+    display: flex !important;
+    right: 10rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  span.next_text {
+    font-size: 10px;
+    font-weight: 800;
+    color: black;
+    padding-left: 1rem;
+  }
+
+  .swiper-button-prev:after,
+  .swiper-button-next:after,
+  .swiper-rtl .swiper-button-next:after {
+    content: none;
+  }
+
+  h1.case_product_title_sec2 {
+    margin: 0;
+    font-size: 90px;
+    letter-spacing: 30px;
+    font-weight: 900;
+    color: #000;
+    line-height: 130px;
+    text-transform: uppercase;
+  }
+</style>
+<div class="main_case_page_sec2_container">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% for media in product.media %}
+        {% render 'media', media: media %}
+      {% endfor %}
+    </div>
+    <div class="swiper-button-next">
+      <span class="next_text">NEXT</span>
+      <img
+        class="next_prev_logo"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Combined_Shape.svg?v=1714135010"
+      >
+    </div>
+    <div class="swiper-button-prev">
+      <img
+        class="next_prev_logo"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Combined_Shape_Copy.svg?v=1714135010"
+      >
+      <span class="back_text">BACK</span>
+    </div>
+  </div>
+  <h1 class="case_product_title_sec2">{{ product.title }}</h1>
+  <div class="main-case-sec2_last_wrapper">
+    <div class="price_cta_button_wrapperDiv">
+      <div class="first_div_star_price_wrapper">
+        <div class="star-with-text">
+          <span class="r-rating-product rati">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="31px"
+              height="5px"
+              viewBox="0 0 31 5"
+              version="1.1"
+            >
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Product-Page-Copy-2" transform="translate(-238.000000, -592.000000)" fill="#F5B931">
+                  <g id="Group-7-Copy-2" transform="translate(238.000000, 592.000000)">
+                    <polygon id="Star"
+                      points="2.52325581 3.75 1.04012326 4.52254249 1.32337637 2.88627124 0.12349693 1.72745751 1.78168954 1.48872876 2.52325581 0 3.26482209 1.48872876 4.9230147 1.72745751 3.72313526 2.88627124 4.00638837 4.52254249" />
+                    <polygon id="Star-Copy"
+                      points="9.01162791 3.75 7.52849535 4.52254249 7.81174846 2.88627124 6.61186902 1.72745751 8.27006163 1.48872876 9.01162791 0 9.75319418 1.48872876 11.4113868 1.72745751 10.2115073 2.88627124 10.4947605 4.52254249" />
+                    <polygon id="Star-Copy-2"
+                      points="15.5 3.75 14.0168674 4.52254249 14.3001206 2.88627124 13.1002411 1.72745751 14.7584337 1.48872876 15.5 0 16.2415663 1.48872876 17.8997589 1.72745751 16.6998794 2.88627124 16.9831326 4.52254249" />
+                    <polygon id="Star-Copy-3"
+                      points="21.9883721 3.75 20.5052395 4.52254249 20.7884927 2.88627124 19.5886132 1.72745751 21.2468058 1.48872876 21.9883721 0 22.7299384 1.48872876 24.388131 1.72745751 23.1882515 2.88627124 23.4715046 4.52254249" />
+                    <polygon id="Star-Copy-4"
+                      points="28.4767442 3.75 26.9936116 4.52254249 27.2768647 2.88627124 26.0769853 1.72745751 27.7351779 1.48872876 28.4767442 0 29.2183105 1.48872876 30.8765031 1.72745751 29.6766236 2.88627124 29.9598767 4.52254249" />
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <div class="main_case_below_star_text">
+          Award-winning design brought to<br>
+          life with Italian Crystal-Acrylic top<br>
+          and Danish motors and columns.
+        </div>
+        {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+      </div>
+      <div class="second_div_star_price-wrapper">
+        <div class="three_variant">
+          <img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/b12b64250ac77600d83061a5f41ea82f_1.png?v=1714402829"
+          ><span>sand</span>
+        </div>
+        <div class="three_variant">
+          <img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/b12b64250ac77600d83061a5f41ea82f_1.png?v=1714402829"
+          ><span>sand</span>
+        </div>
+        <div class="three_variant">
+          <img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/b12b64250ac77600d83061a5f41ea82f_1.png?v=1714402829"
+          ><span>sand</span>
+        </div>
+      </div>
+      <div class="third_div_star_price_wrapper">
+        {%- render 'buy-buttons',
+          product: product,
+          product_form_id: product_form_id,
+          section_id: section.id,
+          show_pickup_availability: false
+        -%}
+      </div>
+    </div>
+    <div class="overlfow_scroll_wrapperDiv"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is >= 640px
+      1240: {
+        slidesPerView: 1.2,
+        spaceBetween: 40
+      }
+    }
+  });
+</script>
+{% schema %}
+{
+"name": "main_case_shop_section",
+"settings": [],
+"presets": [
+{
+"name" :"main_case_shop_section"
+}
+]
+}
+{% endschema %}

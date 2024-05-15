@@ -1,0 +1,201 @@
+
+
+/* section 2 css here  */
+
+.section_2_text_animate{
+ animation:rightside 1s ease-out 1s forwards!important;
+}
+@keyframes rightside{
+0%{
+ opacity:0;
+ transform:translateX(50px);
+}
+100%{
+ opacity:1;
+ transform:translateX(0px);
+}
+}
+.section_2_text_bottom_animate{
+ animation:leftside 1s ease-out 1s forwards!important;
+}
+@keyframes leftside{
+0%{
+ opacity:0;
+ transform:translateX(-50px);
+}
+100%{
+ opacity:1;
+ transform:translateX(0px);
+}
+}
+.section_2_image_bottom_animate{
+ animation: secondimage 1s linear forwards!important;
+}
+@keyframes secondimage{
+0%{
+ opacity:0;
+ transform:translate(300px,-300px);
+}
+100%{
+ opacity:1;
+ transform:translate(0px , 0px);
+}
+}
+.section_2_image_animate{
+ animation: firstimage 1s linear forwards!important;
+}
+@keyframes firstimage{
+0%{
+ opacity:0;
+ transform:translate(-300px,300px);
+}
+100%{
+ opacity:1;
+ transform:translate(0px , 0px);
+}
+}
+
+/* section 2 css end here  */
+
+/* -------------------------------------------- */
+
+/* section 3 css starts here */
+.left_image_third,.right_image_third{
+ opacity:0;
+}
+.section_3_bg_animate{
+ background:black!important;
+}
+.section_3_image_animate{
+ animation: section_3_image 1.5s linear forwards!important;
+}
+@keyframes section_3_image{
+0%{
+ opacity:0;
+ transform: translate(38%,100%);
+}
+50%{
+ opacity:1;
+ transform: translate(38%,0%);
+}
+100%{
+ opacity:1;
+ transform: translate(0%,0%);
+}
+}
+.section_3_text_animate{
+ animation: section_3_image_right 1.5s linear forwards!important;
+}
+@keyframes section_3_image_right{
+0%{
+ opacity:0;
+ transform: translate(-38%,-100%);
+}
+50%{
+ opacity:1;
+ transform: translate(-38%,0%);
+}
+100%{
+ opacity:1;
+ transform: translate(0%,0%);
+}
+}
+
+.section_3_text_between_animate{
+  animation: show_text 0.1s linear forwards;
+  animation-delay:1.5s;
+    color:white!important;
+}
+@keyframes show_text{
+0%{
+ opacity:0;
+}
+100%{
+ opacity:1;
+
+}
+}
+img.scalable_image {
+    width: 9%;
+    height: 19%;
+    opacity: 0;
+    position: absolute;
+    z-index: 0;
+}
+.grid-container.section_4_upper_animate{
+  position:relative;
+  z-index:9;
+}
+.section_4_bg_animate{
+  animation: scaleBg 1.5s linear forwards;
+}
+@keyframes scaleBg{
+0%{
+ transform:scale(0);
+  opacity:0;
+}
+100%{
+  opacity:1;
+ transform:scale(60);
+
+}
+}
+
+.first_one_text,.second_one_text,.third_one_text,.fourth_one_text {
+opacity:0;
+}
+.same_class_animate{
+  animation: transform_upper 1s ease-out forwards!important;
+}
+@keyframes transform_upper{
+0%{
+ transform: translateY(25rem);
+  opacity:0;
+}
+100%{
+  opacity:1;
+transform: translateY(0rem);
+
+}
+}
+.same_2_class_animate{
+  animation: opacity_late 0.5s linear forwards!important;
+  animation-delay:1s!important;
+}
+@keyframes opacity_late{
+0%{
+  opacity:0;
+}
+100%{
+  opacity:1;
+ }
+}
+.fade_in_animation_left_1{
+ animation:fade-in 1s ease-out forwards!important;
+}
+.fade_in_animation_left_2{
+ animation:fade-in 1s ease-out 0.5s forwards!important;
+}
+.fade_in_animation_left_3{
+ animation:fade-in 1s ease-out 1s forwards!important;
+}
+
+@keyframes fade-in{
+
+  0%{
+   opacity:0;
+    transform:translateX(45px);
+}
+  50%{
+    /* opacity:0.3; */
+    /* transform:translateX(12px); */
+}
+  100%{
+    opacity:1;
+    transform:translateX(0px);
+}
+
+}
+
+
+

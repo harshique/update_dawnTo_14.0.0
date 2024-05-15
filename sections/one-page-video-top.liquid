@@ -1,0 +1,301 @@
+{{ 'video-section.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+    <div class="main-video">
+      <div class="product-vds-cover">
+        <button
+          id="Deferred-Poster-Modal-{{ section.settings.video_url.id }}"
+          class="video-section__poster media deferred-media__poster media--landscape"
+          type="button"
+        >
+          {%- if section.settings.cover_image != blank -%}
+            <img
+              srcset="
+                {%- if section.settings.cover_image.width >= 375 -%}{{ section.settings.cover_image | image_url: width: 375 }} 375w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 750 -%}{{ section.settings.cover_image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 1100 -%}{{ section.settings.cover_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 1500 -%}{{ section.settings.cover_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 1780 -%}{{ section.settings.cover_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 2000 -%}{{ section.settings.cover_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 3000 -%}{{ section.settings.cover_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                {%- if section.settings.cover_image.width >= 3840 -%}{{ section.settings.cover_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+                {{ section.settings.cover_image | image_url }} {{ section.settings.cover_image.width }}w
+              "
+              src="{{ section.settings.cover_image | image_url: width: 1920 }}"
+              sizes="{% if section.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+              alt="{{ 'sections.video.load_video' | t: description: section.settings.description | escape }}"
+              loading="lazy"
+              width="{{ section.settings.cover_image.width }}"
+              height="{{ section.settings.cover_image.height }}"
+            >
+          {%- else -%}
+            {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+          {%- endif -%}
+          <span class="new_section_video_span">
+            <svg
+              class="embed_yt_video-svg"
+              width="15"
+              height="15"
+              viewBox="0 0 87 129"
+              fill="white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.63638 2.98759C1.63638 2.4857 2.20842 2.1983 2.61109 2.49789L84.5743 63.4785C84.9008 63.7214 84.9027 64.2097 84.5781 64.4551L2.61484 126.419C2.21276 126.723 1.63638 126.437 1.63638 125.932V2.98759Z" stroke="none" stroke-width="3.01272"></path>
+            </svg>
+          </span>
+          <span class="watch_the_prdt_video_text">
+            WATCH THE<br class="visible_in_mobile_only" style="display:none;">
+            PRODUCT VIDEO</span
+          >
+        </button>
+        <div class="overla-conent-on-text">
+          <span class="deferred-media__poster-button motion-reduce">
+            <div class="rtt">
+              <div class="rich-text__text rte only-on-desktop" {{ section.shopify_attributes }}>
+                {{ section.settings.text }}
+              </div>
+              <div class="rich-text__text rte only_mobile_device" {{ section.shopify_attributes }}>
+                {{ section.settings.text_mobile }}
+              </div>
+              {% if section.settings.heading != blank %}
+                <h2 class="{{ section.settings.heading_size }}" {{ section.shopify_attributes }}>
+                  <span class="a-text">{{ section.settings.heading | escape }}</span>
+                  <span class="sale-price-banner">{{ section.settings['heading-price'] }}</span>
+                </h2>
+              {%- endif -%}
+            </div>
+            <div class="watch_brand_film">
+              <!--
+                img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Video_section_play_button.svg?v=1671168846"/
+              -->
+              <div class="icon-play">
+                <a
+                  {% if section.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ section.settings.button_link }}"
+                  {% endif %}
+                  class=" video-section__poster button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                  {{ section.shopify_attributes }}
+                >
+                  {{ section.settings.button_label | escape }}
+                </a>
+              </div>
+            </div>
+            <p>
+              <a
+                {% if section.settings.button_link_shop == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ section.settings.button_link_shop }}"
+                {% endif %}
+                class="shop-now-button-down button{% if section.settings.button_style_secondary_shop %} button--secondary{% else %} button--primary{% endif %}"
+                {{ section.shopify_attributes }}
+              >
+                {{ section.settings.button_label_shop | escape }}
+              </a>
+            </p>
+            <!-- span class="watch-v">Watch the <br/> Product Video</span -->
+          </span>
+        </div>
+      </div>
+      <div class="overlay_pro">
+        <div class="popup_pro">
+          <div class="close_pro">X</div>
+          <div class="product-vds">
+            {%- if section.settings.video_url.type == 'youtube' -%}
+              <iframe
+                src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?enablejsapi=1&rel=0&showinfo=0"
+                class="js-youtube"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                playsinline
+                frameborder="0"
+                title="{{ section.settings.description | escape }}"
+              ></iframe>
+            {%- else -%}
+              <iframe
+                src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}"
+                class="js-vimeo"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                title="{{ section.settings.description | escape }}"
+              ></iframe>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "One Page Video Top ",
+  "tag": "section",
+  "class": "section video-with-textt one-page-video video-css-one",
+  "settings": [
+    {
+      "type":  "text",
+      "id":    "toptext",
+      "label": "Announcement Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "t:sections.video.settings.cover_image.label"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "t:sections.video.settings.video_url.label",
+      "placeholder": "t:sections.video.settings.video_url.placeholder",
+      "info": "t:sections.video.settings.video_url.info"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.video.settings.description.label",
+      "info": "t:sections.video.settings.description.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.video.settings.full_width.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+      {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "heading-price",
+          "label": "Sale Price"
+        },
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+      "label": "Desktop Info"
+    },
+    {
+      "type": "textarea",
+      "id": "text_mobile",
+      "label": "Mobile Info"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Button label",
+      "label": "t:sections.rich-text.blocks.button.settings.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.rich-text.blocks.button.settings.button_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "t:sections.rich-text.blocks.button.settings.button_style_secondary.label"
+    },
+    {
+      "type": "text",
+      "id": "button_label_shop",
+      "default": "Button label shop now",
+      "label": "t:sections.rich-text.blocks.button.settings.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link_shop",
+      "label": "t:sections.rich-text.blocks.button.settings.button_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_shop",
+      "default": false,
+      "label": "t:sections.rich-text.blocks.button.settings.button_style_secondary.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "One Page Video Top Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,255 @@
+<style>
+  .img-div-1{background: #FDF8F6;}
+  .img-div-2{background: #E5D6D0;}
+  .img-div-3{background: #D7C0B8;}
+  .img-div-4{background: #CFB1A5;}
+  .img-div-5{background: #D19A85;}
+  .img-div-6{background: #C58066;}
+  .img-div-7{background: #C1775B;}
+  .img-div-8{background: #BB6D4F;}
+  .img-div-9{background: #AE5939;}
+</style>
+
+<div class="sec-1-container">
+  <div class="mobile_text_above_grid">
+    Every artist understands that<br>
+    to achieve greatness, they must <br>
+    break new ground.
+  </div>
+  <div class="contain-1-img">
+    <div class="img-div img-div-1  ">
+      <img
+        class="grid-image grid-image-1"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_50.jpg?v=1711389889"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-2">
+      <img
+        class="grid-image grid-image-2"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_51.jpg?v=1711389889"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-3">
+      <img
+        class="grid-image grid-image-3"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_52.jpg?v=1711389890"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-4">
+      <img
+        class="grid-image grid-image-4"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_53.jpg?v=1711389890"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-5">
+      <img
+        class="grid-image grid-image-5"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_54.jpg?v=1711389890"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-6">
+      <img
+        class="grid-image grid-image-6"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_55.jpg?v=1711389889"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-7">
+      <img
+        class="grid-image grid-image-7"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_56.jpg?v=1711389889"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-8">
+      <img
+        class="grid-image grid-image-8"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_57.jpg?v=1711389890"
+        alt="Image"
+      >
+    </div>
+
+    <div class="img-div img-div-9">
+      <img
+        class="grid-image grid-image-9"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Group_58.jpg?v=1711389890"
+        alt="Image"
+      >
+    </div>
+  </div>
+  <div class="mobile_text_below_grid">
+    To captivate audiences, provoke<br>
+    thought, and evoke emotions, there<br>
+    needs to be a degree of novelty, and it’s this quest for novelty that has driven<br>
+    the evolution of art.
+  </div>
+
+  <div class="contain-2-text">
+    <p class="contain-2-text-p-1">
+      Every artist understands that to achieve<br>
+      greatness, they must break new ground.
+    </p>
+    <p class="contain-2-text-p-2">
+      To captivate audiences, provoke thought, and<br>
+      evoke emotions, there needs to be a degree of<br>
+      novelty, and it's this quest for novelty that<br>
+      has driven the evolution of art.
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "product_Couture_section-5",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Blog posts",
+      "label": "avtar ki heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured-blog.settings.blog.label"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.post_limit.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_image.label",
+      "info": "t:sections.featured-blog.settings.show_image.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.featured-blog.settings.show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_view_all.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "product_Couture_section-5",
+      "settings": {
+        "blog": "News"
+      }
+    }
+  ]
+}
+{% endschema %}

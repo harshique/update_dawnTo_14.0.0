@@ -56,8 +56,8 @@
       "name": "Médias sociaux",
       "settings": {
         "social_twitter_link": {
-          "label": "X / Twitter",
-          "info": "https://x.com/shopify"
+          "label": "Twitter",
+          "info": "https://twitter.com/shopify"
         },
         "social_facebook_link": {
           "label": "Facebook",
@@ -388,7 +388,7 @@
           "label": "Petit"
         },
         "options__2": {
-          "label": "Moyenne"
+          "label": "Moyen"
         },
         "options__3": {
           "label": "Grand"
@@ -1033,7 +1033,7 @@
             "label": "Petit"
           },
           "options__3": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "info": "Pour optimiser vos résultats, utilisez une image ayant un rapport d'aspect de 3:2. [En savoir plus](https://help.shopify.com/manual/shopify-admin/productivity-tools/image-editor#understanding-image-aspect-ratio)",
           "options__4": {
@@ -1171,7 +1171,7 @@
             "label": "Petit"
           },
           "options__3": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "label": "Hauteur de l'image",
           "options__4": {
@@ -1193,7 +1193,7 @@
             "label": "Petit"
           },
           "options__2": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__3": {
             "label": "Grand"
@@ -1309,7 +1309,7 @@
                 "label": "Petit"
               },
               "options__2": {
-                "label": "Moyenne"
+                "label": "Moyen"
               },
               "options__3": {
                 "label": "Grand"
@@ -1337,7 +1337,7 @@
                 "label": "Petit"
               },
               "options__3": {
-                "label": "Moyenne"
+                "label": "Moyen"
               },
               "info": "Pour optimiser vos résultats, utilisez une image ayant un rapport d'aspect de 16:9. [En savoir plus](https://help.shopify.com/manual/shopify-admin/productivity-tools/image-editor#understanding-image-aspect-ratio)",
               "options__4": {
@@ -1413,7 +1413,7 @@
             "label": "Petit"
           },
           "options__3": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__4": {
             "label": "Grand"
@@ -1496,6 +1496,10 @@
           "label": "Afficher la note du produit",
           "info": "Pour afficher une note, ajoutez une application d'évaluation de produits. [En savoir plus](https://help.shopify.com/manual/online-store/themes/theme-structure/page-types#product-grid-section-settings)"
         },
+        "enable_quick_buy": {
+          "label": "Activer le bouton d'ajout rapide",
+          "info": "Optimal avec un type de panier pop-up ou à tiroir."
+        },
         "columns_desktop": {
           "label": "Nombre de colonnes sur ordinateur"
         },
@@ -1523,15 +1527,6 @@
             "label": "Tiroir"
           },
           "info": "Le tiroir correspond à la mise en page par défaut sur les appareils mobiles."
-        },
-        "quick_add": {
-          "label": "Ajout rapide",
-          "info": "La fonction En bloc est optimisée pour les articles achetés en grande quantité.",
-          "options": {
-            "option_1": "Aucun",
-            "option_2": "Standard",
-            "option_3": "En bloc"
-          }
         }
       }
     },
@@ -1644,25 +1639,12 @@
           "name": "Sélecteur de variante",
           "settings": {
             "picker_type": {
-              "label": "Style",
+              "label": "Type",
               "options__1": {
                 "label": "Menu déroulant"
               },
               "options__2": {
                 "label": "Comprimés"
-              }
-            },
-            "swatch_shape": {
-              "label": "Échantillon",
-              "info": "Activez [échantillons](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) sur les options produits.",
-              "options__1": {
-                "label": "Cercle"
-              },
-              "options__2": {
-                "label": "Carré"
-              },
-              "options__3": {
-                "label": "Aucun"
               }
             }
           }
@@ -2039,7 +2021,7 @@
             "label": "Petit"
           },
           "options__2": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__3": {
             "label": "Grand"
@@ -2393,7 +2375,7 @@
                 "label": "Petit"
               },
               "options__2": {
-                "label": "Moyenne"
+                "label": "Moyen"
               },
               "options__3": {
                 "label": "Grand"
@@ -2500,25 +2482,12 @@
           "name": "Sélecteur de variante",
           "settings": {
             "picker_type": {
-              "label": "Style",
+              "label": "Type",
               "options__1": {
                 "label": "Menu déroulant"
               },
               "options__2": {
                 "label": "Pilules"
-              }
-            },
-            "swatch_shape": {
-              "label": "Échantillon",
-              "info": "Activez [échantillons](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) sur les options produits.",
-              "options__1": {
-                "label": "Cercle"
-              },
-              "options__2": {
-                "label": "Carré"
-              },
-              "options__3": {
-                "label": "Aucun"
               }
             }
           }
@@ -2638,7 +2607,7 @@
             "label": "Petit"
           },
           "options__3": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__4": {
             "label": "Grand"
@@ -2761,7 +2730,7 @@
             "label": "Petit"
           },
           "options__3": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__4": {
             "label": "Grand"
@@ -3123,10 +3092,7 @@
       "name": "Adresses"
     },
     "main-login": {
-      "name": "Se connecter",
-      "shop_login_button": {
-        "enable": "Activer la connexion avec Shop"
-      }
+      "name": "Se connecter"
     },
     "main-order": {
       "name": "Commande"
@@ -3205,7 +3171,7 @@
             "label": "Petit"
           },
           "options__3": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__4": {
             "label": "Grand"
@@ -3217,7 +3183,7 @@
             "label": "Petit"
           },
           "options__2": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__3": {
             "label": "Grand"
@@ -3230,7 +3196,7 @@
             "label": "Petit"
           },
           "options__2": {
-            "label": "Moyenne"
+            "label": "Moyen"
           },
           "options__3": {
             "label": "Grand"

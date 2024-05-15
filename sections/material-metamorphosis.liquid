@@ -1,0 +1,596 @@
+<style>
+      .gradient_color {
+        background: linear-gradient(0deg, #000 20.93%, rgba(0, 0, 0, 0.00) 135.36%);
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        bottom: -2%;
+    }
+      .centerd_text_material_section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-60%, -50%);
+        color: #FFF;
+        text-align: center;
+        font-family: Mark Pro;
+        font-size: 18.504px;
+        font-weight: 900;
+        line-height: 49.468px;
+        letter-spacing: 9.373px;
+    }
+      /* .strap_mech_container.change_design .text-only-div p{
+        width:100%!important;
+         text-align:left!important;
+      }
+      .strap_mech_container.change_design .text-only-div h2{
+        width:100%!important;
+         text-align:left!important;
+      }
+     */
+      button.enter_email-button.change_design{
+         display: flex;
+        justify-content: center;
+        align-items: center;
+      gap:2rem;
+    }
+    p.first_small_text.change_design.material {
+        right: 11%;
+        top: -7rem;
+        text-align: right;
+    }
+    h1.big_text.change_design.material {
+        right: 10%;
+        text-align: right;
+    }
+    .button_svg_wrapper.change_design {
+        width: 100%;
+        background: none!important;
+        justify-content:flex-start!important;
+    }
+    span.strip-1.material:after {
+        width: 54%;
+        right: 18%;
+    }
+    span.strip-2.material:after {
+        width: 95%;
+        right: -18%;
+    }
+    span.strip-3.material:after {
+        width: 112%;
+        right: 0%;
+    }
+    span.strip-3.too.material:after {
+        width: 118%;
+        right: -18%;
+    }
+    span.strip-4.material:after {
+        width: 120%;
+        left: -11%;
+    }
+    span.strip-5.material:after {
+        width: 104%!important;
+        left: 0!important;
+    }
+    span.strip-6.material:after {
+        width: 100%;
+        left: 0;%;
+    }
+    span.strip-7.material:after {
+        width: 110%;
+        left: -5%;
+    }
+    span.strip-8.material:after {
+        width: 130%!important;
+        right: 2%!important;
+    }
+    span.strip-8.too.material:after {
+        width: 100%!important;
+        left: 0%;
+    }
+    span.strip-9.material:after {
+        width: 118%;
+        left: -18%;
+    }
+      span.strip-10.material:after {
+        width: 55%;
+        left: 28%;
+    }
+      span.strip-11.material:after {
+        width: 55%;
+        left: 28%;
+    }
+
+
+
+
+
+    span.strip-1.change_design:after {
+        width: 100%;
+        left: 0%;
+        height: 100%;
+        top: 20%;
+    }
+    span.strip-2.change_design:after {
+        width: 110%;
+        right: 0%;
+    }
+    span.strip-3.change_design:after {
+        width: 80%;
+        left: 26%;
+    }
+    span.strip-4.change_design:after {
+        width: 120%;
+        right: -7%;
+    }
+    span.strip-5.change_design:after {
+        width: 100%;
+        right: 0%;
+    }
+    span.strip-6.change_design:after {
+        width: 100%;
+        right: 0%;
+        top: 0%;
+        height: 120%;
+    }
+    span.strip-7.change_design:after {
+        width: 108%;
+        right: 0%;
+    }
+    span.strip-8.change_design:after {
+        width: 42%;
+        right: 58%;
+    }
+    span.strip-9.change_design:after {
+        width: 125%;
+        right: 0%;
+    }
+    span.strip-10.change_design:after {
+        width: 130%!important;
+        left: 2%;
+    }
+    span.strip-11.change_design:after {
+        width: 150%;
+        right: 10%;
+    }
+
+
+
+
+
+    .strap_mech_container {
+        padding: 10rem 10rem 3rem 20rem;
+        background: black;
+    }
+      .image_text_container {
+        position: relative;
+        display: flex;
+    }
+      p.first_small_text {
+        color: #FFF;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 200;
+        line-height: 25.035px;
+        letter-spacing: 6.933px;
+        position: absolute;
+        margin: 0;
+        top: -7rem;
+        left:8%;
+    }
+      img.first_image {
+        width: 75%;
+        margin-left: 10rem;
+    }
+      h1.big_text {
+        position: absolute;
+        margin: 0;
+        top: -4rem;
+        color: #FFF;
+        text-align: center;
+        font-size: 50.683px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 70px;
+        letter-spacing: 20px;
+        left:8%;
+    }
+      .lower_div_coverd_text_btn {
+        width: 85%;
+    }
+      .text-only-div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+      .text-only-div h2 {
+        color: #FFF;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 37px;
+        letter-spacing: 7.883px;
+        width: 65%;
+        float: right;
+        text-align:right;
+    }
+        .text-only-div p {
+        color: #FFF;
+        font-size: 17.513px;
+        line-height: 30.568px;
+        letter-spacing: 4.629px;
+        width: 65%;
+    }
+      button.enter_email-button {
+        font-family: MarkPro;
+        background: #BC583A!important;
+        border: none;
+        outline: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        color: #fff!important;
+        text-align: center;
+        font-size: 12.313px;
+        font-style: normal;
+        font-weight: 800!important;
+        line-height: 16.19px;
+        letter-spacing: 4.502px;
+        cursor: pointer;
+        display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    span.strip {
+        position: relative;
+    }
+      span.strip:after {
+        position: absolute;
+        background: #c0c0c0;
+        content: '';
+        width: 100%;
+        height: 150%;
+        right: 0%;
+    }
+      span.strip-2:after{
+     width: 75%;
+        right: 46%;
+      }
+      span.strip-5:after{
+     width: 55%;
+        right: 54%;
+      }
+      span.strip-6:after{
+        bottom: 35%;
+        height: 100%;
+      }
+      span.strip-8:after{
+     width: 50%;
+        right: 8%;
+      }
+      span.strip-9:after{
+     width: 110%;
+      }
+    .button_svg_wrapper {
+        display: inline-flex;
+        background: transparent!important;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 30px;
+        padding-right: 25px;
+      margin-top:4rem;
+    }
+      .lower_div_coverd_text_btn.material {
+        position: relative;
+        left: 15%;
+    }
+      .strap_mech_container.change_design .text-only-div p.material{
+       text-align:left!important;
+    }
+      .strap_mech_container.change_design .text-only-div h2.material{
+       text-align:left!important;
+    }
+
+    @media (max-width:767px){
+
+    .lower_div_coverd_text_btn.material {
+        position: relative;
+        left: 0;
+    }
+
+
+      .button_svg_wrapper {
+      margin-top:4rem;
+        padding-right:0!important;
+    }
+
+     .strap_mech_container {
+        padding: 10rem 2rem 2rem 2rem;
+        background: black;
+    }
+      p.first_small_text {
+        color: #FFF;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 200;
+        line-height: 25.035px;
+        letter-spacing: 5px;
+        position: absolute;
+        left: 0;
+        right: 0%!important;
+        top: -4rem;
+    }
+      img.first_image {
+        width: 100%;
+        margin-left:0;
+    }
+      h1.big_text {
+        position: absolute;
+        margin: 0;
+        top: -2rem;
+        color: #FFF;
+        text-align: center;
+        font-size: 20.683px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 38.783px;
+        letter-spacing: 8.22px;
+        left:0;
+    }
+      .lower_div_coverd_text_btn {
+        width: 100%;
+    }
+      .text-only-div h2 {
+        color: #FFF;
+        font-size: 16.947px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 28.431px;
+        letter-spacing: 5.883px;
+        width: 100%;
+        float: right;
+    }
+      .text-only-div p {
+        color: #FFF;
+        font-size: 12px;
+        line-height: 20.568px;
+        letter-spacing: 1.2px;
+        width: 100%;
+    }
+      button.enter_email-button {
+        font-size: 10.313px;
+        font-style: normal;
+        font-weight: 350;
+        line-height: 16.19px;
+        letter-spacing: 4.502px;
+        display: block;
+        margin: auto;
+              display: flex;
+      justify-content: center;
+      align-items: center;
+      /* gap: 1rem; */
+
+    }
+      button.enter_email-button.change_design{
+      gap:1rem;
+    }
+          .strap_mech_container.change_design p.first_small_text.change_design{
+        font-size: 10.315px;
+        line-height: 25.035px;
+        letter-spacing: 4.933px;
+      }
+        .strap_mech_container.change_design .text-only-div p{
+        width:100%!important;
+         text-align:right!important;
+      }
+      .strap_mech_container.change_design .text-only-div h2{
+        width:100%!important;
+         text-align:right!important;
+      }
+      .strap_mech_container.change_design .text-only-div h2.material{
+        width:100%!important;
+         text-align:left!important;
+      }
+    span.strip-2.material:after {
+        width: 79%;
+        right: -3%;
+    }
+      span.strip-3.too.material:after {
+        width: 105%;
+        right: -4%;
+    }
+      span.strip-4.material:after {
+        width: 120%;
+        left: -18%;
+    }
+      .gradient_color {
+        background: linear-gradient(0deg, #000 52.93%, rgba(0, 0, 0, 0.00) 135.36%);
+        /* height:65vh; */
+    }
+      h1.big_text.change_design.material {
+        right: -2%;
+    }
+      p.first_small_text.change_design.material {
+        right: 0%;
+        top: -5rem;
+    }
+      .centerd_text_material_section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #FFF;
+        text-align: center;
+        font-family: Mark Pro;
+        font-size: 12px;
+        font-weight: 900;
+        line-height: 47.468px;
+        letter-spacing: 4.373px;
+    }
+      .text-only-div h2.material {
+        color: #FFF;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 18.431px;
+        letter-spacing: 4px;
+        width: 100%;
+        float: right;
+    }
+      span.strip-10.change_design:after{
+      width:100%!important;
+      }
+
+    }
+    @media (max-width:370px){
+     h1.big_text {
+        font-size: 18.683px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 38.783px;
+        letter-spacing: 4.22px;
+    }
+      .text-only-div h2 {
+        font-size: 14.947px;
+        font-weight: 800;
+        line-height: 28.431px;
+        letter-spacing: 3.883px;
+    }
+
+    }
+
+
+
+
+
+    @media (min-width:768px) and (max-width:1100px){
+      .strap_mech_container {
+        padding: 20rem 3rem 3rem 3rem!important;
+        background: black;
+    }
+    h1.big_text {
+        position: absolute;
+        margin: 0;
+        top: -3rem;
+        color: #FFF;
+        text-align: center;
+        font-size: 40.683px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 70px;
+        letter-spacing: 16px;
+        left: 8%;
+    }
+    p.first_small_text.change_design.material {
+        right: 11%;
+        top: -13rem;
+    }
+      h1.big_text.change_design.material {
+        right: 9%;
+        top:-10rem!important;
+    }
+      .centerd_text_material_section {
+        transform: translate(-50%, -50%);
+    }
+      .text-only-div h2.material {
+        letter-spacing: 5.883px!important;
+        font-size:25px;
+    }
+      .case-banner-image-wrapper video{
+          min-height:115vh;
+      }
+
+    }
+    @media (min-width:2000px){
+        h1.big_text.change_design.material {
+      right: 14.5%;
+  }
+    p.first_small_text.change_design.material {
+      right: 15%;
+  }
+    }
+</style>
+
+<div class="strap_mech_container change_design">
+  <div class="image_text_container">
+    <p class="first_small_text change_design material fade_in_animation_right">BEYOND A HUNDRED YEARS</p>
+    {% if section.settings['video-url'] != blank %}
+      <video
+        autoplay="autoplay"
+        loop="loop"
+        muted="muted"
+        playsinline
+        poster="{{ section.settings.poster_image | img_url: 'master' }}"
+      >
+        <source src="{{ section.settings.video-url }}" type="video/webm">
+        <source src=" {{ section.settings.video-url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.first_image != blank -%}
+      <img class="first_image" src="{{ section.settings.first_image | image_url }}">
+    {% endif %}
+    <h1 class="big_text change_design material fade_in_animation_right">{{ section.settings.heading }}</h1>
+    <div class="centerd_text_material_section"><pre>[  REDACTED  ]</pre></div>
+  </div>
+
+  <div class="lower_div_coverd_text_btn material">
+    <div class="text-only-div">
+      <h2 class="material">{{ section.settings.subheading }}</h2>
+      <p class="material">{{ section.settings.paragraph }}</p>
+      <div class="gradient_color">.</div>
+    </div>
+    <div class="klaviyo_form_trigger button_svg_wrapper change_design">
+      <button class="enter_email-button change_design">CLICK FOR EARLY ACCESS</button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "material-metamorphosis",
+  "settings": [
+   {
+          "type": "text",
+          "id": "video-url",
+          "label": "Video Url"
+    },
+    {
+    "type": "image_picker",
+    "id": "poster_image",
+    "label": "Poster Image"
+   },
+         {
+    "type": "image_picker",
+    "id": "first_image",
+    "label": "Image"
+   },
+   {
+    "type": "html",
+    "id": "heading",
+    "label": "Heading"
+   },
+   {
+    "type": "html",
+    "id": "subheading",
+    "label": "sub heading"
+   },
+   {
+    "type": "html",
+    "id": "paragraph",
+    "label": "content"
+   }
+  ],
+"presets": [
+  {
+    "name": "material-metamorphosis"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

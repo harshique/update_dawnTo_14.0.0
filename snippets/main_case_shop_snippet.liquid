@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<div class="main_case_page_sec2_container">
+  <h1 class="case_product_title_mobile">{{ product.title }}</h1>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% for media in product.media %}
+      {% render 'media', media: media %}
+      {% endfor %}
+    </div>
+    <div class="swiper-button-next">
+      <span class="next_text">NEXT</span>
+      <img class="next_prev_logo"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Combined_Shape.svg?v=1714135010">
+    </div>
+    <div class="swiper-button-prev">
+      <img class="next_prev_logo"
+        src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Combined_Shape_Copy.svg?v=1714135010">
+      <span class="back_text">BACK</span>
+    </div>
+  </div>
+  {% comment %} <h1 class="case_product_title_sec2">{{ product.title }}</h1> {% endcomment %}
+  <h1 class="case_product_title_sec2">
+    <span>The</span><span>Charcoal</span>
+    <span
+      style="direction: rtl;letter-spacing: 30px;display: flex;justify-content: flex-end;text-indent: -30px;">
+      CASE
+    </span>
+  </h1>
+  <div class="main-case-sec2_last_wrapper">
+    <div class="price_cta_button_wrapperDiv">
+      <div class="first_div_star_price_wrapper">
+        <div class="star-with-text">
+          <span class="r-rating-product rati">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="5px"
+              viewBox="0 0 31 5" version="1.1">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Product-Page-Copy-2" transform="translate(-238.000000, -592.000000)" fill="#F5B931">
+                  <g id="Group-7-Copy-2" transform="translate(238.000000, 592.000000)">
+                    <polygon id="Star"
+                      points="2.52325581 3.75 1.04012326 4.52254249 1.32337637 2.88627124 0.12349693 1.72745751 1.78168954 1.48872876 2.52325581 0 3.26482209 1.48872876 4.9230147 1.72745751 3.72313526 2.88627124 4.00638837 4.52254249" />
+                    <polygon id="Star-Copy"
+                      points="9.01162791 3.75 7.52849535 4.52254249 7.81174846 2.88627124 6.61186902 1.72745751 8.27006163 1.48872876 9.01162791 0 9.75319418 1.48872876 11.4113868 1.72745751 10.2115073 2.88627124 10.4947605 4.52254249" />
+                    <polygon id="Star-Copy-2"
+                      points="15.5 3.75 14.0168674 4.52254249 14.3001206 2.88627124 13.1002411 1.72745751 14.7584337 1.48872876 15.5 0 16.2415663 1.48872876 17.8997589 1.72745751 16.6998794 2.88627124 16.9831326 4.52254249" />
+                    <polygon id="Star-Copy-3"
+                      points="21.9883721 3.75 20.5052395 4.52254249 20.7884927 2.88627124 19.5886132 1.72745751 21.2468058 1.48872876 21.9883721 0 22.7299384 1.48872876 24.388131 1.72745751 23.1882515 2.88627124 23.4715046 4.52254249" />
+                    <polygon id="Star-Copy-4"
+                      points="28.4767442 3.75 26.9936116 4.52254249 27.2768647 2.88627124 26.0769853 1.72745751 27.7351779 1.48872876 28.4767442 0 29.2183105 1.48872876 30.8765031 1.72745751 29.6766236 2.88627124 29.9598767 4.52254249" />
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <div class="main_case_below_star_text">
+          Award-winning design brought to<br>
+          life with Italian Crystal-Acrylic top<br>
+          and Danish motors and columns.
+        </div>
+        {%- assign product_form_id = 'product-form-' | append: section.id -%}
+        {%- for block in section.blocks -%}
+        {%- case block.type -%}
+        {%- when 'variant_picker' -%}
+        {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id,diversion:1
+        %}
+        {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      <div class="second_div_star_price-wrapper">
+        <p class="heading_discription_main_case_sec2">Details</p>
+        <p class="text_discription_main_case_sec2">Award-winning design brought to<br> life with Italian Crystal-Acrylic
+          top<br> and Danish motors and columns.</p>
+        <p class="text_discription_main_case_sec2">Award-winning design brought to<br> life with Italian Crystal-Acrylic
+          top<br> and Danish motors and columns.</p>
+        <p class="text_discription_main_case_sec2">Award-winning design brought to<br> life with Italian Crystal-Acrylic
+          top<br> and Danish motors and columns.</p>
+      </div>
+      <div class="third_div_star_price_wrapper">
+        {%- for block in section.blocks -%}
+        {%- case block.type -%}
+        {%- when 'price' -%}
+        <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+          {%- render 'price',
+          product: product,
+          use_variant: true,
+          show_badges: true,
+          price_class: 'price--large'
+          -%}
+          <p class="pro rich-text__text rte">Pay with
+            <span class="c1"><img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/AfterPay.jpg?v=1680926595" width="90"></span>
+            <span class="c2"><img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/ShopPay.jpg?v=1680926595" width="60"></span>
+          </p>
+        </div>
+        {%- if product.quantity_price_breaks_configured? -%}
+        <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+          <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+        </div>
+        {%- endif -%}
+        <div class="product__tax caption rte">
+          {%- if cart.taxes_included -%}
+          {{ 'products.product.include_taxes' | t }}
+          {%- endif -%}
+          {%- if shop.shipping_policy.body != blank -%}
+          {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+          {%- endif -%}
+        </div>
+        {% comment %} <div {{ block.shopify_attributes }}>
+          {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+          {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {{ form | payment_terms }}
+          {%- endform -%}
+        </div> {% endcomment %}
+
+        {%- when 'variant_picker' -%}
+        {% render 'product-variant-picker', product: product, block: block, product_form_id:
+        product_form_id,diversion:0%}
+        {%- when 'buy_buttons' -%}
+        {%- render 'buy-buttons',
+        block: block,
+        product: product,
+        product_form_id: product_form_id,
+        section_id: section.id,
+        show_pickup_availability: true
+        -%}
+        {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="overlfow_scroll_wrapperDiv">
+      <div class="scrolldiv_items">
+        <img class="scrolldiv_items_image" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Screenshot_2024-04-03_at_9.15.53_PM_Copy.png?v=1715241067">
+        <p class="scrolldiv_items_text">Award-winning design brought to<br> life with Italian Crystal-Acrylic top<br> and Danish motors and columns.</p>
+      </div>
+      <div class="scrolldiv_items">
+        <img class="scrolldiv_items_image" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Screenshot_2024-04-03_at_9.15.36_PM_Copy_2.png?v=1715241067">
+        <p class="scrolldiv_items_text">Award-winning design brought to<br> life with Italian Crystal-Acrylic top<br> and Danish motors and columns.</p>
+      </div>
+      <div class="scrolldiv_items">
+        <img class="scrolldiv_items_image" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Screenshot_2024-04-03_at_9.15.36_PM_Copy_2_1.png?v=1715241067">
+        <p class="scrolldiv_items_text">Award-winning design brought to<br> life with Italian Crystal-Acrylic top<br> and Danish motors and columns.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is >= 640px
+      1240: {
+        slidesPerView: 1.2,
+        spaceBetween: 40
+      }
+    }
+  });
+</script>

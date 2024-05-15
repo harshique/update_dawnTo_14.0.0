@@ -1,0 +1,246 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+.block-item-focus {
+    width: 25%!important;
+    max-width: 25%!important;
+}
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+  <div class="rich-text content-container section-{{ section.id }}-padding">
+    <div class="rich-text__wrapper">
+      <div class="rich-text__blocks relative-block">
+        <div class="video-break">
+          {% if section.settings['video-url'] != blank %}
+            <video
+              autoplay="autoplay"
+              loop="loop"
+              muted="muted"
+              playsinline
+              poster="{{ section.settings.g_img | img_url: 'master' }}"
+            >
+              <source src="{{ section.settings.video-url }}" type="video/webm">
+              <source src=" {{ section.settings.video-url }}" type="video/mp4">
+            </video>
+          {%- else -%}
+            {% if section.settings.l_img != blank %}
+              <img src="{{ section.settings.l_img | img_url: 'master' }}" class="bg-banner">
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+        <div class="video-break-info">
+          <div class="abslu-title">
+            <div class="b-info-title only-on-desktop">
+              <h2 class="{{ section.settings.heading_size }}">{{ section.settings['b-heading'] }}</h2>
+            </div>
+            <div class="b-info-title only_mobile_device">
+              <h2 class="{{ section.settings.heading_size }}">{{ section.settings['b-heading-mobile'] }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="isolate">
+      <div class="row-block-3">
+        <div class="block-item-focus">
+          <div class="inblock">
+            <span class="dot-shape"></span>
+            <div class="rich-text__text rte only-on-desktop">
+              <p>{{ section.settings['l-text'] }}</p>
+            </div>
+            <div class="rich-text__text rte only_mobile_device">
+              <p>{{ section.settings['l-text-mobile'] }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="block-item-focus">
+          <div class="inblock">
+            <span class="dot-shape"></span>
+            <div class="rich-text__text rte only-on-desktop">
+              <p>{{ section.settings['l-text-2'] }}</p>
+            </div>
+            <div class="rich-text__text rte only_mobile_device">
+              <p>{{ section.settings['l-text-mobile-2'] }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="block-item-focus">
+          <div class="inblock">
+            <span class="dot-shape"></span>
+            <div class="rich-text__text rte only-on-desktop">
+              <p>{{ section.settings['l-text-3'] }}</p>
+            </div>
+            <div class="rich-text__text rte only_mobile_device">
+              <p>{{ section.settings['l-text-mobile-3'] }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bring Your Focus",
+  "tag": "section",
+  "class": "section bring-your-focus",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+       {
+            "type": "text",
+            "id": "video-url",
+            "label": "Video Url"
+      },
+      {
+            "type": "image_picker",
+            "id": "g_img",
+            "label": "Cover Image"
+      },
+       {
+              "type": "image_picker",
+              "id": "l_img",
+              "label": "Block Image"
+        },
+    {
+          "type": "html",
+          "id": "b-heading",
+          "label": "Block Heading"
+    },
+    {
+          "type": "html",
+          "id": "b-heading-mobile",
+          "label": "Block  Mobile Heading"
+    },
+     {
+        "type": "header",
+        "content": "Three Column"
+    },
+    {
+          "type": "html",
+          "id": "l-text",
+          "label": "Block Info 1"
+     },
+     {
+          "type": "html",
+          "id": "l-text-mobile",
+          "label": "Block Info Mobile 1"
+     },
+    {
+          "type": "html",
+          "id": "l-text-2",
+          "label": "Block Info 2"
+     },
+     {
+          "type": "html",
+          "id": "l-text-mobile-2",
+          "label": "Block Info Mobile 2"
+     },
+    {
+          "type": "html",
+          "id": "l-text-3",
+          "label": "Block Info 3"
+     },
+     {
+          "type": "html",
+          "id": "l-text-mobile-3",
+          "label": "Block Info Mobile 3"
+     },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.desktop_content_position.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.desktop_content_position.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.desktop_content_position.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.rich-text.settings.desktop_content_position.label",
+      "info": "t:sections.rich-text.settings.desktop_content_position.info"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.rich-text.settings.content_alignment.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.full_width.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bring Your Focus"
+    }
+  ]
+}
+{% endschema %}
