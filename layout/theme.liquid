@@ -1,10 +1,42 @@
+{%- comment %}<locksmith:611f>{%- endcomment %}
+{%- include 'locksmith' -%}
+{%- comment %}</locksmith:611f>{%- endcomment %}
+
 <!doctype html>
-<html class="js" lang="{{ request.locale.iso_code }}">
-  <head>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <script async src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <head class="test">
+    <script async src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    {% if template == 'index' %}
+      <script>
+        window.location.href = "/products/charcoal-case";
+      </script>
+    {% endif %}
+    {% if product.handle == 'the-charcoal-desk-1' %}
+      <script>
+        window.location.href = "/products/charcoal-desk";
+      </script>
+    {% endif %}
+
+    {{ locksmith_initializations }}
+    <meta name="ahrefs-site-verification" content="60af4ce7065ed8b0e56084b237f52b2c02e59ecd7a8e8f1a2b8074785133224d">
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-W4T74CFJ');
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
+    {% if template contains 'product' and product.handle == 'charcoal-desk' %}
+      <meta name="robots" content="noindex">
+    {% endif %}
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -23,7 +55,11 @@
     </title>
 
     {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+      {%- comment %}<locksmith:963a>{%- endcomment %}
+      {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture -%}
+      {%- if var == 'true' %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}
+      {%- comment %}original: <meta name="description" content="{{ page_description | escape }}">{%- endcomment %}
+      {%- comment %}</locksmith:963a>{%- endcomment %}
     {% endif %}
 
     {% render 'meta-tags' %}
@@ -31,6 +67,7 @@
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <!-- <script src="{{ 'klaviyo_script.js' | asset_url }}" async="true"></script> -->
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
@@ -44,224 +81,240 @@
     %}
 
     {% style %}
-      {{ settings.type_body_font | font_face: font_display: 'swap' }}
-      {{ body_font_bold | font_face: font_display: 'swap' }}
-      {{ body_font_italic | font_face: font_display: 'swap' }}
-      {{ body_font_bold_italic | font_face: font_display: 'swap' }}
-      {{ settings.type_header_font | font_face: font_display: 'swap' }}
+                    {{ settings.type_body_font | font_face: font_display: 'swap' }}
+                    {{ body_font_bold | font_face: font_display: 'swap' }}
+                    {{ body_font_italic | font_face: font_display: 'swap' }}
+                    {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+                    {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
-      {% for scheme in settings.color_schemes -%}
-        {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
-        {% if forloop.index == 1 -%}
-          :root,
-        {%- endif %}
-        .color-{{ scheme.id }} {
-          --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-        {% if scheme.settings.background_gradient != empty %}
-          --gradient-background: {{ scheme.settings.background_gradient }};
-        {% else %}
-          --gradient-background: {{ scheme.settings.background }};
-        {% endif %}
+                    {% for scheme in settings.color_schemes -%}
+                      {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+                      {% if forloop.index == 1 -%}
+                        :root,
+                      {%- endif %}
+                      .color-{{ scheme.id }} {
+                        --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+                      {% if scheme.settings.background_gradient != empty %}
+                        --gradient-background: {{ scheme.settings.background_gradient }};
+                      {% else %}
+                        --gradient-background: {{ scheme.settings.background }};
+                      {% endif %}
 
-        {% liquid
-          assign background_color = scheme.settings.background
-          assign background_color_brightness = background_color | color_brightness
-          if background_color_brightness <= 26
-            assign background_color_contrast = background_color | color_lighten: 50
-          elsif background_color_brightness <= 65
-            assign background_color_contrast = background_color | color_lighten: 5
-          else
-            assign background_color_contrast = background_color | color_darken: 25
-          endif
-        %}
+                      {% liquid
+                        assign background_color = scheme.settings.background
+                        assign background_color_brightness = background_color | color_brightness
+                        if background_color_brightness <= 26
+                          assign background_color_contrast = background_color | color_lighten: 50
+                        elsif background_color_brightness <= 65
+                          assign background_color_contrast = background_color | color_lighten: 5
+                        else
+                          assign background_color_contrast = background_color | color_darken: 25
+                        endif
+                      %}
 
-        --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-        --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
-        --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
-        --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
-        --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
-        --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-        --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
-        --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
-        --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-        --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-        --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-        --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
-      }
-      {% endfor %}
+                      --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+                      --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
+                      --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+                      --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
+                      --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
+                      --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+                      --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+                      --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+                      --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+                      --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+                      --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+                      --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+                    }
+                    {% endfor %}
 
-      {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75);
-        background-color: rgb(var(--color-background));
-      }
+                    {{ scheme_classes | prepend: 'body' }} {
+                      color: rgba(var(--color-foreground), 1);
+                      background-color: rgb(var(--color-background));
+                    }
 
-      :root {
-        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
-        --font-body-style: {{ settings.type_body_font.style }};
-        --font-body-weight: {{ settings.type_body_font.weight }};
-        --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+                    :root {
+                      --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+                      --font-body-style: {{ settings.type_body_font.style }};
+                      --font-body-weight: {{ settings.type_body_font.weight }};
+                      --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
 
-        --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
-        --font-heading-style: {{ settings.type_header_font.style }};
-        --font-heading-weight: {{ settings.type_header_font.weight }};
+                      --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+                      --font-heading-style: {{ settings.type_header_font.style }};
+                      --font-heading-weight: {{ settings.type_header_font.weight }};
 
-        --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
-        --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
+                      --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+                      --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
 
-        --media-padding: {{ settings.media_padding }}px;
-        --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
-        --media-border-width: {{ settings.media_border_thickness }}px;
-        --media-radius: {{ settings.media_radius }}px;
-        --media-shadow-opacity: {{ settings.media_shadow_opacity | divided_by: 100.0 }};
-        --media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset }}px;
-        --media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset }}px;
-        --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
-        --media-shadow-visible: {% if settings.media_shadow_opacity > 0 %}1{% else %}0{% endif %};
+                      --media-padding: {{ settings.media_padding }}px;
+                      --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
+                      --media-border-width: {{ settings.media_border_thickness }}px;
+                      --media-radius: {{ settings.media_radius }}px;
+                      --media-shadow-opacity: {{ settings.media_shadow_opacity | divided_by: 100.0 }};
+                      --media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset }}px;
+                      --media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset }}px;
+                      --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
+                      --media-shadow-visible: {% if settings.media_shadow_opacity > 0 %}1{% else %}0{% endif %};
 
-        --page-width: {{ settings.page_width | divided_by: 10 }}rem;
-        --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
+                      --page-width: {{ settings.page_width | divided_by: 10 }}rem;
+                      --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
 
-        --product-card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
-        --product-card-corner-radius: {{ settings.card_corner_radius | divided_by: 10.0 }}rem;
-        --product-card-text-alignment: {{ settings.card_text_alignment }};
-        --product-card-border-width: {{ settings.card_border_thickness | divided_by: 10.0 }}rem;
-        --product-card-border-opacity: {{ settings.card_border_opacity | divided_by: 100.0 }};
-        --product-card-shadow-opacity: {{ settings.card_shadow_opacity | divided_by: 100.0 }};
-        --product-card-shadow-visible: {% if settings.card_shadow_opacity > 0 %}1{% else %}0{% endif %};
-        --product-card-shadow-horizontal-offset: {{ settings.card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
-        --product-card-shadow-vertical-offset: {{ settings.card_shadow_vertical_offset | divided_by: 10.0 }}rem;
-        --product-card-shadow-blur-radius: {{ settings.card_shadow_blur | divided_by: 10.0 }}rem;
+                      --product-card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
+                      --product-card-corner-radius: {{ settings.card_corner_radius | divided_by: 10.0 }}rem;
+                      --product-card-text-alignment: {{ settings.card_text_alignment }};
+                      --product-card-border-width: {{ settings.card_border_thickness | divided_by: 10.0 }}rem;
+                      --product-card-border-opacity: {{ settings.card_border_opacity | divided_by: 100.0 }};
+                      --product-card-shadow-opacity: {{ settings.card_shadow_opacity | divided_by: 100.0 }};
+                      --product-card-shadow-visible: {% if settings.card_shadow_opacity > 0 %}1{% else %}0{% endif %};
+                      --product-card-shadow-horizontal-offset: {{ settings.card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
+                      --product-card-shadow-vertical-offset: {{ settings.card_shadow_vertical_offset | divided_by: 10.0 }}rem;
+                      --product-card-shadow-blur-radius: {{ settings.card_shadow_blur | divided_by: 10.0 }}rem;
 
-        --collection-card-image-padding: {{ settings.collection_card_image_padding | divided_by: 10.0 }}rem;
-        --collection-card-corner-radius: {{ settings.collection_card_corner_radius | divided_by: 10.0 }}rem;
-        --collection-card-text-alignment: {{ settings.collection_card_text_alignment }};
-        --collection-card-border-width: {{ settings.collection_card_border_thickness | divided_by: 10.0 }}rem;
-        --collection-card-border-opacity: {{ settings.collection_card_border_opacity | divided_by: 100.0 }};
-        --collection-card-shadow-opacity: {{ settings.collection_card_shadow_opacity | divided_by: 100.0 }};
-        --collection-card-shadow-visible: {% if settings.collection_card_shadow_opacity > 0 %}1{% else %}0{% endif %};
-        --collection-card-shadow-horizontal-offset: {{ settings.collection_card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
-        --collection-card-shadow-vertical-offset: {{ settings.collection_card_shadow_vertical_offset | divided_by: 10.0 }}rem;
-        --collection-card-shadow-blur-radius: {{ settings.collection_card_shadow_blur | divided_by: 10.0 }}rem;
+                      --collection-card-image-padding: {{ settings.collection_card_image_padding | divided_by: 10.0 }}rem;
+                      --collection-card-corner-radius: {{ settings.collection_card_corner_radius | divided_by: 10.0 }}rem;
+                      --collection-card-text-alignment: {{ settings.collection_card_text_alignment }};
+                      --collection-card-border-width: {{ settings.collection_card_border_thickness | divided_by: 10.0 }}rem;
+                      --collection-card-border-opacity: {{ settings.collection_card_border_opacity | divided_by: 100.0 }};
+                      --collection-card-shadow-opacity: {{ settings.collection_card_shadow_opacity | divided_by: 100.0 }};
+                      --collection-card-shadow-visible: {% if settings.collection_card_shadow_opacity > 0 %}1{% else %}0{% endif %};
+                      --collection-card-shadow-horizontal-offset: {{ settings.collection_card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
+                      --collection-card-shadow-vertical-offset: {{ settings.collection_card_shadow_vertical_offset | divided_by: 10.0 }}rem;
+                      --collection-card-shadow-blur-radius: {{ settings.collection_card_shadow_blur | divided_by: 10.0 }}rem;
 
-        --blog-card-image-padding: {{ settings.blog_card_image_padding | divided_by: 10.0 }}rem;
-        --blog-card-corner-radius: {{ settings.blog_card_corner_radius | divided_by: 10.0 }}rem;
-        --blog-card-text-alignment: {{ settings.blog_card_text_alignment }};
-        --blog-card-border-width: {{ settings.blog_card_border_thickness | divided_by: 10.0 }}rem;
-        --blog-card-border-opacity: {{ settings.blog_card_border_opacity | divided_by: 100.0 }};
-        --blog-card-shadow-opacity: {{ settings.blog_card_shadow_opacity | divided_by: 100.0 }};
-        --blog-card-shadow-visible: {% if settings.blog_card_shadow_opacity > 0 %}1{% else %}0{% endif %};
-        --blog-card-shadow-horizontal-offset: {{ settings.blog_card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
-        --blog-card-shadow-vertical-offset: {{ settings.blog_card_shadow_vertical_offset | divided_by: 10.0 }}rem;
-        --blog-card-shadow-blur-radius: {{ settings.blog_card_shadow_blur | divided_by: 10.0 }}rem;
+                      --blog-card-image-padding: {{ settings.blog_card_image_padding | divided_by: 10.0 }}rem;
+                      --blog-card-corner-radius: {{ settings.blog_card_corner_radius | divided_by: 10.0 }}rem;
+                      --blog-card-text-alignment: {{ settings.blog_card_text_alignment }};
+                      --blog-card-border-width: {{ settings.blog_card_border_thickness | divided_by: 10.0 }}rem;
+                      --blog-card-border-opacity: {{ settings.blog_card_border_opacity | divided_by: 100.0 }};
+                      --blog-card-shadow-opacity: {{ settings.blog_card_shadow_opacity | divided_by: 100.0 }};
+                      --blog-card-shadow-visible: {% if settings.blog_card_shadow_opacity > 0 %}1{% else %}0{% endif %};
+                      --blog-card-shadow-horizontal-offset: {{ settings.blog_card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
+                      --blog-card-shadow-vertical-offset: {{ settings.blog_card_shadow_vertical_offset | divided_by: 10.0 }}rem;
+                      --blog-card-shadow-blur-radius: {{ settings.blog_card_shadow_blur | divided_by: 10.0 }}rem;
 
-        --badge-corner-radius: {{ settings.badge_corner_radius | divided_by: 10.0 }}rem;
+                      --badge-corner-radius: {{ settings.badge_corner_radius | divided_by: 10.0 }}rem;
 
-        --popup-border-width: {{ settings.popup_border_thickness }}px;
-        --popup-border-opacity: {{ settings.popup_border_opacity | divided_by: 100.0 }};
-        --popup-corner-radius: {{ settings.popup_corner_radius }}px;
-        --popup-shadow-opacity: {{ settings.popup_shadow_opacity | divided_by: 100.0 }};
-        --popup-shadow-horizontal-offset: {{ settings.popup_shadow_horizontal_offset }}px;
-        --popup-shadow-vertical-offset: {{ settings.popup_shadow_vertical_offset }}px;
-        --popup-shadow-blur-radius: {{ settings.popup_shadow_blur }}px;
+                      --popup-border-width: {{ settings.popup_border_thickness }}px;
+                      --popup-border-opacity: {{ settings.popup_border_opacity | divided_by: 100.0 }};
+                      --popup-corner-radius: {{ settings.popup_corner_radius }}px;
+                      --popup-shadow-opacity: {{ settings.popup_shadow_opacity | divided_by: 100.0 }};
+                      --popup-shadow-horizontal-offset: {{ settings.popup_shadow_horizontal_offset }}px;
+                      --popup-shadow-vertical-offset: {{ settings.popup_shadow_vertical_offset }}px;
+                      --popup-shadow-blur-radius: {{ settings.popup_shadow_blur }}px;
 
-        --drawer-border-width: {{ settings.drawer_border_thickness }}px;
-        --drawer-border-opacity: {{ settings.drawer_border_opacity | divided_by: 100.0 }};
-        --drawer-shadow-opacity: {{ settings.drawer_shadow_opacity | divided_by: 100.0 }};
-        --drawer-shadow-horizontal-offset: {{ settings.drawer_shadow_horizontal_offset }}px;
-        --drawer-shadow-vertical-offset: {{ settings.drawer_shadow_vertical_offset }}px;
-        --drawer-shadow-blur-radius: {{ settings.drawer_shadow_blur }}px;
+                      --drawer-border-width: {{ settings.drawer_border_thickness }}px;
+                      --drawer-border-opacity: {{ settings.drawer_border_opacity | divided_by: 100.0 }};
+                      --drawer-shadow-opacity: {{ settings.drawer_shadow_opacity | divided_by: 100.0 }};
+                      --drawer-shadow-horizontal-offset: {{ settings.drawer_shadow_horizontal_offset }}px;
+                      --drawer-shadow-vertical-offset: {{ settings.drawer_shadow_vertical_offset }}px;
+                      --drawer-shadow-blur-radius: {{ settings.drawer_shadow_blur }}px;
 
-        --spacing-sections-desktop: {{ settings.spacing_sections }}px;
-        --spacing-sections-mobile: {% if settings.spacing_sections < 24 %}{{ settings.spacing_sections }}{% else %}{{ settings.spacing_sections | times: 0.7 | round | at_least: 20 }}{% endif %}px;
+                      --spacing-sections-desktop: {{ settings.spacing_sections }}px;
+                      --spacing-sections-mobile: {% if settings.spacing_sections < 24 %}{{ settings.spacing_sections }}{% else %}{{ settings.spacing_sections | times: 0.7 | round | at_least: 20 }}{% endif %}px;
 
-        --grid-desktop-vertical-spacing: {{ settings.spacing_grid_vertical }}px;
-        --grid-desktop-horizontal-spacing: {{ settings.spacing_grid_horizontal }}px;
-        --grid-mobile-vertical-spacing: {{ settings.spacing_grid_vertical | divided_by: 2 }}px;
-        --grid-mobile-horizontal-spacing: {{ settings.spacing_grid_horizontal | divided_by: 2 }}px;
+                      --grid-desktop-vertical-spacing: {{ settings.spacing_grid_vertical }}px;
+                      --grid-desktop-horizontal-spacing: {{ settings.spacing_grid_horizontal }}px;
+                      --grid-mobile-vertical-spacing: {{ settings.spacing_grid_vertical | divided_by: 2 }}px;
+                      --grid-mobile-horizontal-spacing: {{ settings.spacing_grid_horizontal | divided_by: 2 }}px;
 
-        --text-boxes-border-opacity: {{ settings.text_boxes_border_opacity | divided_by: 100.0 }};
-        --text-boxes-border-width: {{ settings.text_boxes_border_thickness }}px;
-        --text-boxes-radius: {{ settings.text_boxes_radius }}px;
-        --text-boxes-shadow-opacity: {{ settings.text_boxes_shadow_opacity | divided_by: 100.0 }};
-        --text-boxes-shadow-visible: {% if settings.text_boxes_shadow_opacity > 0 %}1{% else %}0{% endif %};
-        --text-boxes-shadow-horizontal-offset: {{ settings.text_boxes_shadow_horizontal_offset }}px;
-        --text-boxes-shadow-vertical-offset: {{ settings.text_boxes_shadow_vertical_offset }}px;
-        --text-boxes-shadow-blur-radius: {{ settings.text_boxes_shadow_blur }}px;
+                      --text-boxes-border-opacity: {{ settings.text_boxes_border_opacity | divided_by: 100.0 }};
+                      --text-boxes-border-width: {{ settings.text_boxes_border_thickness }}px;
+                      --text-boxes-radius: {{ settings.text_boxes_radius }}px;
+                      --text-boxes-shadow-opacity: {{ settings.text_boxes_shadow_opacity | divided_by: 100.0 }};
+                      --text-boxes-shadow-visible: {% if settings.text_boxes_shadow_opacity > 0 %}1{% else %}0{% endif %};
+                      --text-boxes-shadow-horizontal-offset: {{ settings.text_boxes_shadow_horizontal_offset }}px;
+                      --text-boxes-shadow-vertical-offset: {{ settings.text_boxes_shadow_vertical_offset }}px;
+                      --text-boxes-shadow-blur-radius: {{ settings.text_boxes_shadow_blur }}px;
 
-        --buttons-radius: {{ settings.buttons_radius }}px;
-        --buttons-radius-outset: {% if settings.buttons_radius > 0 %}{{ settings.buttons_radius | plus: settings.buttons_border_thickness }}{% else %}0{% endif %}px;
-        --buttons-border-width: {% if settings.buttons_border_opacity > 0 %}{{ settings.buttons_border_thickness }}{% else %}0{% endif %}px;
-        --buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};
-        --buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};
-        --buttons-shadow-visible: {% if settings.buttons_shadow_opacity > 0 %}1{% else %}0{% endif %};
-        --buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;
-        --buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;
-        --buttons-shadow-blur-radius: {{ settings.buttons_shadow_blur }}px;
-        --buttons-border-offset: {% if settings.buttons_radius > 0 or settings.buttons_shadow_opacity > 0 %}0.3{% else %}0{% endif %}px;
+                      --buttons-radius: {{ settings.buttons_radius }}px;
+                      --buttons-radius-outset: {% if settings.buttons_radius > 0 %}{{ settings.buttons_radius | plus: settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+                      --buttons-border-width: {% if settings.buttons_border_opacity > 0 %}{{ settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+                      --buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};
+                      --buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};
+                      --buttons-shadow-visible: {% if settings.buttons_shadow_opacity > 0 %}1{% else %}0{% endif %};
+                      --buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;
+                      --buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;
+                      --buttons-shadow-blur-radius: {{ settings.buttons_shadow_blur }}px;
+                      --buttons-border-offset: {% if settings.buttons_radius > 0 or settings.buttons_shadow_opacity > 0 %}0.3{% else %}0{% endif %}px;
 
-        --inputs-radius: {{ settings.inputs_radius }}px;
-        --inputs-border-width: {{ settings.inputs_border_thickness }}px;
-        --inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};
-        --inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};
-        --inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;
-        --inputs-margin-offset: {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_opacity > 0 %}{{ settings.inputs_shadow_vertical_offset | abs }}{% else %}0{% endif %}px;
-        --inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;
-        --inputs-shadow-blur-radius: {{ settings.inputs_shadow_blur }}px;
-        --inputs-radius-outset: {% if settings.inputs_radius > 0 %}{{ settings.inputs_radius | plus: settings.inputs_border_thickness }}{% else %}0{% endif %}px;
+                      --inputs-radius: {{ settings.inputs_radius }}px;
+                      --inputs-border-width: {{ settings.inputs_border_thickness }}px;
+                      --inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};
+                      --inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};
+                      --inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;
+                      --inputs-margin-offset: {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_opacity > 0 %}{{ settings.inputs_shadow_vertical_offset | abs }}{% else %}0{% endif %}px;
+                      --inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;
+                      --inputs-shadow-blur-radius: {{ settings.inputs_shadow_blur }}px;
+                      --inputs-radius-outset: {% if settings.inputs_radius > 0 %}{{ settings.inputs_radius | plus: settings.inputs_border_thickness }}{% else %}0{% endif %}px;
 
-        --variant-pills-radius: {{ settings.variant_pills_radius }}px;
-        --variant-pills-border-width: {{ settings.variant_pills_border_thickness }}px;
-        --variant-pills-border-opacity: {{ settings.variant_pills_border_opacity | divided_by: 100.0 }};
-        --variant-pills-shadow-opacity: {{ settings.variant_pills_shadow_opacity | divided_by: 100.0 }};
-        --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
-        --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
-        --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
-      }
+                      --variant-pills-radius: {{ settings.variant_pills_radius }}px;
+                      --variant-pills-border-width: {{ settings.variant_pills_border_thickness }}px;
+                      --variant-pills-border-opacity: {{ settings.variant_pills_border_opacity | divided_by: 100.0 }};
+                      --variant-pills-shadow-opacity: {{ settings.variant_pills_shadow_opacity | divided_by: 100.0 }};
+                      --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
+                      --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
+                      --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
+                    }
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: inherit;
-      }
+                    *,
+                    *::before,
+                    *::after {
+                      box-sizing: inherit;
+                    }
 
-      html {
-        box-sizing: border-box;
-        font-size: calc(var(--font-body-scale) * 62.5%);
-        height: 100%;
-      }
+                    html {
+                      box-sizing: border-box;
+                      font-size: calc(var(--font-body-scale) * 62.5%);
+                      height: 100%;
+                    }
 
-      body {
-        display: grid;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-columns: 100%;
-        min-height: 100%;
-        margin: 0;
-        font-size: 1.5rem;
-        letter-spacing: 0.06rem;
-        line-height: calc(1 + 0.8 / var(--font-body-scale));
-        font-family: var(--font-body-family);
-        font-style: var(--font-body-style);
-        font-weight: var(--font-body-weight);
-      }
-
-      @media screen and (min-width: 750px) {
-        body {
-          font-size: 1.6rem;
-        }
-      }
+                    body {
+                      display: grid;
+                      grid-template-rows: auto auto 1fr auto;
+                      grid-template-columns: 100%;
+                      min-height: 100%;
+                      margin: 0;
+                      font-size: 1.5rem;
+                      letter-spacing: 0.4rem;
+                      line-height: calc(1 + 0.5 / var(--font-body-scale));
+                      font-family: var(--font-body-family);
+                      font-style: var(--font-body-style);
+                      font-weight: var(--font-body-weight);
+                    }
+       {% if product.handle == 'charcoal-desk' %}
+       .section-header {
+       position: absolute!important;
+       top: 0;
+       margin-bottom: 0px;
+       width: 100%;
+       }
+       {% endif %}
+       {% if product.handle == 'charcoal-case' %}
+      .content {
+       display: none !important;
+       }
+       {% endif %}
+                   {% if product.id == 7874999025802 %}
+                     body{
+                      overflow-x:hidden;
+                      }
+                    {% endif %}
+                    @media screen and (min-width: 750px) {
+                      body {
+                        font-size: 1.6rem;
+                      }
+                    }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
+    {{ 'stylesheet.css' | asset_url | stylesheet_tag }}
+    {{ 'responsive.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
@@ -279,13 +332,157 @@
     {%- endif -%}
 
     <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-  </head>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <!--
+      script>
+            window.onscroll = function() {myFunction()};
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+          var header = document.getElementById("shopify-section-header");
+          var sticky = header.offsetTop+5;
+
+          function myFunction() {
+            if (window.pageYOffset > sticky) {
+              header.classList.add("sticky");
+            } else {
+              header.classList.remove("sticky");
+            }
+          }
+      </script
+    -->
+    <!--
+      <script>
+       $(document).ready(function(){
+        $(".icon-hamburger").click(function(){
+          $(".page-overly").addClass("visible-overlay");
+        });
+        $(".icon-close").click(function(){
+          $(".page-overly").removeClass("visible-overlay");
+        });
+
+         $(".icon-hamburger").click(function(){
+          $("#shopify-section-header").addClass("blur-d");
+        });
+        $(".icon-close").click(function(){
+          $("#shopify-section-header").removeClass("blur-d");
+        });
+
+      });
+      </script>
+    -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox-plus-jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      window.addEventListener("load", function(){
+
+
+              $("header #cart-icon-bubble").on('click',function(e){
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+                  $('.cart-notification').show();
+                  $('cart-notification #cart-notification').toggleClass('active');
+              });
+
+
+      });
+    </script>
+    <script>
+      lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+      })
+    </script>
+    <script>
+            AOS.init({
+        duration: 1000
+      });
+
+         // AOS.init({
+         //    offset: 200,
+         //    duration: 600,
+         //    easing: 'ease-in-sine',
+         //    delay: 100,
+         //  });
+    </script>
+
+    <script>
+            changePickupStoreMenu();
+
+      function changePickupStoreMenu(){
+
+          var body = $('body'),
+              mask = $('<div class="mask"></div>'),
+              toggleSlideRight = document.querySelector( ".toggle-slide-right" ),
+              slideMenuRight = document.querySelector( ".slide-menu-right" ),
+              activeNav = '';
+          ;
+          $('body').append(mask);
+
+          /* slide menu right */
+          toggleSlideRight.addEventListener( "click", function(){
+              $('body').addClass("smr-open");
+              $('.mask').fadeIn();
+              activeNav = "smr-open";
+          } );
+
+          /* hide active menu if close menu button is clicked */
+          $(document).on('click', ".close-menu", function(el,i){
+              $('body').removeClass(activeNav);
+              activeNav = "";
+              $('.mask').fadeOut();
+          });
+
+      }
+    </script>
+    {{ 'video-js.css' | asset_url | stylesheet_tag }}
+    {{ 'video.js' | asset_url | script_tag }}
+
+    <script>
+         $(document).ready(function(){
+          $(window).scroll(function(){
+              if ($(this).scrollTop() > 100) {
+                  $('#scroll').fadeIn();
+              } else {
+                  $('#scroll').fadeOut();
+              }
+          });
+
+      });
+    </script>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "kxe11mvq4o");
+    </script>
+    {% if page.handle == 'charcoal-case-sign-up' %}
+      <style>
+        sticky-header.header-wrapper,footer.footer{ display:none; }
+      </style>
+    {% endif %}
+  </head>
+  {% comment %} Development branch is created and pushed to github {% endcomment %}
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}  {% if customer %}customer-logged-in {% endif %}template-{{ request.page_type | handle }} template-{{ page_title }}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-W4T74CFJ"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -298,6 +495,7 @@
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
+      {{- locksmith_content_for_layout_addenda }}
     </main>
 
     {% sections 'footer-group' %}
@@ -336,9 +534,6 @@
         itemRemoved: `{{ 'sections.quick_order_list.items_removed.one' | t: quantity: '[quantity]' }}`,
         viewCart: `{{- 'sections.quick_order_list.view_cart' | t -}}`,
         each: `{{- 'sections.quick_order_list.each' | t: money: '[money]' }}`,
-        min_error: `{{- 'sections.quick_order_list.min_error' | t: min: '[min]' }}`,
-        max_error: `{{- 'sections.quick_order_list.max_error' | t: max: '[max]' }}`,
-        step_error: `{{- 'sections.quick_order_list.step_error' | t: step: '[step]' }}`,
       };
 
       window.accessibilityStrings = {
@@ -348,12 +543,695 @@
         playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
         recipientFormExpanded: `{{ 'recipient.form.expanded' | t }}`,
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
-        countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
     </script>
 
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <!--
+      script>
+            window.onscroll = function() {myFunction()};
+
+          var header = document.getElementById("shopify-section-header");
+          var sticky = header.offsetTop+5;
+
+          function myFunction() {
+            if (window.pageYOffset > sticky) {
+              header.classList.add("sticky");
+            } else {
+              header.classList.remove("sticky");
+            }
+          }
+      </script
+    -->
+    <!--
+      <script>
+       $(document).ready(function(){
+        $(".icon-hamburger").click(function(){
+          $(".page-overly").addClass("visible-overlay");
+        });
+        $(".icon-close").click(function(){
+          $(".page-overly").removeClass("visible-overlay");
+        });
+
+         $(".icon-hamburger").click(function(){
+          $("#shopify-section-header").addClass("blur-d");
+        });
+        $(".icon-close").click(function(){
+          $("#shopify-section-header").removeClass("blur-d");
+        });
+
+      });
+      </script>
+    -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox-plus-jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
+
+    <script>
+      lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+      })
+    </script>
+    <script>
+            AOS.init({
+        duration: 1000
+      });
+
+         // AOS.init({
+         //    offset: 200,
+         //    duration: 600,
+         //    easing: 'ease-in-sine',
+         //    delay: 100,
+         //  });
+    </script>
+    <script>
+      $(document).ready(function() {
+       $(document).on('click','.video-with-textt .main-video button.video-section__poster, .video-with-textt .main-video .video-section__poster',function(e) {
+           e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+           var symbol = $(this).parents('.main-video').find('iframe').attr('src');
+           $(this).parents('.main-video').find('iframe').attr('src',symbol + "&autoplay=1");
+           $(this).parents('.video-with-textt').addClass('pop_class');
+           $('.overlay_pro').fadeIn(300);
+        });
+
+        $(document).on('click','.close_pro',function() {
+            $(this).parents('.video-with-textt').removeClass('pop_class');
+             var symbol = $(this).parents('.main-video').find('iframe').attr('src');
+            symbol = symbol.replace("&autoplay=1", "&autoplay=0");
+             $(this).parents('.main-video').find('iframe').attr('src',symbol);
+            symbol = symbol.replace("&autoplay=0", "");
+             $(this).parents('.main-video').find('iframe').attr('src',symbol);
+            // alert(symbol);
+            $('.overlay_pro').fadeOut(300);
+          });
+          var pathname = window.location.pathname;
+          if(pathname == '/'){
+            $("header-drawer #cart-icon-bubble").on('click',function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                $('.cart-notification').show();
+                $('cart-notification #cart-notification').toggleClass('active');
+            });
+          }
+      });
+    </script>
+    <script>
+            changePickupStoreMenu();
+
+      function changePickupStoreMenu(){
+
+          var body = $('body'),
+              mask = $('<div class="mask"></div>'),
+              toggleSlideRight = document.querySelector( ".toggle-slide-right" ),
+              slideMenuRight = document.querySelector( ".slide-menu-right" ),
+              activeNav = '';
+          ;
+          $('body').append(mask);
+
+          /* slide menu right */
+          toggleSlideRight.addEventListener( "click", function(){
+              $('body').addClass("smr-open");
+              $('.mask').fadeIn();
+              activeNav = "smr-open";
+          } );
+
+          /* hide active menu if close menu button is clicked */
+          $(document).on('click', ".close-menu", function(el,i){
+              $('body').removeClass(activeNav);
+              activeNav = "";
+              $('.mask').fadeOut();
+          });
+
+      }
+    </script>
+    {{ 'video-js.css' | asset_url | stylesheet_tag }}
+    {{ 'video.js' | asset_url | script_tag }}
+
+    <script>
+         $(document).ready(function(){
+          $(window).scroll(function(){
+              if ($(this).scrollTop() > 100) {
+                  $('#scroll').fadeIn();
+              } else {
+                  $('#scroll').fadeOut();
+              }
+          });
+
+      });
+    </script>
+    <script type="text/javascript">
+      $('button.needsclick.go952291206.kl-private-reset-css-Xuajs1').click(function() {
+        fbq('track');
+      });
+    </script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+        duration:1.2,
+          lerp:0.085
+          // easing:	(t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        })
+
+      lenis.on('scroll', (e) => {
+        console.log(e)
+      })
+
+      function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
+      requestAnimationFrame(raf)
+    </script>
+    <script>
+      (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#404040', triggerColor : '#404040', triggerRadius : '50%', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'small', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })();
+    </script>
   </body>
+  <div class="menu slide-menu-right">
+    <div id="menu-drawer-custom" class="menu-drawer-1 motion-reduce" tabindex="-1">
+      <div class="menu-drawer__inner-container">
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu list-menu" role="list">
+              {%- for link in linklists['main-menu'].links -%}
+                <li>
+                  {%- if link.links != blank -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
+                        <span class="light_weight_text">{{ forloop.index }}</span>
+                        {{ link.title | escape }}
+                        {% comment %}
+                          {% render 'icon-arrow' %}
+                          {% render 'icon-caret' %}
+                        {% endcomment %}
+                      </summary>
+                      <div
+                        id="link-{{ link.title | escape }}"
+                        style="display:none"
+                        class="menu-drawer__submenu motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-arrow' %}
+                            {{ link.title | escape }}
+                          </button>
+                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            {%- for childlink in link.links -%}
+                              <li>
+                                {%- if childlink.links == blank -%}
+                                  <a
+                                    href="{{ childlink.url }}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    {% if childlink.current %}
+                                      aria-current="page"
+                                    {% endif %}
+                                  >
+                                    {{ childlink.title | escape }}
+                                  </a>
+                                {%- else -%}
+                                  <details id="Details-menu-drawer-submenu-{{ forloop.index }}">
+                                    <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                      {{ childlink.title | escape }}
+                                      {% render 'icon-arrow' %}
+                                      {% render 'icon-caret' %}
+                                    </summary>
+                                    <div
+                                      id="childlink-{{ childlink.title | escape }}"
+                                      class="menu-drawer__submenu motion-reduce"
+                                    >
+                                      <button
+                                        class="menu-drawer__close-button link link--text focus-inset"
+                                        aria-expanded="true"
+                                      >
+                                        {% render 'icon-arrow' %}
+                                        {{ childlink.title | escape }}
+                                      </button>
+                                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                        {%- for grandchildlink in childlink.links -%}
+                                          <li>
+                                            <a
+                                              href="{{ grandchildlink.url }}"
+                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                              {% if grandchildlink.current %}
+                                                aria-current="page"
+                                              {% endif %}
+                                            >
+                                              {{ grandchildlink.title | escape }}
+                                            </a>
+                                          </li>
+                                        {%- endfor -%}
+                                      </ul>
+                                    </div>
+                                  </details>
+                                {%- endif -%}
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="drop_down_child_items">
+                        <div class="custom_child_items_list">
+                          {% for child_link_item in link.links %}
+                            <a href="{{ child_link_item.url }}" class="list_item_{{ forloop.index }}">
+                              <span class="small_horizontal_line" style="block"></span>
+                              <span class="list_item_indivisual">{{ child_link_item.title }}</span>
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      <span class="light_weight_text">{{ forloop.index }}</span>
+                      {{ link.title | escape }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+          <div class="menu-drawer__utility-links">
+            <ul class="list list-social list-unstyled" role="list">
+              {%- if settings.social_twitter_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_twitter_link }}" class="list-social__link link">
+                    {%- render 'icon-twitter' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_facebook_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
+                    {%- render 'icon-facebook' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_pinterest_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_pinterest_link }}" class="list-social__link link">
+                    {%- render 'icon-pinterest' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                    {%- render 'icon-instagram' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tiktok_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tiktok_link }}" class="list-social__link link">
+                    {%- render 'icon-tiktok' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tumblr_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tumblr_link }}" class="list-social__link link">
+                    {%- render 'icon-tumblr' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_snapchat_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_snapchat_link }}" class="list-social__link link">
+                    {%- render 'icon-snapchat' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_youtube_link }}" class="list-social__link link">
+                    {%- render 'icon-youtube' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_vimeo_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_vimeo_link }}" class="list-social__link link">
+                    {%- render 'icon-vimeo' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="close-menu">{% render 'icon-close' %}</button>
+  </div>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
+    integrity="sha256-zUQGihTEkA4nkrgfbbAM1f3pxvnWiznBND+TuJoUv3M="
+    crossorigin="anonymous"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+    integrity="sha256-4hqlsNP9KM6+2eA8VUT0kk4RsMRTeS7QGHIM+MZ5sLY="
+    crossorigin="anonymous"
+  >
+  <script>
+      $('.featured-slider').slick({
+      dots: false,
+      infinite: true,
+      speed: 1000,
+      arrow:false,
+      slidesToShow: 1,
+      fade: true,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+  </script>
+  <script>
+      $('.gallery-slider').slick({
+      dots: false,
+      infinite: true,
+      speed: 1000,
+      arrow:false,
+      slidesToShow: 2,
+      centerMode: false,
+      autoplay:false,
+      centerPadding:'0',
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+  </script>
+  <script src="{{ 'jquery_accordion.js' | asset_url }}" defer="defer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('.faq').accordion({
+    defaultOpen: '',
+    cookieName: 'accordion_nav'
+    });
+    });
+  </script>
+  <script>
+     /*
+    $(document).ready(function() {
+       $('ul.tabs').each(function(){
+         var active, content, links = $(this).find('a');
+         active = links.first().addClass('active');
+         content = $(active.attr('href'));
+         links.not(':first').each(function () {
+           $($(this).attr('href')).hide();
+         });
+         $(this).find('a').click(function(e){
+           active.removeClass('active');
+           content.hide();
+           active = $(this);
+           content = $($(this).attr('href'));
+           active.addClass('active');
+           content.show();
+           return false;
+         });
+       });
+     });
+     */
+  </script>
+  <script>
+    $(function () {
+        $("select.select__select").change(function () {
+            if ($(this).val() == 'Small 27” x 48”' ) {
+                $(".small-button").removeClass("hidethis");
+            } else {
+                $(".small-button").addClass("hidethis");
+            }
+            if ($(this).val() == 'Large 30” x 60”' ) {
+                $(".large-button").removeClass("hidethis");
+            } else {
+                $(".large-button").addClass("hidethis");
+            }
+        });
+    });
+  </script>
+  <script>
+       $(function () {
+    $("variant-radios .product-form__input input").click(function () {
+    		if( $('#template--15801772998794__32343c27-16ca-4385-ad8c-fa2aea61e4f4-1-1').is(':checked') ){
+    			$("p.large_text-ship").css("display", "block")
+    		}
+    		else{
+    			$("p.large_text-ship").css("display", "none")
+    		}
+             });
+       });
+  </script>
+  <script>
+    $('.step-buttons.step-1button').click(function(){
+        $(".shopify-section.member-step-2").removeClass('hidethis');
+    	$(".shopify-section.member-step-1.firstmsec").addClass('hidethis');
+    });
+    $('.member-step-2 .step-buttons.step-1button').click(function(){
+        $(".shopify-section.member-step-3").removeClass('hidethis');
+        $(".shopify-section.member-step-2").addClass('hidethis');
+    	$(".shopify-section.member-step-1.firstmsec").addClass('hidethis');
+    });
+  </script>
+  <script>
+      jQuery(document).ready(function(){
+     $( "#backToTop" );
+      var $window = $(window);
+      var distance = 80;
+        // scroll
+      $window.scroll(function() {
+        // header
+        if($window.scrollTop() >= distance) {
+          $(".backToTop").fadeIn();
+        }else{
+          $(".backToTop").fadeOut();
+        }
+      });
+
+      $('.backToTop').click(function() {
+        $('html, body').animate({
+                scrollTop: 0
+            }, 800);
+     });
+    })
+  </script>
+  <script>
+      $(".shop-now-button-down").on('click',function(e){
+            e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+            $('html, body').animate({
+            scrollTop: $("#home-featured-shop").offset().top
+        }, 2000);
+    });
+  </script>
+  <script>
+      // Select all links with hashes
+    $('.block-inner-yi a[href*="#"], .video-css-one p a[href*="#"]')
+      // Remove links that don't actually link to anything
+      .not('[href="#"]')
+      .not('[href="#0"]')
+      .click(function(event) {
+        // On-page links
+        if (
+          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+          &&
+          location.hostname == this.hostname
+        ) {
+          // Figure out element to scroll to
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          // Does a scroll target exist?
+          if (target.length) {
+            // Only prevent default if animation is actually gonna happen
+            event.preventDefault();
+            $('html, body').animate({
+              scrollTop: target.offset().top
+            }, 1000, function() {
+              // Callback after animation
+              // Must change focus!
+              var $target = $(target);
+              $target.focus();
+              if ($target.is(":focus")) { // Checking if the target was focused
+                return false;
+              } else {
+                $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                $target.focus(); // Set focus again
+              };
+            });
+          }
+        }
+      });
+  </script>
+  <script>
+      $('.slider-rev').slick({
+      dots: false,
+      infinite: false,
+      speed: 3000,
+      arrow:false,
+      slidesToShow: 2,
+      autoplay:true,
+      centerPadding:'0',
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: false,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+  </script>
+  <script>
+      $('.happy-customer-sl').slick({
+      dots: false,
+      infinite: true,
+      speed: 1000,
+      arrow:false,
+      slidesToShow: 7,
+      autoplay:true,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            infinite: false,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+  </script>
+  <script type="text/javascript">
+        window.addEventListener("load", function(){
+        jQuery(document).on('click','.chooes-your-desk .device-list li',function(){
+            $('.chooes-your-desk .device-list li').removeClass('active');
+            $(this).addClass('active');
+            var type = $(this).attr('type');
+            var img_url = $(this).attr('img');
+            $('.chooes-your-desk .imge-box-btm .sm-title').text(type);
+            $('.chooes-your-desk .imge-box-btm .box-img img').attr('src',img_url);
+        });
+    });
+  </script>
 </html>

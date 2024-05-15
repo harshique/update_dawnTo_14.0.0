@@ -1,0 +1,323 @@
+<style>
+    #shopify-section-{{section.id}} {
+  min-height: 100vh;
+      width: 100vw;
+  }
+  .case-banner-container {
+      position: absolute;
+      max-height: 120vh;
+      /* z-index: 2; */
+      top: 0;
+      overflow: hidden;
+  }
+   .case-banner-image-wrapper video{
+
+   max-width: 100%;
+   object-fit: cover;
+   object-position: center;
+   width: 100%;
+   height: 100%;
+  }
+    .case-banner-image-wrapper {
+      width: 100vw;
+  }
+  img.case_banner {
+      width: 100%;
+      height: 190vh;
+      object-fit: cover;
+  }
+    .case-text-wrapper {
+      width: 100vw;
+      height: 120vh;
+      position: absolute;
+      top: 0;
+  }
+  .text_heading_wrapper {
+      right: 10%;
+      position: relative;
+      top: 30vh;
+      display: flex;
+      flex-direction: column;
+  }
+    h1.title_text {
+      margin: 0;
+      color: #FFF;
+      font-size: 45.851px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 60.014px;
+      letter-spacing: 16.339px;
+      text-align:right;
+  }
+    p.sub_title_text {
+      color: #FFF;
+      font-size: 12.313px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18.19px;
+      letter-spacing: 6.502px;
+      text-align:right;
+  }
+    .enter_email_btn_wrap {
+      top: 90vh;
+      position: absolute;
+      right: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+      padding-right: 30px;
+      cursor:pointer;
+  }
+    button.enter_email_button {
+       font-family: MarkPro;
+       border: none;
+       outline: none;
+       padding: 18px 35px;
+       background: #BC583A;
+       font-size: 12px;
+       color: #fff;
+       text-align: center;
+       font-style: normal;
+       font-weight: 800;
+       line-height: 14.19px;
+       letter-spacing: 4.6px;
+       border-radius: 30px;
+       cursor: pointer;
+  }
+  marquee.marquee {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 40px;
+      background: white;
+      position:absolute;
+      top:105vh;
+  }
+  span.marquee_elements {
+      padding: 10px 5rem;
+      color: #000;
+      text-align: center;
+      font-size: 14.504px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 49.468px;
+      letter-spacing: 9.373px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      width: 30%;
+  }
+    span.marquee_elements svg {
+      width: 20px;
+      height: 20px;
+  }
+
+  /* media query for making responsive for mobile device */
+  @media (max-width:767px){
+    .hide_in_mobile{
+   display:none;
+  }
+  #shopify-section-{{section.id}} {
+  min-height: 83vh;
+  width: 100vw;
+  }
+    .case-banner-container {
+      position: absolute;
+      height: 120vh;
+      z-index: 0;
+      top: 0;
+      overflow: hidden;
+  }
+    .case-banner-image-wrapper {
+   width: 100vw;
+   height: 120vh;
+  }
+     .case-banner-image-wrapper video {
+   max-width: 100%;
+   object-fit: cover;
+   object-position: center;
+   width: 100%;
+   height: 100%;
+  }
+    img.case_banner {
+      width: 100%;
+      height: 120vh;
+      object-fit: cover;
+  }
+    .case-text-wrapper {
+      width: 100vw;
+      height: 120vh;
+      position: absolute;
+      top: 0;
+  }
+    .text_heading_wrapper {
+      right: 3%;
+      position: relative;
+      top: 25vh;
+      display: flex;
+      flex-direction: column;
+  }
+    h1.title_text {
+      margin: 0;
+      color: #FFF;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 35px;
+      letter-spacing: 10.339px;
+  }
+    p.sub_title_text {
+      color: #FFF;
+      font-size: 10.313px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18.19px;
+      letter-spacing: 3.502px;
+
+  }
+    .enter_email_btn_wrap {
+      top: 80vh;
+  position: absolute;
+  right: 5%;
+  left: 0;
+  width: 100vw;
+  padding-right: 0;
+  }
+    button.enter_email_button {
+      padding: 12px 20px;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  font-style: normal;
+  line-height: 12.19px;
+  letter-spacing: 4.5px;
+  width: 90vw;
+  margin: auto;
+   }
+  span.marquee_elements {
+      padding: 10px 2rem;
+      color: #000;
+      text-align: center;
+      font-size: 12.504px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 40.468px;
+      letter-spacing: 4.373px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      width: 30%;
+  }
+    marquee.marquee {
+      top:90vh;
+  }
+
+  }
+  /* @media (min-width:2000px){
+   .case-banner-container{
+    height:108vh!important;
+  }
+  } */
+  @media (min-width:768px){
+   .hide_in_desktop{
+    display:none;
+  }
+  }
+  @media (min-width: 768px){
+  .case-banner-image-wrapper video {
+  min-height: 130vh!important;
+  }
+
+
+  }
+     .case-banner-container {
+  max-height: 130vh!important;
+
+  }
+</style>
+
+<div class="case-banner-container">
+  <div class="case-banner-image-wrapper">
+    {% if section.settings['video-url'] != blank %}
+      <video
+        autoplay="autoplay"
+        loop="loop"
+        muted="muted"
+        playsinline
+        poster="{{ section.settings.banner_image | img_url: 'master' }}"
+      >
+        <source src="{{ section.settings.video-url }}" type="video/webm">
+        <source src=" {{ section.settings.video-url }}" type="video/mp4">
+      </video>
+    {% elsif section.settings.banner_image != blank %}
+      <img class="case_banner" src="{{ section.settings.banner_image | image_url }}">
+    {% endif %}
+  </div>
+  <div class="case-text-wrapper">
+    <div class="text_heading_wrapper">
+      <h1 class="title_text fade_in_animation_left">{{ section.settings.title }}</h1>
+      <p class="sub_title_text fade_in_animation_left">{{ section.settings.sub_title }}</p>
+    </div>
+    <div class="enter_email_btn_wrap klaviyo_form_trigger dont_repeat">
+      <button class="enter_email_button">CLICK FOR EARLY ACCESS</button>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "case-banner",
+"settings": [
+{
+"type": "text",
+"id": "video-url",
+"label": "Video Url"
+},
+{
+"type": "image_picker",
+"id": "banner_image",
+"label": "Desktop Banner Image"
+},
+{
+"type": "image_picker",
+"id": "banner_image_mobile",
+"label": "Mobile Banner Image"
+},
+{
+           "type": "text",
+           "id": "video",
+           "label": "Background Video"
+},
+{
+           "type": "text",
+           "id": "video_mobile",
+           "label": "Background Video Mobile"
+},
+{
+"type": "html",
+"id": "title",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "sub_title",
+"label": "Subheading"
+}
+],
+"presets": [
+{
+"name": "case-banner"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

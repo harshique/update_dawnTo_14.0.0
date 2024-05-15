@@ -1,0 +1,349 @@
+{{ 'product_couture.css' | asset_url | stylesheet_tag }}
+{{ 'product_couture_responsive.css' | asset_url | stylesheet_tag }}
+
+<style>
+     /* .sec-5-container {
+         background: #F2EDE8;
+         display: flex;
+         flex-direction: column;
+         padding: 10rem 10rem 20rem 10rem;
+         overflow: hidden;
+     }
+     .sec-5-text-div-1 {
+         display: flex;
+         justify-content: center;
+     }
+         .sec-5-span{
+            text-decoration: line-through;
+         }
+     .sec-5-text-p-2 {
+         margin: 0;
+         font-size: 55px;
+         font-weight: 900;
+         line-height: 80px;
+         letter-spacing: 0.67em;
+         text-align: left;
+         padding-right: 10rem;
+     }
+         .sec-5-img-div{
+           position: relative;
+           width: 100%;
+           height: 500px;
+           display:flex;
+           align-items: center;
+           justify-content: center;
+           margin-bottom:60px;
+           padding-right: 15rem;
+         }
+         .sec-5-img-bg-div{
+           background-color: #2c2929;
+           position: absolute;
+           width: 700px;
+           height: 390px;
+           display: block;
+           z-index:2;
+         }
+         .sec-5-image{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index:2;
+            object-fit: contain;
+            transform: scale(1.5);
+         }
+     .sec-5-text-div-2 {
+         display: flex;
+         justify-content: center;
+         padding-right: 10rem;
+     }
+   .sec-5-text-p-3 {
+       font-size: 13px;
+       font-weight: 200;
+       line-height: 19px;
+       letter-spacing: 0.16em;
+       text-align: left;
+       margin: 0;
+       color: black;
+   }
+         .sec-5-text-p-3-m{
+           display:none;
+           font-size: 13px;
+           font-weight: 350;
+           line-height: 19px;
+           letter-spacing: 0.16em;
+           text-align: center;
+         }
+
+
+
+  */
+       @media screen and (min-width: 767px) and (max-width: 867px) {
+         .sec-5-img-bg-div{
+           width: 600px;
+           height: 335px;
+         }
+       }
+       @media screen and (min-width: 667px) and (max-width: 767px) {
+         .sec-5-img-bg-div{
+           width: 520px;
+           height: 280px;
+         }
+       }
+         @media screen and (min-width: 567px) and (max-width: 667px) {
+         .sec-5-img-bg-div{
+           width: 440px;
+           height: 225px;
+         }
+           .sec-5-text-p-2{
+           font-size: 30px;
+           line-height: 40px;
+           letter-spacing: 0.60em;
+         }
+            .sec-5-img-div{
+           height: 400px;
+         }
+
+       }
+         @media screen and (min-width: 467px) and (max-width: 567px) {
+         .sec-5-img-bg-div{
+           width: 360px;
+           height: 170px;
+         }
+            .sec-5-text-p-2{
+           font-size: 30px;
+           line-height: 40px;
+           letter-spacing: 0.60em;
+         }
+             .sec-5-img-div{
+           height: 250px;
+         }
+           /* .sec-5-text-p-2 {
+           text-align: justify;
+         } */
+               .sec-5-text-p-3 {
+          display:none;
+       }
+           .sec-5-text-p-3-m {
+          display:block;
+           /* text-align: justify; */
+       }
+       }
+
+         @media only screen and (max-width: 467px) {
+          .sec-5-img-bg-div{
+             width: 280px;
+             height: 115px;
+          }
+          .sec-5-img-div{
+             height: 200px;
+             margin-bottom:30px
+          }
+          .sec-5-text-p-2{
+            font-size: 22px;
+            line-height: 30px;
+            letter-spacing: 0.55em;
+          }
+          .sec-5-text-p-2 {
+            text-align: justify;
+            margin-left:30px;
+          }
+          .sec-5-text-p-3 {
+            display:none;
+          }
+          .sec-5-text-p-3-m {
+            display:block;
+             text-align: justify;
+            margin-left:30px;
+          }
+       }
+</style>
+
+<div class="sec-5-container">
+  <div class="sec-5-text-div-1">
+    <p class="sec-5-text-p-2">
+      <span class="sec-5-span"> HAUTE</span> <br>
+      PRODUCT<br>
+      COUTURE
+    </p>
+  </div>
+
+  <div class="sec-5-img-div">
+    <div class="sec-5-img-bg-div">.</div>
+    <img
+      class="sec-5-image"
+      src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Product_couture_master_visual_1.png?v=1711636378"
+      alt="Image"
+    >
+  </div>
+
+  <div class="sec-5-text-div-2">
+    <p class="sec-5-text-p-3">
+      If Haute Couture represents the apex of traditional fashion,<br class="br-for-laptop">
+      Product Couture is its reimagining.<br class="visible_in_mobile">
+      <br class="visible_in_mobile">
+      It's fashion that marries the <br class="br-for-laptop">
+      artistry of fashion with advances in industrial design and<br class="br-for-laptop">
+      precision engineering. Its essence as true couture lies in its<br class="br-for-laptop">
+      profound dedication to the user experience.
+    </p>
+    <div>
+      <p class="sec-5-text-p-3-m">
+        Imagine objects of fashion<br>
+        created not just for novelty or<br>
+        to capitalize on the latest<br>
+        trends, but designed with you,<br>
+        the individual, at the heart,<br>
+        built around your interactions<br>
+        with the product. Fashion<br>
+        products designed with the<br>
+        same thoughtful approach<br>
+        that’s evident in your favorite<br>
+        gadgets or the best appliances.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "haute_product_ctr_sec",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Blog posts",
+      "label": "avtar ki heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured-blog.settings.blog.label"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.post_limit.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured-blog.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_image.label",
+      "info": "t:sections.featured-blog.settings.show_image.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.featured-blog.settings.show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_view_all.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "haute_product_ctr_sec",
+      "settings": {
+        "blog": "News"
+      }
+    }
+  ]
+}
+{% endschema %}

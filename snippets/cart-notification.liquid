@@ -1,60 +1,220 @@
 {% comment %}
-  Renders cart notification
+    Renders cart notification
 
-  Accepts:
-  - color_scheme: {String} sets the color scheme of the notification (optional)
-  - desktop_menu_type: {String} passes the desktop menu type which allows us to use the right css class (optional)
+    Accepts:
+    - color_scheme: {String} sets the color scheme of the notification (optional)
 
-  Usage:
-  {% render 'cart-notification' %}
+    Usage:
+    {% render 'cart-notification' %}
 {% endcomment %}
 
 <cart-notification>
-  <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
-    <div
-      id="cart-notification"
-      class="cart-notification focus-inset{% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}"
-      aria-modal="true"
-      aria-label="{{ 'general.cart.item_added' | t }}"
-      role="dialog"
-      tabindex="-1"
-    >
+  <div class="cart-notification-wrapper page-width{% if color_scheme %} color-{{ color_scheme }}{% endif %}">
+    <div id="cart-notification" class="cart-notification focus-inset" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
-        <h2 class="cart-notification__heading caption-large text-body">
-          {%- render 'icon-checkmark' -%}
-          {{ 'general.cart.item_added' | t }}
-        </h2>
-        <button
-          type="button"
-          class="cart-notification__close modal__close-button link link--text focus-inset"
-          aria-label="{{ 'accessibility.close' | t }}"
-        >
-          <svg class="icon icon-close" aria-hidden="true" focusable="false">
-            <use href="#icon-close">
-          </svg>
+        <h2 class="cart-notification__heading caption-large text-body">Your Cart</h2>
+        <button type="button" class="cart-notification__close modal__close-button link link--text focus-inset" aria-label="{{ 'accessibility.close' | t }}">
+          <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></svg>
         </button>
       </div>
-      <div id="cart-notification-product" class="cart-notification-product"></div>
+      <div id="cart-notification-product" class="cart-notification-product">
+        <div class="drawer-overlay-custom loading-overlay" style="display:none">
+          <span class="fas fa-spinner fa-3x fa-spin"></span> 
+        </div>
+        {%- if cart != empty -%}
+        <div id="notification-item-parent">
+  {%- for item in cart.items -%}
+    <div id="cart-notification-product-{{ item.key }}" class="cart-item">
+      {%- if item.image -%}
+        <div class="cart-notification-product__image global-media-settings">
+          <img
+            src="{{ item.image | image_url: width: 140 }}"
+            alt="{{ item.image.alt | escape }}"
+            width="70"
+            height="{{ 70 | divided_by: item.image.aspect_ratio | ceil }}"
+            loading="lazy"
+          >
+        </div>
+      {%- endif -%}
+      <div>
+        <h3 class="cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
+          <dl>
+            {%- unless item.product.has_only_default_variant -%}
+              {%- for option in item.options_with_values -%}
+                <div class="product-option">
+                  <dt>{{ option.name }}: </dt>
+                  <dd>{{ option.value }}</dd>
+                </div>
+              {%- endfor -%}
+            {%- endunless -%}
+            {%- for property in item.properties -%}
+              {%- assign property_first_char = property.first | slice: 0 -%}
+              {%- if property.last != blank and property_first_char != '_' -%}
+                <div class="product-option">
+                  <dt>{{ property.first }}: </dt>
+                  <dd>
+                    {%- if property.last contains '/uploads/' -%}
+                      <a href="{{ property.last }}" class="link" target="_blank">
+                        {{ property.last | split: '/' | last }}
+                      </a>
+                    {%- else -%}
+                      {{ property.last }}
+                    {%- endif -%}
+                  </dd>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </dl>
+        {%- if item.selling_plan_allocation != nil -%}
+          <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
+      <div class="counter" var_id="{{ item.id }}">
+       <div class="qty-select">
+          <span class="descriment">-</span>
+          <input class="qty" type="text" value="{{ item.quantity }}">
+          <span class="incriment">+</span>
+       </div>
+      <div class="cart-item-remove"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
+  <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+  <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+</svg></div>
+      </div>
+      </div>
+    </div>
+  {%- endfor -%}
+  </div>
+      <div class="empty-cart" style="display:none">Cart Empty</div>    
       <div class="cart-notification__links">
-        <a
-          href="{{ routes.cart_url }}"
-          id="cart-notification-button"
-          class="button button--secondary button--full-width"
-        >
-          {{- 'general.cart.view_empty_cart' | t -}}
-        </a>
+        <div class="custom_ntfc_clvpp">
+            <svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>Group@2x</title>
+                <g id="Sale-day-website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Artboard" transform="translate(-70.000000, -421.000000)" fill-rule="nonzero">
+                        <g id="Group" transform="translate(70.000000, 421.000000)">
+                            <path d="M20.9932165,1.2509597 L23.024227,3.30296185 C23.2766322,3.55741379 23.5531189,3.74831998 23.8495935,3.87054403 C24.150424,3.99507716 24.4809839,4.05683205 24.8381704,4.05580871 L27.7255757,4.04145893 C28.3052019,4.03812775 28.8486961,4.14062493 29.352234,4.34793087 C29.8613937,4.5572835 30.3208687,4.86580213 30.7275169,5.2724831 C31.1341782,5.67914439 31.4426771,6.13858662 31.6520691,6.64776602 C31.8593751,7.15129078 31.9618735,7.69479157 31.9585411,8.27442428 L31.9441913,11.1618296 C31.941885,11.51878 32.0049215,11.8495695 32.129456,12.1504065 C32.2529658,12.447911 32.4423304,12.7233743 32.6970382,12.975773 L34.7490403,15.0067835 C35.1613431,15.4144681 35.4731876,15.871903 35.682514,16.3743913 C35.89289,16.8791953 36,17.4224665 36,18 C36,18.5775795 35.8941691,19.1208244 35.682514,19.6256087 C35.4731614,20.1291334 35.1613103,20.5855188 34.7490403,20.9932165 L32.6970382,23.024227 C32.4425862,23.2766322 32.25168,23.5531189 32.129456,23.8495935 C32.0049228,24.150424 31.9431679,24.4809839 31.9441913,24.8381704 L31.9585411,27.7255757 C31.9618723,28.3052019 31.8593751,28.8486961 31.6520691,29.352234 C31.4427165,29.8613937 31.1341979,30.3208687 30.7275169,30.7275169 C30.3208556,31.1341782 29.8614134,31.4426771 29.352234,31.6520691 C28.8487092,31.8593751 28.3052084,31.9618735 27.7255757,31.9585411 L24.8381704,31.9441913 C24.48122,31.941885 24.1504305,32.0049215 23.8495935,32.129456 C23.552089,32.2529658 23.2766257,32.4423304 23.024227,32.6970382 L20.9932165,34.7490403 C20.5855319,35.1613431 20.128097,35.4731876 19.6256087,35.682514 C19.1208047,35.89289 18.5775335,36 18,36 C17.4224205,36 16.8791756,35.8941691 16.3743913,35.682514 C15.8708666,35.4731614 15.4144812,35.1613103 15.0067835,34.7490403 L12.975773,32.6970382 C12.7233678,32.4425862 12.4468811,32.25168 12.1504065,32.129456 C11.849576,32.0049228 11.5190161,31.9431679 11.1618296,31.9441913 L8.27442428,31.9585411 C7.69479813,31.9618723 7.1513039,31.8593751 6.64776602,31.6520691 C6.1386063,31.4427165 5.67913127,31.1341979 5.2724831,30.7275169 C4.86582181,30.3208556 4.55732286,29.8614134 4.34793087,29.352234 C4.14062493,28.8487092 4.0381265,28.3052084 4.04145893,27.7255757 L4.05580871,24.8381704 C4.05811491,24.48122 3.99507847,24.1504305 3.87054403,23.8495935 C3.74703424,23.552089 3.55766962,23.2766257 3.30296185,23.024227 L1.2509597,20.9932165 C0.838656904,20.5855319 0.526812405,20.128097 0.317486013,19.6256087 C0.107110038,19.1208047 0,18.5775335 0,18 C0,17.4224205 0.105830858,16.8791756 0.317486013,16.3743913 C0.526838644,15.8708666 0.838689704,15.4144812 1.2509597,15.0067835 L3.30296185,12.975773 C3.55741379,12.7233678 3.74831998,12.4468811 3.87054403,12.1504065 C3.99507716,11.849576 4.05683205,11.5190161 4.05580871,11.1618296 L4.04145893,8.27442428 C4.03812775,7.69479813 4.14062493,7.1513039 4.34793087,6.64776602 C4.5572835,6.1386063 4.86580213,5.67913127 5.2724831,5.2724831 C5.67916406,4.86583493 6.13858662,4.55732286 6.64776602,4.34793087 C7.15129078,4.14062493 7.69479157,4.0381265 8.27442428,4.04145893 L11.1618296,4.05580871 C11.51878,4.05811491 11.8495695,3.99507847 12.1504065,3.87054403 C12.447911,3.74703424 12.7233743,3.55766962 12.975773,3.30296185 L15.0067835,1.2509597 C15.4144681,0.838656904 15.871903,0.526812405 16.3743913,0.317486013 C16.8791953,0.107110038 17.4224665,0 18,0 C18.5775795,0 19.1208244,0.105830858 19.6256087,0.317486013 C20.1291334,0.526838644 20.5855188,0.838689704 20.9932165,1.2509597 Z" id="Path" fill="#77CA59"></path>
+                            <path d="M21.8356878,4.47453978 L19.8025651,2.42040358 C19.5522088,2.16773583 19.2774835,1.97919868 18.9806742,1.85556045 C18.6861961,1.73192221 18.3583723,1.67010309 18,1.67010309 C17.6426784,1.67010309 17.3148283,1.73192287 17.0193258,1.85556045 C16.7215118,1.97919868 16.4467865,2.16773583 16.1974349,2.42040358 L14.1643122,4.47453978 C13.7549165,4.88829578 13.2927112,5.20147587 12.7830023,5.41233331 C12.2776734,5.62190366 11.7305538,5.7255331 11.1469693,5.72245987 L8.25656105,5.70809517 C7.90128827,5.70578657 7.57375333,5.76760608 7.27463916,5.89021663 C6.9811855,6.01051897 6.7064667,6.19905611 6.45274827,6.45274827 C6.19803171,6.70746484 6.01026287,6.98219021 5.89021663,7.27463916 C5.7678589,7.57373363 5.70706419,7.90130141 5.70809517,8.25656105 L5.72245987,11.1469693 C5.72476847,11.7315585 5.62087925,12.2776931 5.41233331,12.7830023 C5.20173854,13.2926915 4.88827608,13.7538921 4.47453978,14.1643122 L2.42040358,16.1974349 C2.16773583,16.4477912 1.97919868,16.7225165 1.85556045,17.0193258 C1.73192221,17.3138039 1.67010309,17.6416277 1.67010309,18 C1.67010309,18.3573216 1.73192287,18.6851717 1.85556045,18.9806742 C1.97919868,19.2784882 2.16773583,19.5532135 2.42040358,19.8025651 L4.47453978,21.8356878 C4.88829578,22.2450835 5.20147587,22.7072888 5.41233331,23.2169977 C5.62190366,23.7223266 5.7255331,24.2694462 5.72245987,24.8530307 L5.70809517,27.743439 C5.70578657,28.0987117 5.76760608,28.4262467 5.89021663,28.7253608 C6.01051897,29.0188145 6.19905611,29.2935333 6.45274827,29.5472517 C6.70746484,29.8019683 6.98219021,29.9897371 7.27463916,30.1097834 C7.57373363,30.2321411 7.90130141,30.2929358 8.25656105,30.2919048 L11.1469693,30.2775401 C11.7315585,30.2752315 12.2776931,30.3791207 12.7830023,30.5876667 C13.2926915,30.7982615 13.7538921,31.1117239 14.1643122,31.5254602 L16.1974349,33.5795964 C16.4477912,33.8322642 16.7225165,34.0208013 17.0193258,34.1444396 C17.3138039,34.2680778 17.6416277,34.3298969 18,34.3298969 C18.3573216,34.3298969 18.6851717,34.2680771 18.9806742,34.1444396 C19.2784882,34.0208013 19.5532135,33.8322642 19.8025651,33.5795964 L21.8356878,31.5254602 C22.2450835,31.1117042 22.7072888,30.7985241 23.2169977,30.5876667 C23.7223266,30.3780963 24.2694462,30.2744669 24.8530307,30.2775401 L27.743439,30.2919048 C28.0987117,30.2942135 28.4262467,30.2323939 28.7253608,30.1097834 C29.0188145,29.989481 29.2935333,29.8009439 29.5472517,29.5472517 C29.8019683,29.2925352 29.9897371,29.0178098 30.1097834,28.7253608 C30.2321411,28.4262664 30.2929358,28.0986986 30.2919048,27.743439 L30.2775401,24.8530307 C30.2752315,24.2684415 30.3791207,23.7223069 30.5876667,23.2169977 C30.7982615,22.7073085 31.1117239,22.2461079 31.5254602,21.8356878 L33.5795964,19.8025651 C33.8322642,19.5532332 34.0208013,19.2774835 34.1444396,18.9806742 C34.2680778,18.6861961 34.3298969,18.3583723 34.3298969,18 C34.3298969,17.6426784 34.2680771,17.3148283 34.1444396,17.0193258 C34.0208013,16.7215118 33.8322642,16.4467865 33.5795964,16.1974349 L31.5254602,14.1643122 C31.1117042,13.7549165 30.7985241,13.2927112 30.5876667,12.7830023 C30.3780963,12.2776734 30.2744669,11.7305538 30.2775401,11.1469693 L30.2919048,8.25656105 C30.2942135,7.90128827 30.2323939,7.57375333 30.1097834,7.27463916 C29.989481,6.9811855 29.8009439,6.7064667 29.5472517,6.45274827 C29.2925352,6.19803171 29.0178098,6.01026287 28.7253608,5.89021663 C28.4262664,5.7678589 28.0986986,5.70706419 27.743439,5.70809517 L24.8530307,5.72245987 C24.2684415,5.72476847 23.7223069,5.62087925 23.2169977,5.41233331 C22.7073085,5.20173854 22.2461079,4.88827608 21.8356878,4.47453978 Z" id="Path" fill="#77CA59"></path>
+                            <path d="M10.6397175,18.7851575 C10.3090976,18.4528206 10.3090976,17.9147861 10.6397175,17.5814171 C10.9703375,17.2490803 11.5066455,17.2490803 11.8372391,17.5814171 L15.7481555,21.5126433 L24.348328,12.8678094 C24.6789479,12.5354725 25.2142028,12.5354725 25.5458495,12.8678094 C25.8764694,13.2001462 25.8764694,13.7392393 25.5458495,14.0715497 L16.3474099,23.3177577 C16.0167899,23.6500945 15.4804819,23.6500945 15.1498883,23.3177577 L10.6407048,18.7851575 L10.6397175,18.7851575 Z" id="Path" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+          <p>60 - Day Trial Added To This Order</p>
+          </div>
+        <a href="{{ routes.cart_url }}" id="cart-notification-button" class="button button--secondary button--full-width"></a>
         <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
-          <button class="button button--primary button--full-width" name="checkout">
-            {{ 'sections.cart.checkout' | t }}
-          </button>
+          {% comment %}<button class="button button--primary button--full-width  us-checkout" name="checkout">{{ 'sections.cart.checkout' | t }}</button>{% endcomment %}
+          <button class="button button--primary button--full-width in-checkout" name="in-checkout">{{ 'sections.cart.checkout' | t }}</button>
         </form>
-        <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+<!--         <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button> -->
+      </div>
+          {%- else -%}
+          <div class="empty-cart">Cart Empty</div>
+{%- endif -%}
+
       </div>
     </div>
   </div>
 </cart-notification>
-{% style %}
-  .cart-notification {
+<style>
+  .product-option dt {
     display: none;
+}
+  .in-checkout {
+    background: #3e7aba;
+}
+  div#cart-notification-product {
+      display: block;
   }
-{% endstyle %}
+  #cart-notification-product .cart-item {
+      display: flex;
+      margin-top: 20px;
+  }
+  #cart-notification-product .cart-item .product-option{
+      font-size: 12px;
+  }
+  #cart-notification {
+      display: none;
+  }
+</style>
+<script>
+  function update_data(post_method,api_url,data) {			
+      $.ajax({
+        type:post_method,
+        url:api_url,
+        data:data,
+        dataType:"json",
+        success: function(res){
+          $.ajax({
+            type:"GET",
+            url:"/cart.js",
+            dataType:"json",
+            success: function(resp){
+              // console.log(resp);
+              var items = resp['items'];
+              var totol_qty = resp['item_count'];
+              if(totol_qty == 0){
+                $('.cart-count-bubble span[aria-hidden="true"]').text('0');
+                $('.empty-cart').show();
+                $('.cart-notification__links').hide();
+                $('.in-checkout').hide();
+              }
+              console.log('items',totol_qty);
+              // jQuery('.cart-popup-wrapper.critical-hidden.cart-popup-wrapper--hidden').removeClass('cart-popup-wrapper--hidden');					
+              //   jQuery('.cart-popup-item').empty();
+              //   jQuery('a.site-header__icon.site-header__cart div#CartCount span:first-child').text(totol_qty);
+              //   jQuery('a.cart-popup__cta-link.btn.btn--secondary-accent span').text(totol_qty);	
+              //   for(var i=0; i<items.length;i++){                      
+              //     jQuery('.cart-popup-item').append('<div class="custom-grid"><div class="cart-popup-item__image-wrapper" data-cart-popup-image-wrapper=""><img src="'+items[i]['image']+'" alt="Copy of test" class="cart-popup-item__image" data-cart-popup-image=""></div><div class="cart-popup-item__description"> <div> <h3 class="cart-popup-item__title" data-cart-popup-title="">'+items[i]['title']+'</h3> <ul class="product-details" aria-label="Product details" data-cart-popup-product-details=""><li class="product-details__item product-details__item--variant-option"></li></ul> </div><div class="cart-popup-item__quantity"> <span class="visually-hidden" data-cart-popup-quantity-label="">Quantity: '+items[i]['quantity']+'</span> <span aria-hidden="true">Qty:</span> <div class="main-qty" var_id="'+items[i]['id']+'"><div class="decrement cus-qty">-</div><input type="text" aria-hidden="true" data-cart-popup-quantity="" value="'+items[i]['quantity']+'"><div class="increment cus-qty">+</div></div> </div></div></div>');
+              //   }
+            }
+          });
+        }
+      });
+    }
+
+
+   jQuery(document).on('click','.counter .cart-item-remove',function(){
+        var pro_id = jQuery(this).parents('.counter').attr('var_id');
+        var Data ={
+          id:pro_id,
+          quantity:0
+        }
+     // console.log('pro_id',pro_id)
+        update_data('POST','/cart/change.js',Data);
+        $(this).parents('.cart-item').remove();
+  });
+
+  
+  jQuery(document).on('click','.counter .incriment',function(){
+        var inc = jQuery(this).prev().val();
+        var pro_id = jQuery(this).parents('.counter').attr('var_id');
+        inc = +inc + 1;
+    jQuery(this).prev().val(inc);
+    var Data ={
+      id:pro_id,
+      quantity:inc
+    }
+    update_data('POST','/cart/change.js',Data);
+  });
+
+  jQuery(document).on('click','.counter .descriment',function(){
+		var inc = jQuery(this).next().val();
+		var pro_id = jQuery(this).parents('.counter').attr('var_id');
+		inc = inc - 1;
+    jQuery(this).next().val(inc);
+    
+    if(inc == 0){
+      $(this).parents('.cart-item').remove();
+    }
+    var Data ={
+      id:pro_id,
+      quantity:inc
+		}
+    update_data('POST','/cart/change.js',Data);
+  });
+</script>
+    {% style %}
+      .cart-notification {
+         display: none;
+      }
+    {% endstyle %}

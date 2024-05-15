@@ -1,0 +1,177 @@
+{{ 'product_couture.css' | asset_url | stylesheet_tag }}
+{{ 'product_couture_responsive.css' | asset_url | stylesheet_tag }}
+<style>
+.section1_prd_ctr_div1 {
+    height: 75vh;
+    background: #db6b00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  position: relative;
+    z-index: 1;
+}
+  .prd_ctr_sec1_insideWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transform: translate(85%, 30%)!important;
+}
+img.prd_ctr_sec2_image1 {
+    width: 70%;
+    position: relative !important;
+    top: -50px !important;
+    right: -25px !important;
+    z-index: 0;
+}
+  .prd_ctr_sec2_small1 {
+    color: #e9e6e0;
+    font-size: 90px;
+    font-weight: 1000;
+    line-height: 150px;
+    letter-spacing: .6em;
+    text-align: center;
+    position: relative!important;
+    z-index: 1;
+    right: 0!important;
+    top: -225px!important;
+}
+  .prd_ctr_sec2_small2 {
+    color: #e9e6e0;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 22px;
+    letter-spacing: .17em;
+    text-align: left;
+    position: relative!important;
+    right: 270px!important;
+    top: -220px!important;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.section1_prd_ctr_div2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #db6b00 55vh, black 20vh);
+    background-size: 50%;
+    margin-top: -1rem;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+    margin-bottom: -2rem;
+}
+  @media (max-width:550px){
+.section1_prd_ctr_div1 {
+    height: 60vh;
+    background: #db6b00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+}
+}
+</style>
+
+<div class="product_ctr_sec1_redesign_container">
+  <div class="section1_prd_ctr_div1">
+    <div class="prd_ctr_sec1_insideWrapper">
+    <div class="prd_ctr_sec1_small1">{{ section.settings.smallText1 }}</div>
+    <div class="prd_ctr_sec1_small2">{{ section.settings.smallText2 }}</div>
+  </div>
+  </div>
+  <div class="section1_prd_ctr_div2">
+    <div class="div2_wrapper_sec1">
+     <h1 class="sec_1_changes">ABSOLUTELY.</h1>
+      <img class="prd_ctr_sec2_image1" src="//www.charcoal.inc/cdn/shop/files/5_cropped_134f95d6-c825-4454-9b28-7656c73af477.png?v=1712899301">
+      <div class="prd_ctr_sec2_small1">PRODUCT<br><span class="visible_in_mobile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>COUTURE</div>
+      <div class="prd_ctr_sec2_small2">Meet Product<br> couture, the future<br> of fashion.</div>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+"name": "product_couture_new_sec1",
+"settings": [
+{
+"type": "html",
+"id": "smallText1",
+"label": "Text-1"
+},
+  {
+"type": "html",
+"id": "smallText2",
+"label": "Text-2"
+},
+{
+"type": "image_picker",
+"id": "bg_img",
+"label": "Background Image"
+},
+
+
+
+
+
+{
+"type": "text",
+"id": "video-url",
+"label": "Video Url"
+},
+{
+"type": "image_picker",
+"id": "banner_image",
+"label": "Desktop Banner Image"
+},
+{
+"type": "image_picker",
+"id": "logo_image",
+"label": "Logo Image"
+},
+{
+"type": "image_picker",
+"id": "cart_logo_image",
+"label": "Cart Logo Image"
+},
+{
+"type": "image_picker",
+"id": "cart_nav_log",
+"label": "Nav Logo Image"
+},
+{
+"type": "image_picker",
+"id": "banner_image_mobile",
+"label": "Mobile Banner Image"
+},
+{
+           "type": "text",
+           "id": "video",
+           "label": "Background Video"
+},
+{
+           "type": "text",
+           "id": "video_mobile",
+           "label": "Background Video Mobile"
+},
+{
+"type": "html",
+"id": "title",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "sub_title",
+"label": "Subheading"
+}
+],
+"presets": [
+{
+"name": "product_couture_new_sec1"
+}
+]
+}
+{% endschema %}

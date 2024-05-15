@@ -1,0 +1,42 @@
+{{ 'main_case_page.css' | asset_url | stylesheet_tag }}
+{{ 'main_case_page_responsive.css' | asset_url | stylesheet_tag }}
+<div class="main_case_section1">
+  <div class="main_case_sec1_left_div">
+    <h1 class="changing_everything_text">
+      <span>WE’RE</span>
+      <span>CHANGING</span>
+      <span class="brackets_wrapper">
+        <img src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Image_19-04-24_at_11.30_AM.png?v=1714819420"
+      ></span>
+      <span>ABOUT</span>
+      <span>MESSENGER</span>
+      <span class="bagimage">
+        BAGS.<img
+          class="forthebetterimage"
+          src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/Image_19-04-24_at_11.30_AM_1_d9858147-de1c-47f2-bbe8-ec3c767efbc7.png?v=1714821301"
+      ></span>
+    </h1>
+  </div>
+  <div class="main_case_sec1_right_div">
+    <img
+      class="sec1_main_case_desktop"
+      src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/manwithcam.png?v=1713361258"
+    >
+    <img
+      class="sec1_main_case_mobile"
+      src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/5ed57770fcd191886994cb2a03fca651_1.png?v=1713422603"
+    >
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "main_case_sec_1",
+"settings": [],
+"presets": [
+{
+"name": "main_case_sec_1"
+}
+]
+}
+{% endschema %}

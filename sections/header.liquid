@@ -8,6 +8,7 @@
 {%- endif -%}
 {%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript>{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
 
 {%- if settings.cart_type == "drawer" -%}
@@ -18,7 +19,160 @@
   {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
+<noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
+
 <style>
+ul#HeaderMenu-MenuList-1 a:before {
+    content: "";
+    width: 12px;
+    height: 0.8px;
+    background-color: #0000008c;
+    position: absolute;
+    right: 53%;
+    top: 40%;
+}
+.navbar_bottom_side_wrapper_div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+  .upper_list_items {
+    display: flex;
+}
+  .bottom_list_items {
+    display: flex;
+}
+  .info-etc {
+    margin-right: 0rem;
+    padding-left: 1rem;
+}
+.menu_items_wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 3rem;
+}
+  .list-menu--inline {
+    display: inline-flex!important;
+    flex-wrap: wrap;
+    gap: 1rem!important;
+    flex-direction: column!important;
+    align-items: flex-start!important;
+    justify-content: flex-end!important;
+}
+  .header__icon:not(.header__icon--summary), .header__icon span {
+    display: flex;
+    align-items: flex-end!important;
+    justify-content: center!important;
+}
+  .header__icon--cart span {
+    font-size: 11px;
+    font-family: MarkPro !important;
+    font-weight: 900 !important;
+    font-style: normal;
+    color: #000;
+    letter-spacing: .22em;
+    line-height: 1;
+    text-decoration: none !important;
+    position: relative;
+    top: 0px!important;
+    margin-right: 10px;
+}
+body ul.list-menu--inline li:last-child a span{
+color:black;
+}
+.list-menu__item:hover .header__active-menu-item{
+text-decoration:none;
+} 
+span.header__active-menu-item {
+    font-weight: 900 !important;
+}
+span.light_weight_count {
+    font-weight: 400 !important;
+    padding-right: 1rem;
+}
+.bottom_list_items li a span.text_2{
+ color:#D96F42!important;
+}
+span.hover_effect_color_change-span:hover,span.header__active-menu-item:hover{
+ color:#D96F42!important;
+}
+.header__submenu .header__menu-item:hover {
+    color:#d96f42 !important
+}
+div.horizontal_line_with_blocks {
+    margin: 5px auto;
+    max-width: 99%;
+    background: black;
+    position: relative;
+    height: 0.8px;
+    display:block!important;
+  z-index:-1;
+}
+div.horizontal_line_with_blocks:before {
+    content: "";
+    width: 0.8px;
+    height: 10px;
+    position: absolute;
+    background: black;
+    transform: rotate(0deg);
+    bottom: 0;
+    left: 0;
+} 
+div.horizontal_line_with_blocks_inside {
+    content: "";
+    width: 0.8px;
+    height: 10px;
+    position: absolute;
+    background: black;
+    transform: rotate(0deg);
+    bottom: 0;
+    right: 40%;
+}
+div.horizontal_line_with_blocks:after {
+    content: "";
+    width: 0.8px;
+    height: 10px;
+    position: absolute;
+    background: black;
+    right: 0;
+    bottom: 0;
+}
+@media (max-width:767px){
+.navbar_bottom_side_wrapper_div {
+    display: none;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+  .header__heading-link {
+    display: inline-block;
+    padding: 0.75rem 0 0rem 0rem;
+    text-decoration: none;
+    word-break: break-word;
+}
+  .section-header .header-wrapper header.header {
+    max-width: 92%;
+}
+  div.horizontal_line_with_blocks {
+    margin: 5px auto;
+    max-width: 95%;
+    background: black;
+    position: relative;
+    height: 0.8px;
+    display: block !important;
+    z-index: 1;
+}
+}
+
+
+
+
+  
+  
+
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -27,14 +181,6 @@
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
-    }
-  {%- endif -%}
-
-  {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) {
-      header-drawer {
-        display: none;
-      }
     }
   {%- endif -%}
 
@@ -51,6 +197,7 @@
   .list-menu--inline {
     display: inline-flex;
     flex-wrap: wrap;
+    gap:3rem;
   }
 
   summary.list-menu__item {
@@ -69,7 +216,19 @@
     padding-top: 1rem;
     line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
-
+  
+  {%- if section.settings.menu_type_desktop != "drawer" -%}
+    @media screen and (min-width: 990px) {
+      header-drawer {
+        display: none;
+      }
+    }
+  {%- endif -%}
+ @media screen and (min-width: 990px) {
+    .header__icons{
+ display:none;
+  }
+}
   @media screen and (min-width: 750px) {
     .list-menu__item--link {
       padding-bottom: 0.5rem;
@@ -79,12 +238,19 @@
 </style>
 
 {%- style -%}
+  {% if page.handle == 'product-couture' %}
+   .section-header {
+    position: relative !important;
+    background: #db6b00;
+}
+  {% endif %}
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
   }
 
   .section-header {
-    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    position: relative; /* This is for fixing a Safari z-index issue. PR #2147 */
+    top:0;
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
 
@@ -110,22 +276,14 @@
   <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
-  <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
-  </symbol>
-
-  <symbol id="icon-reset" class="icon icon-close"  fill="none" viewBox="0 0 18 18" stroke="currentColor">
-    <circle r="8.5" cy="9" cx="9" stroke-opacity="0.2"/>
-    <path d="M6.82972 6.82915L1.17193 1.17097" stroke-linecap="round" stroke-linejoin="round" transform="translate(5 5)"/>
-    <path d="M1.22896 6.88502L6.77288 1.11523" stroke-linecap="round" stroke-linejoin="round" transform="translate(5 5)"/>
-  </symbol>
-
-  <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
-    <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
-  </symbol>
-</svg>
-
+{% if product.handle == "the-charcoal-case" %}
+  {%- if section.settings.text != blank -%}
+    <div class="annocement-bar" style="display:block;">
+     <p class="announcement-bar__message h5">
+           {{ section.settings.text }}
+     </p>
+   </div>
+ {%- endif -%}
 {%- liquid
   for block in section.blocks
     if block.type == '@app'
@@ -133,7 +291,7 @@
     endif
   endfor
 -%}
-
+ {%- endif -%}
 <{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
     assign social_links = false
@@ -147,17 +305,8 @@
       assign localization_forms = true
     endif
   -%}
+
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
-    {%- liquid
-      if section.settings.menu != blank
-        render 'header-drawer'
-      endif
-
-      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-        render 'header-search', input_id: 'Search-In-Modal-1'
-      endif
-    -%}
-
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
@@ -182,21 +331,54 @@
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
             {%- endif -%}
+      <div class="info-etc-mc mobile-layout">
+        <p>{{ section.settings.carttext }}</p>
+      </div>
           </a>
       {%- if request.page_type == 'index' -%}
         </h1>
+    
       {%- endif -%}
+      
     {%- endif -%}
 
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
+<div class="navbar_bottom_side_wrapper_div">
+   <div class="info-etc">
+    <p>{{ section.settings.carttext }}</p>
+   </div>
+   <div class="menu_items_wrapper">
+      {%- liquid
+        if section.settings.menu != blank
+          if section.settings.menu_type_desktop == 'dropdown'
+            render 'header-dropdown-menu'
+          elsif section.settings.menu_type_desktop != 'drawer'
+            render 'header-mega-menu'
+          endif
         endif
-      endif
-    %}
+      %}
+      
+     <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <span aria-hidden="true"><font class="c-count">{{ cart.item_count }}</font>CART</span>
+        {%- liquid
+          if cart == empty
+            render 'icon-cart-empty'
+          else
+            render 'icon-cart'
+          endif
+        -%}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        {%- if cart != empty -%}
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {%- endif -%}
+      </a>
+   </div>
+</div>
+     
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -227,11 +409,30 @@
         </h1>
       {%- endif -%}
     {%- endif -%}
-
+  
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
       <div class="desktop-localization-wrapper">
+
+        {%- comment -%}
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
+          <noscript class="small-hide medium-hide">
+            {%- form 'localization', id: 'HeaderCountryMobileFormNoScript', class: 'localization-form' -%}
+              <div class="localization-form__select">
+                <h2 class="visually-hidden" id="HeaderCountryMobileLabelNoScript">{{ 'localization.country_label' | t }}</h2>
+                <select class="localization-selector link" name="country_code" aria-labelledby="HeaderCountryMobileLabelNoScript">
+                  {%- for country in localization.available_countries -%}
+                    <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+                      {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                    </option>
+                  {%- endfor -%}
+                </select>
+                {% render 'icon-caret' %}
+              </div>
+              <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
+            {%- endform -%}
+          </noscript>
+
+          <localization-form class="small-hide medium-hide no-js-hidden">
             {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
@@ -242,7 +443,24 @@
         {% endif %}
 
         {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
+          <noscript class="small-hide medium-hide">
+            {%- form 'localization', id: 'HeaderLanguageMobileFormNoScript', class: 'localization-form' -%}
+              <div class="localization-form__select">
+                <h2 class="visually-hidden" id="HeaderLanguageMobileLabelNoScript">{{ 'localization.language_label' | t }}</h2>
+                <select class="localization-selector link" name="locale_code" aria-labelledby="HeaderLanguageMobileLabelNoScript">
+                  {%- for language in localization.available_languages -%}
+                    <option value="{{ language.iso_code }}" lang="{{ language.iso_code }}" {%- if language.iso_code == localization.language.iso_code %} selected{% endif %}>
+                      {{ language.endonym_name | capitalize }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+                {% render 'icon-caret' %}
+              </div>
+              <button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
+            {%- endform -%}
+          </noscript>
+
+          <localization-form class="small-hide medium-hide no-js-hidden">
             {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
@@ -256,13 +474,7 @@
 
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
-          <account-icon>
-            {%- if customer and customer.has_avatar? -%}
-              {{ customer | avatar }}
-            {%- else -%}
-              {% render 'icon-account' %}
-            {%- endif -%}
-          </account-icon>
+          {% render 'icon-account' %}
           <span class="visually-hidden">
             {%- liquid
               if customer
@@ -281,8 +493,10 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
+ {%- endcomment -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+     <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <!-- <span aria-hidden="true"><font class="c-count">{{ cart.item_count }}</font>CART</span> -->
         {%- liquid
           if cart == empty
             render 'icon-cart-empty'
@@ -294,14 +508,82 @@
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
             {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
+              
             {%- endif -%}
             <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
           </div>
         {%- endif -%}
       </a>
+
+        
+          <button class="toggle-slide-right">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve">
+    <g>
+	<g id="Menu">
+		<path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03    C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"/>
+		<path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03    S379.58,180.455,372.939,180.455z"/>
+		<path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909    c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"/>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+        </button>
+{%- comment -%}
+          {%- liquid
+      if section.settings.menu != blank
+        render 'header-drawer'
+      endif
+
+      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+        render 'header-search', input_id: 'Search-In-Modal-1'
+      endif
+    -%}{%- endcomment -%}
     </div>
   </header>
+  <div class="horizontal_line_with_blocks">
+    <div class="horizontal_line_with_blocks_inside" style="display:block"></div>
+  </div>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -418,6 +700,8 @@
   }
 
   customElements.define('sticky-header', StickyHeader);
+
+
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -466,6 +750,16 @@
   "class": "section-header",
   "max_blocks": 3,
   "settings": [
+    {
+          "type": "html",
+          "id": "text",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+    },
+    {
+          "type": "html",
+          "id": "carttext",
+          "label": "Cart Info"
+    },
     {
       "type": "select",
       "id": "logo_position",
@@ -556,13 +850,13 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
+      "default": "background-1"
     },
-    {
+      {
       "type": "color_scheme",
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
-      "default": "scheme-1"
+      "default": "background-1"
     },
     {
       "type": "header",

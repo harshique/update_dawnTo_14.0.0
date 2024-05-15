@@ -1,0 +1,124 @@
+<style>
+.section-header{
+  position:static!important;
+}
+  body.gradient{
+overflow-x:hidden;
+}
+.case_dail_wrapper {
+    background: black;
+    height: 400vh;
+}
+  .text_wrapper {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 10rem;
+    padding-top: 10rem;
+}
+  p.rip_text {
+    color: #FFF;
+    font-size: 20.315px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: 25.035px;
+    letter-spacing: 6.933px;
+    margin: 0;
+}
+  h1.introducing-text {
+    color: #FFF;
+    text-align: center;
+    font-size: 50.214px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 80.218px;
+    letter-spacing: 20.386px;
+    margin: 0;
+}
+  .image_wrapper {
+    display: flex;
+    justify-content: center;
+}
+  .image_wrapper img{
+    width: 65%;
+    object-fit: contain;
+}
+@media (max-width:767px){
+.text_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 2rem;
+    padding-top: 5rem;
+}
+  p.rip_text {
+    color: #FFF;
+    font-size: 12.315px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: 20.035px;
+    letter-spacing: 4.933px;
+    margin: 0;
+}
+  h1.introducing-text {
+    color: #FFF;
+    text-align: center;
+    font-size: 23.214px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 60.218px;
+    letter-spacing: 5.386px;
+    margin: 0;
+}
+  .image_wrapper img {
+    width: 90%;
+}
+  .case_dail_wrapper {
+    background: black;
+    height: 300vh;
+}
+}
+</style>
+
+
+<div class="case_dail_wrapper">
+ <div class="text_wrapper">
+   <p class="rip_text">RIP : GOOD OLD ZIPPER</p>
+   <h1 class="introducing-text">INTRODUCING DIAL</h1>
+ </div>
+ <div class="image_wrapper">
+   <img src="{{ section.settings.image | image_url}}">
+ </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "case_dail",
+    "settings": [
+      {
+        "type":"image_picker",
+        "id":"image",
+        "label":"Image"
+      }
+    ],
+  "presets": [
+    {
+      "name": "case_dail"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

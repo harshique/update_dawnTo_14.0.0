@@ -184,28 +184,16 @@ class QuantityInput extends HTMLElement {
     event.preventDefault();
     const previousValue = this.input.value;
 
-    if (event.target.name === 'plus') {
-      if (parseInt(this.input.dataset.min) > parseInt(this.input.step) && this.input.value == 0) {
-        this.input.value = this.input.dataset.min;
-      } else {
-        this.input.stepUp();
-      }
-    } else {
-      this.input.stepDown();
-    }
-
+    event.target.name === 'plus' ? this.input.stepUp() : this.input.stepDown();
     if (previousValue !== this.input.value) this.input.dispatchEvent(this.changeEvent);
-
-    if (this.input.dataset.min === previousValue && event.target.name === 'minus') {
-      this.input.value = parseInt(this.input.min);
-    }
   }
 
   validateQtyRules() {
     const value = parseInt(this.input.value);
     if (this.input.min) {
+      const min = parseInt(this.input.min);
       const buttonMinus = this.querySelector(".quantity__button[name='minus']");
-      buttonMinus.classList.toggle('disabled', parseInt(value) <= parseInt(this.input.min));
+      buttonMinus.classList.toggle('disabled', value <= min);
     }
     if (this.input.max) {
       const max = parseInt(this.input.max);
@@ -371,9 +359,9 @@ class MenuDrawer extends HTMLElement {
     this.querySelectorAll('summary').forEach((summary) =>
       summary.addEventListener('click', this.onSummaryClick.bind(this))
     );
-    this.querySelectorAll(
-      'button:not(.localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)'
-    ).forEach((button) => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+    this.querySelectorAll('button:not(.localization-selector)').forEach((button) =>
+      button.addEventListener('click', this.onCloseButtonClick.bind(this))
+    );
   }
 
   onKeyUp(event) {
@@ -963,10 +951,9 @@ class VariantSelects extends HTMLElement {
     this.addEventListener('change', this.onVariantChange);
   }
 
-  onVariantChange(event) {
+  onVariantChange() {
     this.updateOptions();
     this.updateMasterId();
-    this.updateSelectedSwatchValue(event);
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
     this.removeErrorMessage();
@@ -976,6 +963,7 @@ class VariantSelects extends HTMLElement {
       this.toggleAddButton(true, '', true);
       this.setUnavailable();
     } else {
+      this.updateMedia();
       this.updateURL();
       this.updateVariantInput();
       this.renderProductInfo();
@@ -984,14 +972,7 @@ class VariantSelects extends HTMLElement {
   }
 
   updateOptions() {
-    this.options = Array.from(this.querySelectorAll('select, fieldset'), (element) => {
-      if (element.tagName === 'SELECT') {
-        return element.value;
-      }
-      if (element.tagName === 'FIELDSET') {
-        return Array.from(element.querySelectorAll('input')).find((radio) => radio.checked)?.value;
-      }
-    });
+    this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
   }
 
   updateMasterId() {
@@ -1004,29 +985,19 @@ class VariantSelects extends HTMLElement {
     });
   }
 
-  updateSelectedSwatchValue({ target }) {
-    const { name, value, tagName } = target;
+  updateMedia() {
+    if (!this.currentVariant) return;
+    if (!this.currentVariant.featured_media) return;
 
-    if (tagName === 'SELECT' && target.selectedOptions.length) {
-      const swatchValue = target.selectedOptions[0].dataset.optionSwatchValue;
-      const selectedDropdownSwatchValue = this.querySelector(`[data-selected-dropdown-swatch="${name}"] > .swatch`);
-      if (!selectedDropdownSwatchValue) return;
-      if (swatchValue) {
-        selectedDropdownSwatchValue.style.setProperty('--swatch--background', swatchValue);
-        selectedDropdownSwatchValue.classList.remove('swatch--unavailable');
-      } else {
-        selectedDropdownSwatchValue.style.setProperty('--swatch--background', 'unset');
-        selectedDropdownSwatchValue.classList.add('swatch--unavailable');
-      }
+    const mediaGalleries = document.querySelectorAll(`[id^="MediaGallery-${this.dataset.section}"]`);
+    mediaGalleries.forEach((mediaGallery) =>
+      mediaGallery.setActiveMedia(`${this.dataset.section}-${this.currentVariant.featured_media.id}`, true)
+    );
 
-      selectedDropdownSwatchValue.style.setProperty(
-        '--swatch-focal-point',
-        target.selectedOptions[0].dataset.optionSwatchFocalPoint || 'unset'
-      );
-    } else if (tagName === 'INPUT' && target.type === 'radio') {
-      const selectedSwatchValue = this.querySelector(`[data-selected-swatch-value="${name}"]`);
-      if (selectedSwatchValue) selectedSwatchValue.innerHTML = value;
-    }
+    const modalContent = document.querySelector(`#ProductModal-${this.dataset.section} .product-media-modal__content`);
+    if (!modalContent) return;
+    const newMediaModal = modalContent.querySelector(`[data-media-id="${this.currentVariant.featured_media.id}"]`);
+    modalContent.prepend(newMediaModal);
   }
 
   updateURL() {
@@ -1067,17 +1038,12 @@ class VariantSelects extends HTMLElement {
     });
   }
 
-  setInputAvailability(elementList, availableValuesList) {
-    elementList.forEach((element) => {
-      const value = element.getAttribute('value');
-      const availableElement = availableValuesList.includes(value);
-
-      if (element.tagName === 'INPUT') {
-        element.classList.toggle('disabled', !availableElement);
-      } else if (element.tagName === 'OPTION') {
-        element.innerText = availableElement
-          ? value
-          : window.variantStrings.unavailable_with_option.replace('[value]', value);
+  setInputAvailability(listOfOptions, listOfAvailableOptions) {
+    listOfOptions.forEach((input) => {
+      if (listOfAvailableOptions.includes(input.getAttribute('value'))) {
+        input.innerText = input.getAttribute('value');
+      } else {
+        input.innerText = window.variantStrings.unavailable_with_option.replace('[value]', input.getAttribute('value'));
       }
     });
   }
@@ -1100,70 +1066,6 @@ class VariantSelects extends HTMLElement {
 
     const productForm = section.querySelector('product-form');
     if (productForm) productForm.handleErrorMessage();
-  }
-
-  updateMedia(html) {
-    const mediaGallerySource = document.querySelector(`[id^="MediaGallery-${this.dataset.section}"] ul`);
-    const mediaGalleryDestination = html.querySelector(`[id^="MediaGallery-${this.dataset.section}"] ul`);
-
-    const refreshSourceData = () => {
-      const mediaGallerySourceItems = Array.from(mediaGallerySource.querySelectorAll('li[data-media-id]'));
-      const sourceSet = new Set(mediaGallerySourceItems.map((item) => item.dataset.mediaId));
-      const sourceMap = new Map(mediaGallerySourceItems.map((item, index) => [item.dataset.mediaId, { item, index }]));
-      return [mediaGallerySourceItems, sourceSet, sourceMap];
-    };
-
-    if (mediaGallerySource && mediaGalleryDestination) {
-      let [mediaGallerySourceItems, sourceSet, sourceMap] = refreshSourceData();
-      const mediaGalleryDestinationItems = Array.from(mediaGalleryDestination.querySelectorAll('li[data-media-id]'));
-      const destinationSet = new Set(mediaGalleryDestinationItems.map(({ dataset }) => dataset.mediaId));
-      let shouldRefresh = false;
-
-      // add items from new data not present in DOM
-      for (let i = mediaGalleryDestinationItems.length - 1; i >= 0; i--) {
-        if (!sourceSet.has(mediaGalleryDestinationItems[i].dataset.mediaId)) {
-          mediaGallerySource.prepend(mediaGalleryDestinationItems[i]);
-          shouldRefresh = true;
-        }
-      }
-
-      // remove items from DOM not present in new data
-      for (let i = 0; i < mediaGallerySourceItems.length; i++) {
-        if (!destinationSet.has(mediaGallerySourceItems[i].dataset.mediaId)) {
-          mediaGallerySourceItems[i].remove();
-          shouldRefresh = true;
-        }
-      }
-
-      // refresh
-      if (shouldRefresh) [mediaGallerySourceItems, sourceSet, sourceMap] = refreshSourceData();
-
-      // if media galleries don't match, sort to match new data order
-      mediaGalleryDestinationItems.forEach((destinationItem, destinationIndex) => {
-        const sourceData = sourceMap.get(destinationItem.dataset.mediaId);
-
-        if (sourceData && sourceData.index !== destinationIndex) {
-          mediaGallerySource.insertBefore(
-            sourceData.item,
-            mediaGallerySource.querySelector(`li:nth-of-type(${destinationIndex + 1})`)
-          );
-
-          // refresh source now that it has been modified
-          [mediaGallerySourceItems, sourceSet, sourceMap] = refreshSourceData();
-        }
-      });
-    }
-
-    if (this.currentVariant.featured_media) {
-      document
-        .querySelector(`[id^="MediaGallery-${this.dataset.section}"]`)
-        ?.setActiveMedia?.(`${this.dataset.section}-${this.currentVariant.featured_media.id}`);
-    }
-
-    // update media modal
-    const modalContent = document.querySelector(`#ProductModal-${this.dataset.section} .product-media-modal__content`);
-    const newModalContent = html.querySelector(`product-modal`);
-    if (modalContent && newModalContent) modalContent.innerHTML = newModalContent.innerHTML;
   }
 
   renderProductInfo() {
@@ -1197,8 +1099,6 @@ class VariantSelects extends HTMLElement {
         const volumePricingSource = html.getElementById(
           `Volume-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
         );
-
-        this.updateMedia(html);
 
         const pricePerItemDestination = document.getElementById(`Price-Per-Item-${this.dataset.section}`);
         const pricePerItemSource = html.getElementById(
@@ -1300,6 +1200,31 @@ class VariantSelects extends HTMLElement {
 
 customElements.define('variant-selects', VariantSelects);
 
+class VariantRadios extends VariantSelects {
+  constructor() {
+    super();
+  }
+
+  setInputAvailability(listOfOptions, listOfAvailableOptions) {
+    listOfOptions.forEach((input) => {
+      if (listOfAvailableOptions.includes(input.getAttribute('value'))) {
+        input.classList.remove('disabled');
+      } else {
+        input.classList.add('disabled');
+      }
+    });
+  }
+
+  updateOptions() {
+    const fieldsets = Array.from(this.querySelectorAll('fieldset'));
+    this.options = fieldsets.map((fieldset) => {
+      return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
+    });
+  }
+}
+
+customElements.define('variant-radios', VariantRadios);
+
 class ProductRecommendations extends HTMLElement {
   constructor() {
     super();
@@ -1340,22 +1265,335 @@ class ProductRecommendations extends HTMLElement {
 
 customElements.define('product-recommendations', ProductRecommendations);
 
-class AccountIcon extends HTMLElement {
-  constructor() {
-    super();
-
-    this.icon = this.querySelector('.icon');
-  }
-
-  connectedCallback() {
-    document.addEventListener('storefront:signincompleted', this.handleStorefrontSignInCompleted.bind(this));
-  }
-
-  handleStorefrontSignInCompleted(event) {
-    if (event?.detail?.avatar) {
-      this.icon?.replaceWith(event.detail.avatar.cloneNode());
+document.addEventListener('DOMContentLoaded', function() {
+    const elems = document.querySelectorAll('.klaviyo_form_trigger');
+    
+    elems.forEach((item, index) => {
+        item.addEventListener('click', function (event){
+            console.log("Element clicked:", index);
+            // Check if it's the first element and prevent double opening
+                console.log("Opening popup once");
+                window._klOnsite = window._klOnsite || [];
+                window._klOnsite.push(['openForm', 'SXPZGg']);
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const elemsNotify = document.querySelectorAll('.notify_me_klaviyo_trigger');
+    
+    elemsNotify.forEach((item, index) => {
+        item.addEventListener('click', function (event){
+            console.log("Element clicked:", index);
+            // Check if it's the first element and prevent double opening
+                console.log("Opening popup once");
+                window._klOnsite = window._klOnsite || [];
+                window._klOnsite.push(['openForm', 'VJZu5A']);
+        });
+    });
+});   
+// Function to handle intersection observer logic
+function handleIntersection(entries, observer) {
+  entries.forEach(entry => {
+    // If element is in viewport, add the 'show' class to trigger the animation
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
     }
+  });
+}
+
+
+
+// Get the elements to animate
+const elements = document.querySelectorAll('.fade_in_animation_left');
+console.log("elements",elements)
+
+const options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.7
+};
+
+// Create a new Intersection Observer for each element
+elements.forEach(element => {
+  const observer = new IntersectionObserver(handleIntersection, options);
+  observer.observe(element);
+});
+
+
+
+
+// Function to handle intersection observer logic
+function handleIntersectionRight(entries, observer) {
+  entries.forEach(entry => {
+    // If element is in viewport, add the 'show' class to trigger the animation
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  });
+}
+
+// Get the elements to animate
+const elements1 = document.querySelectorAll('.fade_in_animation_right');
+// console.log("elements",elements)
+
+const options1 = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.7
+};
+
+// Create a new Intersection Observer for each element
+elements1.forEach(element => {
+  const observer = new IntersectionObserver(handleIntersectionRight, options1);
+  observer.observe(element);
+});
+
+// Flag to track if the popup has already been opened
+let popupOpened = false;
+
+// Function to check if the user has scrolled 85% of the page
+function handleScroll() {
+  // Check if the element with data-testid "POPUP" exists in the document
+  const currentURL = document.querySelector('[data-testid="POPUP"]');
+
+  // Calculate the scroll position
+  const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+  // Calculate the total height of the page
+  const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  // Calculate 85% of the total height
+  const eightyFivePercent = 0.85 * totalHeight;
+
+  // Check if the scroll position is greater than or equal to 85% of the page
+  if (scrollPosition >= eightyFivePercent && !currentURL && !popupOpened) {
+    // Update the flag to indicate that the popup has been opened
+    popupOpened = true;
+
+    // Your code to run when the user has scrolled 85% of the page,
+    // the element with data-testid "POPUP" is NOT present,
+    // and the popup has not been opened before
+    console.log("User has scrolled to 85% of the page, and the element with data-testid 'POPUP' is NOT present. Run your code here.");
+
+    // Example: Open a form
+    window._klOnsite = window._klOnsite || [];
+window._klOnsite.push(['openForm', 'SXPZGg']);
+
+  }
+}
+function handleScrollSignupPage() {
+  // Check if the element with data-testid "POPUP" exists in the document
+  const currentURL = document.querySelector('[data-testid="POPUP"]');
+
+  // Calculate the scroll position
+  const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+
+  // Calculate the total height of the page
+  const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  // Calculate 85% of the total height
+  const fourtyFivePercent = 0.45 * totalHeight;
+
+  // Check if the scroll position is greater than or equal to 85% of the page
+  if (scrollPosition >= fourtyFivePercent && !currentURL && !popupOpened) {
+    // Update the flag to indicate that the popup has been opened
+    popupOpened = true;
+
+    // Your code to run when the user has scrolled 85% of the page,
+    // the element with data-testid "POPUP" is NOT present,
+    // and the popup has not been opened before
+    console.log("User has scrolled to 85% of the page, and the element with data-testid 'POPUP' is NOT present. Run your code here.");
+
+    // Example: Open a form
+    window._klOnsite = window._klOnsite || [];
+window._klOnsite.push(['openForm', 'SXPZGg']);
+
   }
 }
 
-customElements.define('account-icon', AccountIcon);
+if (window.location.pathname.includes('/products/charcoal-case')) {
+  // Attach the handleScroll function to the window's scroll event
+  window.addEventListener('scroll', handleScroll);
+}
+if (window.location.pathname.includes('/pages/charcoal-case-sign-up')) {
+  // Attach the handleScroll function to the window's scroll event
+  window.addEventListener('scroll', handleScrollSignupPage);
+}
+
+window.addEventListener('scroll', function() {
+    // Replace 'your-element-id' with the ID of the element you want to remove the class from
+    var removeClass = document.querySelector('.header__heading-logo');
+    console.log("scale is working or not")
+    // Replace 'class-to-remove' with the class you want to remove
+    removeClass.classList.remove('toggleScale');
+});
+
+
+// from here code for the logo scaling
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    // Get the elements to observe
+    const headerHeadingLogo = document.querySelector('.header__heading-logo');
+    const logoImageLeftNew = document.querySelector('.logo_image_left');
+
+    // Options for the IntersectionObserver
+    const optionsObject = {
+        root: null, // Use the viewport as the root
+        threshold: 0.7 // Trigger the callback when 70% of the element is visible
+    };
+
+    // Callback function to handle intersection changes
+    const handleIntersectionScale = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add the 'in-view' class when the element comes into view
+                headerHeadingLogo.classList.add('in-view');
+                logoImageLeftNew.classList.add('in-view');
+            } else {
+                // Remove the 'in-view' class when the element goes out of view
+                headerHeadingLogo.classList.remove('in-view');
+                logoImageLeftNew.classList.remove('in-view');
+            }
+        });
+    };
+
+    // Create a new IntersectionObserver with the callback and options
+    const observerNew = new IntersectionObserver(handleIntersectionScale, optionsObject);
+
+    // Start observing the elements
+    observerNew.observe(headerHeadingLogo);
+    observerNew.observe(logoImageLeftNew);
+});
+// these lines of code are for making fixed header slideup on scrollbelow and slidedown on scrollabove . for now we are commenting it
+// function slideToggleHeader(event) {
+//  var currentScrolled = window.pageYOffset;
+//   /* if scrolling down, let it scroll out of view as normal */
+//   if (previousScrolled < currentScrolled ){
+//     header_div.style.transition = "1s ease";
+//     header_div.style.top = "-140px";
+//   }
+//     else if(previousScrolled == currentScrolled){
+//  header_div.style.top = "0px";
+//       return;
+// }
+//   /* otherwise if we're scrolling up, fix the nav to the top */
+//   else{  
+//      header_div.style.transition = "1s ease";
+//        header_div.style.top = "0px";
+//   }
+
+//   previousScrolled = currentScrolled;
+// }
+// var previousScrolled = window.pageYOffset;
+// var header_div = document.querySelector(".header-wrapper");
+// var headerBottom = header_div.offsetTop + header_div.offsetHeight;
+// window.addEventListener("scroll",slideToggleHeader())
+// window.addEventListener("scroll",slideToggleHeader)
+// setInterval(function() {
+//     if (window.pageYOffset < 50) {
+//         header_div.style.top = "0px";
+//     }
+// }, 100); // 500 milliseconds = 0.5 seconds
+
+
+
+// custom js for dropdown show on hover
+    const onHoverShow = document.getElementById("HeaderMenu-products");
+    const toPutOpenIn = document.getElementById("Details-HeaderMenu-1");
+    const ulTag = document.getElementById("HeaderMenu-MenuList-1");
+    function addOpenAttribute() {
+        // Check if the element exists
+        if (toPutOpenIn) {
+            // Insert the "open" attribute
+          console.log("inside the if block")
+            toPutOpenIn.setAttribute("open", "");
+        }
+    }
+    function removeOpenAttribute(){
+ toPutOpenIn.removeAttribute("open");
+}
+    onHoverShow.addEventListener("mouseover",addOpenAttribute );
+    onHoverShow.addEventListener("click",function(e){
+      e.preventDefault();
+      addOpenAttribute();
+      
+});
+    ulTag.addEventListener("mouseover",addOpenAttribute );
+    onHoverShow.addEventListener("mouseleave",removeOpenAttribute)
+    ulTag.addEventListener("mouseleave",removeOpenAttribute)
+  
+  // for mobile to inset the open attribute inside the details tag to show the child list items of menubar
+  var window_width = window.innerWidth;
+  console.log("x", window_width)
+  function insertOpen(){
+    console.log("z")
+  const summaryElement = document.querySelector("summary.menu-drawer__menu-item");
+  const detailsElement = document.querySelector("#Details-menu-drawer-menu-item-3");
+    detailsElement.setAttribute("open","");
+    console.log("z",summaryElement)
+  
+  summaryElement.addEventListener("click",function(e){
+    e.preventDefault();
+     console.log("z")
+  })
+ }
+  if ( window_width < 768){
+    console.log("y", window_width)
+    window.addEventListener("DOMContentLoaded",insertOpen())
+      
+}
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+// document.querySelector("deferred-media button.video-section__poster.media.deferred-media__poster").addEventListener("click",()=>{
+//    document.querySelector("deferred-media video").requestFullscreen().catch(console.log("error come"))
+//   document.querySelector(".deferred-media__poster-button-media").style.display="none";
+// })
+
+
+
+//   // update style of video 
+//   // Function to update video styles based on fullscreen status
+// function updateVideoStyles() {
+//   const video = document.querySelector("deferred-media video");
+//   if (!video) {
+//     console.error("Video element not found inside deferred-media.");
+//     return;
+//   }
+
+//   if (document.fullscreenElement) {
+//     // If any element is in fullscreen mode
+//     video.style.width = "100%";
+//     video.style.height = "100%";
+//   } else {
+//     if(windowWidthNew>2000){
+//       video.style.width = "70%";
+//     video.style.height = "1000px";
+//     }
+//     else{
+//           // If no element is in fullscreen mode
+//     video.style.width = "70%";
+//     video.style.height = "600px";
+//     }
+
+//   }
+// }
+
+// // Event listeners for fullscreen changes
+// var windowWidthNew = window.innerWidth;
+//   if (windowWidthNew > 767){
+// document.addEventListener("fullscreenchange", updateVideoStyles);
+// document.addEventListener("webkitfullscreenchange", updateVideoStyles); // For Safari
+// document.addEventListener("mozfullscreenchange", updateVideoStyles);    // For Firefox
+// document.addEventListener("msfullscreenchange", updateVideoStyles);     // For older versions of IE/Edge
+// // Initial check
+// updateVideoStyles();
+//   }
+// });

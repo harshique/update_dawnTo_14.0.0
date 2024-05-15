@@ -1,0 +1,186 @@
+<!-- Link Swiper's CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+>
+
+<!-- Demo styles -->
+<style>
+         #shopify-section-{{section.id}} {
+            background-color: black;
+            padding: 10rem 1rem;
+        }
+            .swiper_text_signup {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-bottom: 5rem;
+        }
+            h3.title_swiper_signup {
+            margin: 0;
+            font-size: 25px;
+            line-height: 30px;
+            letter-spacing: 9px;
+            text-align: center;
+            color: white;
+            font-weight: 900;
+        }
+            p.subtitle_swiper_signup {
+            margin: 0;
+            text-align: center;
+            font-size: 23px;
+            line-height: 30px;
+            letter-spacing: 8px;
+            font-weight: 300;
+            color: white;
+        }
+            img.swiper_slide_images {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-pagination-bullet-active {
+          background: #bc583a!important;
+      }
+        .swiper-pagination-bullet {
+          background: white;
+          opacity: var(--swiper-pagination-bullet-inactive-opacity, 1)!important;
+      }
+      div.swiper-wrapper{
+      padding-bottom:3rem!important;
+    }
+
+    @media (max-width:767px){
+               #shopify-section-{{section.id}} {
+            background-color: black;
+            padding: 10rem 1rem 3rem 1rem;
+        }
+  h3.title_swiper_signup {
+      margin: 0;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 6.5px;
+      text-align: center;
+      color: white;
+      font-weight: 900;
+  }
+      p.subtitle_swiper_signup {
+      margin: 0;
+      text-align: center;
+      font-size: 17px;
+      line-height: 22px;
+      letter-spacing: 5.8px;
+      font-weight: 300;
+      color: white;
+   }
+  }
+</style>
+<div class="swiper_section_wrapper">
+  <div class="swiper_text_signup">
+    <h3 class="title_swiper_signup">FROM THE MAKERS OF</h3>
+    <p class="subtitle_swiper_signup">THE CHARCOAL DESK</p>
+  </div>
+</div>
+<!-- Swiper -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_1 | image_url }}">
+    </div>
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_2 | image_url }}">
+    </div>
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_3 | image_url }}">
+    </div>
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_4 | image_url }}">
+    </div>
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_5 | image_url }}">
+    </div>
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_6 | image_url }}">
+    </div>
+    <div class="swiper-slide">
+      <img class="swiper_slide_images" src="{{ section.settings.swiper_images_7 | image_url }}">
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+    // when window width is >= 320px
+    770: {
+      slidesPerView: 3,
+      spaceBetween: 30
+    }
+  }
+  });
+</script>
+
+{% schema %}
+{
+"name": "case_signup_swiper",
+"settings": [
+{
+"type": "image_picker",
+"id": "swiper_images_1",
+"label": "Slides"
+},
+{
+"type": "image_picker",
+"id": "swiper_images_2",
+"label": "Slides"
+},
+{
+"type": "image_picker",
+"id": "swiper_images_3",
+"label": "Slides"
+},
+{
+"type": "image_picker",
+"id": "swiper_images_4",
+"label": "Slides"
+},
+{
+"type": "image_picker",
+"id": "swiper_images_5",
+"label": "Slides"
+},
+{
+"type": "image_picker",
+"id": "swiper_images_6",
+"label": "Slides"
+},
+{
+"type": "image_picker",
+"id": "swiper_images_7",
+"label": "Slides"
+}
+],
+"presets": [
+{
+"name": "case_signup_swiper"
+}
+]
+}
+{% endschema %}

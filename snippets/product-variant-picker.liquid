@@ -10,87 +10,119 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
-  <variant-selects
-    id="variant-selects-{{ section.id }}"
+  {% if diversion == 1 %}
+  <variant-radios
+    class="no-js-hidden"
     data-section="{{ section.id }}"
     data-url="{{ product.url }}"
-    {% if update_url == false %}
-      data-update-url="false"
-    {% endif %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      {%- liquid
-        assign swatch_count = option.values | map: 'swatch' | compact | size
-        assign picker_type = block.settings.picker_type
-
-        if swatch_count > 0 and block.settings.swatch_shape != 'none'
-          if block.settings.picker_type == 'dropdown'
-            assign picker_type = 'swatch_dropdown'
-          else
-            assign picker_type = 'swatch'
-          endif
-        endif
-      -%}
-      {%- if picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch">
-          <legend class="form__label">
-            {{ option.name }}:
-            <span data-selected-swatch-value="{{ option.name }}">
-              {{- option.selected_value -}}
-            </span>
-          </legend>
-          {% render 'product-variant-options',
-            product: product,
-            option: option,
-            block: block,
-            picker_type: picker_type
-          %}
-        </fieldset>
-      {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options',
-            product: product,
-            option: option,
-            block: block,
-            picker_type: picker_type
-          %}
-        </fieldset>
-      {%- else -%}
-        <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
+      <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
+        <legend class="form__label">{{ option.name }}</legend>
+        {%- for value in option.values -%}
+          <input
+            type="radio"
+            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+            name="{{ option.name }}"
+            value="{{ value | escape }}"
+            form="{{ product_form_id }}"
+            data-handle="trigger-input"
+            {% if option.selected_value == value %}
+              checked
+            {% endif %}
+          >
+          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            <img class="variant_radio_images_case variant_radio_images_case-{{ forloop.index0 }}" src="https://cdn.shopify.com/s/files/1/0583/8756/2634/files/b12b64250ac77600d83061a5f41ea82f_1.png?v=1714402829">
+            <span class="inside_label_text inside_label_text-{{ forloop.index0 }}">{{ value }}</span>
           </label>
-          <div class="select">
-            {%- if picker_type == 'swatch_dropdown' -%}
-              <span
-                data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
-                class="dropdown-swatch"
-              >
-                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
-              </span>
-            {%- endif -%}
-            <select
-              id="Option-{{ section.id }}-{{ forloop.index0 }}"
-              class="select__select"
-              name="options[{{ option.name | escape }}]"
-              form="{{ product_form_id }}"
-            >
-              {% render 'product-variant-options',
-                product: product,
-                option: option,
-                block: block,
-                picker_type: picker_type
-              %}
-            </select>
-            {% render 'icon-caret' %}
-          </div>
-        </div>
-      {%- endif -%}
+        {%- endfor -%}
+      </fieldset>
     {%- endfor -%}
     <script type="application/json">
       {{ product.variants | json }}
     </script>
+  </variant-radios>
+  {% else %}
+  <variant-selects
+    class="no-js-hidden"
+    data-section="{{ section.id }}"
+    data-url="{{ product.url }}"
+    {{ block.shopify_attributes }}
+    data-update-url="false"
+  >
+    {%- for option in product.options_with_values -%}
+      <div class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}">
+        <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+          {{ option.name }}
+        </label>
+        <div class="select">
+          <select
+            id="Option-{{ section.id }}-{{ forloop.index0 }}"
+            class="select__select"
+            name="options[{{ option.name | escape }}]"
+            form="{{ product_form_id }}"
+            data-handle="trigger-select"
+          >
+            {%- for value in option.values -%}
+              <option
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}
+                  selected="selected"
+                {% endif %}
+              >
+                {{ value }}
+              </option>
+            {%- endfor -%}
+          </select>
+          {% render 'icon-caret' %}
+        </div>
+      </div>
+    {%- endfor -%}
+
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
   </variant-selects>
+  {% endif %}
 {%- endunless -%}
+
+<noscript class="product-form__noscript-wrapper-{{ section.id }}">
+  <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+    <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+    <div class="select">
+      <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+        {%- for variant in product.variants -%}
+          <option
+            {% if variant == product.selected_or_first_available_variant %}
+              selected="selected"
+            {% endif %}
+            {% if variant.available == false %}
+              disabled
+            {% endif %}
+            value="{{ variant.id }}"
+          >
+            {{ variant.title }}
+            {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+            - {{ variant.price | money | strip_html }}
+          </option>
+        {%- endfor -%}
+      </select>
+      {% render 'icon-caret' %}
+    </div>
+  </div>
+</noscript>
+
+{% comment %} this script is written for working the variant select functionality fine  {% endcomment %}
+<script>
+  for (let i = 0; i < 3; i++) {
+    $('input[data-handle="trigger-input"][name="Choose your color"]').click((e) => {
+      const value = e.currentTarget.value;
+      $('select[data-handle="trigger-select"][name="options[Choose your color]"]').val(value);
+    });
+  }
+  $('select[data-handle="trigger-select"][name="options[Choose your shipping window]"]').change((e) => {
+    const value = e.currentTarget.value;
+    $(`input[type="radio"][name="Choose your shipping window"][value="${value}"]`).trigger('click');
+  });
+</script>
